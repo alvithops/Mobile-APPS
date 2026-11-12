@@ -1,0 +1,576 @@
+<!DOCTYPE html><html class="dark" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>TechFest BPH Command - Approvals</title>
+<script>
+    (function () {
+      function readActive() {
+        try {
+          var raw = localStorage.getItem('payent_active_event');
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        try {
+          var fallback = sessionStorage.getItem('payent_active_event');
+          return fallback ? JSON.parse(fallback) : null;
+        } catch (e) { return null; }
+      }
+      var active = readActive();
+      if (!active || !active.name) window.location.replace('../draft.html');
+    })();
+  </script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-elevated": "#1F1F28",
+            "on-surface-variant": "#c6c9ab",
+            "electric-violet": "#8B5CF6",
+            "on-secondary": "#3c0091",
+            "primary": "#ffffff",
+            "on-background": "#e5e1e6",
+            "surface-card-hover": "#22222D",
+            "surface-container-high": "#2a2a2d",
+            "on-secondary-fixed-variant": "#5516be",
+            "surface-container-highest": "#353438",
+            "secondary-fixed-dim": "#d0bcff",
+            "on-primary": "#2c3400",
+            "neon-lime": "#DFFF00",
+            "surface-bright": "#39393c",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "on-error": "#690005",
+            "primary-fixed-dim": "#b8d300",
+            "on-secondary-container": "#c4abff",
+            "on-error-container": "#ffdad6",
+            "vibrant-coral-warm": "#FF6B4A",
+            "surface-border": "#2E2E3A",
+            "surface-tint": "#b8d300",
+            "surface-base": "#0B0B0E",
+            "outline": "#909378",
+            "secondary-fixed": "#e9ddff",
+            "on-tertiary-container": "#ba3200",
+            "inverse-surface": "#e5e1e6",
+            "tertiary-fixed": "#ffdbd1",
+            "secondary": "#d0bcff",
+            "on-tertiary": "#5f1500",
+            "surface-card": "#18181F",
+            "background": "#131316",
+            "on-primary-fixed-variant": "#414c00",
+            "outline-variant": "#454932",
+            "cyan-sky": "#38BDF8",
+            "text-primary": "#F4F4F6",
+            "tertiary-fixed-dim": "#ffb5a0",
+            "text-muted": "#626270",
+            "neon-lime-hover": "#CCFF00",
+            "inverse-on-surface": "#303033",
+            "surface-dim": "#131316",
+            "inverse-primary": "#576500",
+            "surface-container": "#1f1f22",
+            "on-tertiary-fixed": "#3b0900",
+            "surface-variant": "#353438",
+            "tertiary-container": "#ffdbd1",
+            "electric-violet-deep": "#7C3AED",
+            "text-secondary": "#9E9EA8",
+            "on-secondary-fixed": "#23005c",
+            "on-primary-container": "#5d6b00",
+            "tertiary": "#ffffff",
+            "primary-container": "#d2f000",
+            "on-tertiary-fixed-variant": "#862200",
+            "surface": "#131316",
+            "vibrant-coral": "#FF5722",
+            "secondary-container": "#571bc1",
+            "primary-fixed": "#d2f000",
+            "on-surface": "#e5e1e6",
+            "on-primary-fixed": "#191e00",
+            "surface-container-lowest": "#0e0e11",
+            "surface-container-low": "#1b1b1e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xxl": "4rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-mobile": "1.25rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Syne"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Syne"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Syne"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Syne"],
+            "display-hero-mobile": ["Syne"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-hero": ["Syne"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-hero-mobile": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-hero": ["80px", { "lineHeight": "84px", "letterSpacing": "-0.03em", "fontWeight": "800" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .neon-glow-lime {
+      box-shadow: 0 0 24px rgba(223, 255, 0, 0.35);
+    }
+    .neon-glow-violet {
+      box-shadow: 0 0 32px rgba(139, 92, 246, 0.3);
+    }
+    .neon-glow-coral {
+      box-shadow: 0 0 20px rgba(255, 87, 34, 0.35);
+    }
+    /* Hide scrollbar for tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-base text-text-primary antialiased min-h-screen relative selection:bg-neon-lime selection:text-surface-base pb-28">
+<!-- Atmospheric Glow Blobs -->
+<div class="fixed top-0 -left-20 w-72 h-72 bg-electric-violet/15 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<div class="fixed top-1/3 -right-24 w-80 h-80 bg-neon-lime/10 rounded-full blur-[110px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-20 left-1/4 w-64 h-64 bg-cyan-sky/10 rounded-full blur-[90px] pointer-events-none -z-10"></div>
+<!-- TOP APP BAR (Shared Component Execution from JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter-mobile py-space-sm bg-surface-base/90 backdrop-blur-md border-b border-surface-border">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Ganti Event / Kembali ke Draft" class="w-10 h-10 rounded-full bg-surface-card border border-surface-border flex items-center justify-center text-text-primary active:scale-95 transition-transform" onclick="window.location.href='../draft.html'" title="Ganti Event / Kembali ke Draft">
+<span class="material-symbols-outlined text-headline-sm">swap_horiz</span>
+</button>
+<div>
+<div class="flex items-center gap-1.5">
+<h1 class="font-headline-sm text-headline-sm font-bold text-text-primary">Approvals</h1>
+<span class="text-neon-lime font-headline-sm">•</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-text-secondary">
+<span data-active-event class="max-w-[150px] truncate">TechFest 2025</span>
+<span class="text-text-muted">•</span>
+<span class="inline-flex items-center gap-1 text-[11px] text-neon-lime font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-neon-lime animate-pulse"></span>
+            Supabase Live
+          </span>
+</div>
+</div>
+</div>
+<!-- Trailing Action Counter Chip -->
+<div class="flex items-center gap-2">
+<button aria-label="History Log" class="w-9 h-9 rounded-full bg-surface-elevated border border-surface-border flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neon-lime/10 border border-neon-lime/30 text-neon-lime font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-neon-lime animate-ping"></span>
+<span>7 Pending</span>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT CANVAS -->
+<main class="pt-20 px-gutter-mobile space-y-space-md max-w-md mx-auto">
+<!-- URGENT NOTICE / QUICK SUMMARY BANNER -->
+<section class="rounded-2xl bg-gradient-to-r from-vibrant-coral/15 via-surface-card to-surface-card border border-vibrant-coral/40 p-space-md relative overflow-hidden">
+<!-- Kinetic doodle sketch decoration -->
+<svg class="absolute -right-4 -bottom-4 w-24 h-24 text-vibrant-coral/10 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 100 100">
+<path d="M10 80 Q 30 20 80 40 T 90 90" stroke-linecap="round"></path>
+<circle cx="75" cy="25" fill="currentColor" opacity="0.3" r="8"></circle>
+</svg>
+<div class="flex items-start gap-3 mb-space-sm">
+<div class="w-8 h-8 rounded-full bg-vibrant-coral/20 border border-vibrant-coral text-vibrant-coral flex items-center justify-center flex-shrink-0 neon-glow-coral">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-[16px] leading-5 font-bold text-text-primary">3 Pengajuan Mendesak</h2>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5">Membutuhkan persetujuan koordinator BPH hari ini</p>
+</div>
+</div>
+<!-- Quick Metric Row Bento -->
+<div class="grid grid-cols-3 gap-2 pt-2 border-t border-surface-border/60">
+<div class="bg-surface-elevated/70 rounded-xl p-2 border border-surface-border">
+<span class="block font-label-sm text-[11px] text-text-muted">Total Tertunda</span>
+<span class="font-headline-sm text-headline-sm font-bold text-text-primary">7</span>
+</div>
+<div class="bg-surface-elevated/70 rounded-xl p-2 border border-surface-border col-span-1">
+<span class="block font-label-sm text-[11px] text-text-muted">Nominal Dana</span>
+<span class="font-headline-sm text-[13px] leading-6 font-bold text-neon-lime truncate block">Rp 14,85M</span>
+</div>
+<div class="bg-surface-elevated/70 rounded-xl p-2 border border-surface-border">
+<span class="block font-label-sm text-[11px] text-text-muted">Logistik</span>
+<span class="font-headline-sm text-headline-sm font-bold text-cyan-sky">4 Aset</span>
+</div>
+</div>
+</section>
+<!-- HORIZONTAL FILTER TABS -->
+<nav aria-label="Approvals Filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-neon-lime text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center gap-1.5">
+<span>Semua</span>
+<span class="w-4 h-4 rounded-full bg-surface-base text-neon-lime text-[10px] flex items-center justify-center font-bold">7</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1">
+<span>Dana Kas</span>
+<span class="text-text-muted font-normal">(3)</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1">
+<span>Peminjaman Alat</span>
+<span class="text-text-muted font-normal">(2)</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1">
+<span>Perizinan &amp; MoU</span>
+<span class="text-text-muted font-normal">(2)</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95">
+        Disetujui
+      </button>
+</nav>
+<!-- REQUEST CARDS STREAM -->
+<div class="space-y-space-md">
+<!-- CARD 1: URGENT - Dana Kas / Sie Konsumsi -->
+<article class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<!-- Accent indicator bar -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-vibrant-coral"></div>
+<!-- Badges & Meta -->
+<div class="flex items-center justify-between gap-2 mb-2.5 pl-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-vibrant-coral/15 border border-vibrant-coral text-vibrant-coral font-label-sm text-[11px] font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-vibrant-coral animate-ping"></span>
+              URGENT
+            </span>
+<span class="px-2.5 py-0.5 rounded-full bg-electric-violet/20 border border-electric-violet/40 text-electric-violet font-label-sm text-[11px] font-semibold">
+              Sie Konsumsi
+            </span>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 12 mnt lalu
+          </span>
+</div>
+<!-- Title & Details -->
+<div class="pl-1">
+<h3 class="font-headline-sm text-[17px] leading-6 font-bold text-text-primary">
+            Snack &amp; Kopi Rapat Pleno Gabungan (45 Pax)
+          </h3>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-cyan-sky">meeting_room</span>
+            Ruang VIP &amp; Command Room • Vendor: Catering Berkah
+          </p>
+<!-- Nominal Box Highlight -->
+<div class="mt-3 p-3 rounded-xl bg-surface-elevated border border-surface-border flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[11px] text-text-muted block">Jumlah Pengajuan Dana</span>
+<span class="font-headline-lg-mobile text-neon-lime font-bold tracking-tight">Rp 650.000</span>
+</div>
+<div class="text-right">
+<span class="px-2 py-1 rounded bg-surface-card border border-surface-border font-label-sm text-[10px] text-text-secondary uppercase">Tunai Kas</span>
+</div>
+</div>
+<!-- Attachments Row -->
+<div class="mt-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary font-label-sm text-[11px]" href="#">
+<span class="material-symbols-outlined text-[14px] text-vibrant-coral">picture_as_pdf</span>
+              Invoice-Nota-081.pdf
+            </a>
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary font-label-sm text-[11px]" href="#">
+<span class="material-symbols-outlined text-[14px] text-cyan-sky">receipt_long</span>
+              Bukti DP (Rp 300k)
+            </a>
+</div>
+<!-- Requester Avatar & Information -->
+<div class="mt-3 pt-3 border-t border-surface-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-electric-violet/30 border border-electric-violet text-text-primary flex items-center justify-center font-bold text-xs">
+                AW
+              </div>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-text-primary leading-tight">Ari Wibowo</p>
+<p class="font-body-sm text-[11px] text-text-muted leading-tight">Koor Konsumsi</p>
+</div>
+</div>
+<span class="font-label-sm text-[11px] text-neon-lime bg-neon-lime/10 px-2 py-0.5 rounded">ID: #REQ-1082</span>
+</div>
+<!-- Action Buttons -->
+<div class="mt-4 grid grid-cols-2 gap-2.5">
+<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border hover:border-vibrant-coral/50 text-text-secondary hover:text-vibrant-coral font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">close</span>
+              Tolak
+            </button>
+<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+              Setujui Pengajuan
+            </button>
+</div>
+</div>
+</article>
+<!-- CARD 2: URGENT - Peminjaman Logistik / Sie Lapangan -->
+<article class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-vibrant-coral"></div>
+<div class="flex items-center justify-between gap-2 mb-2.5 pl-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-vibrant-coral/15 border border-vibrant-coral text-vibrant-coral font-label-sm text-[11px] font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-vibrant-coral animate-ping"></span>
+              URGENT
+            </span>
+<span class="px-2.5 py-0.5 rounded-full bg-cyan-sky/20 border border-cyan-sky/40 text-cyan-sky font-label-sm text-[11px] font-semibold">
+              Sie Perlengkapan &amp; Lapangan
+            </span>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 35 mnt lalu
+          </span>
+</div>
+<div class="pl-1">
+<h3 class="font-headline-sm text-[17px] leading-6 font-bold text-text-primary">
+            Peminjaman 4 Unit Handy Talky (HT) &amp; 2 Megaphone
+          </h3>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">
+            Untuk gladi resik penataan loading dock dan flow parkir kontainer panggung utama.
+          </p>
+<!-- Asset Pill Grid -->
+<div class="mt-3 p-3 rounded-xl bg-surface-elevated border border-surface-border space-y-2">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-text-muted flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-neon-lime">radio</span>
+                4x Motorola CP1660 HT
+              </span>
+<span class="font-semibold text-text-primary">Sie Lapangan</span>
+</div>
+<div class="flex items-center justify-between text-body-sm pt-1.5 border-t border-surface-border/50">
+<span class="text-text-muted flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-electric-violet">volume_up</span>
+                2x TOA Megaphone ZR-2015
+              </span>
+<span class="text-neon-lime font-semibold">14-16 Nov (3 Hari)</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-surface-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-cyan-sky/30 border border-cyan-sky text-text-primary flex items-center justify-center font-bold text-xs">
+                FH
+              </div>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-text-primary leading-tight">Fajar H.</p>
+<p class="font-body-sm text-[11px] text-text-muted leading-tight">Sie Lapangan</p>
+</div>
+</div>
+<span class="font-label-sm text-[11px] text-cyan-sky bg-cyan-sky/10 px-2 py-0.5 rounded">ID: #AST-0419</span>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2.5">
+<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border hover:border-vibrant-coral/50 text-text-secondary hover:text-vibrant-coral font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">close</span>
+              Tolak
+            </button>
+<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+              Setujui Peminjaman
+            </button>
+</div>
+</div>
+</article>
+<!-- CARD 3: HIGH - Perizinan & Kontrak / Sie Acara -->
+<article class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-yellow-400"></div>
+<div class="flex items-center justify-between gap-2 mb-2.5 pl-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-yellow-400/15 border border-yellow-400/50 text-yellow-300 font-label-sm text-[11px] font-bold">
+              HIGH PRIORITY
+            </span>
+<span class="px-2.5 py-0.5 rounded-full bg-electric-violet/20 border border-electric-violet/40 text-electric-violet font-label-sm text-[11px] font-semibold">
+              Sie Acara
+            </span>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 1 jam lalu
+          </span>
+</div>
+<div class="pl-1">
+<h3 class="font-headline-sm text-[17px] leading-6 font-bold text-text-primary">
+            Finalisasi Klausul Kontrak &amp; Riders Guest Star Reality Club
+          </h3>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">
+            Perubahan addendum akomodasi hotel bintang 4 dan sound monitor engineer.
+          </p>
+<div class="mt-3 p-3 rounded-xl bg-surface-elevated border border-surface-border flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[11px] text-text-muted block">Dampak Plafon Tambahan</span>
+<span class="font-headline-lg-mobile text-text-primary font-bold tracking-tight">+ Rp 4.200.000</span>
+</div>
+<div class="flex items-center">
+<a class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-surface-border text-cyan-sky font-label-sm text-[11px]" href="#">
+<span class="material-symbols-outlined text-[15px]">description</span>
+                Draft_RC_v3.pdf
+              </a>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-surface-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-neon-lime/20 border border-neon-lime text-neon-lime flex items-center justify-center font-bold text-xs">
+                SA
+              </div>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-text-primary leading-tight">Sarah Amelia</p>
+<p class="font-body-sm text-[11px] text-text-muted leading-tight">Koor Acara</p>
+</div>
+</div>
+<span class="font-label-sm text-[11px] text-yellow-300 bg-yellow-400/10 px-2 py-0.5 rounded">MoU Stage 2</span>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2.5">
+<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+              Minta Revisi
+            </button>
+<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+              Verifikasi BPH
+            </button>
+</div>
+</div>
+</article>
+<!-- CARD 4: MEDIUM - Reimburse Operasional / Sie Pubdok -->
+<article class="bg-surface-card border border-surface-border hover:border-surface-card-hover rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<div class="flex items-center justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-elevated border border-surface-border text-text-secondary font-label-sm text-[11px] font-semibold">
+              Sie Humas &amp; Pubdok
+            </span>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 2 jam lalu
+          </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-[16px] leading-5 font-bold text-text-primary">
+            Reimburse Pembelian Domain &amp; Cloud Backup Footage
+          </h3>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-body-sm text-body-sm text-text-secondary">Nominal Penggantian</span>
+<span class="font-headline-sm text-headline-sm font-bold text-neon-lime">Rp 480.000</span>
+</div>
+<div class="mt-3 pt-3 border-t border-surface-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-elevated border border-surface-border text-text-secondary flex items-center justify-center font-bold text-[10px]">
+                NR
+              </div>
+<p class="font-label-sm text-[12px] text-text-secondary">Nabila Rahma</p>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-cyan-sky">
+<span class="material-symbols-outlined text-[14px]">attachment</span> 1 Nota Fisik
+            </div>
+</div>
+<div class="mt-3.5 grid grid-cols-2 gap-2">
+<button class="py-2 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-muted hover:text-text-secondary font-label-sm text-label-sm transition-all active:scale-95">
+              Tolak
+            </button>
+<button class="py-2 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-neon-lime/40 text-neon-lime font-label-sm text-label-sm font-semibold transition-all active:scale-95">
+              Setujui
+            </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Motivational Doodle Mini-Footer -->
+<div class="text-center py-4 text-text-muted font-label-sm text-label-sm space-y-1">
+<div class="flex items-center justify-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-neon-lime">verified_user</span>
+<span>Semua pengeluaran diawasi Bendahara Utama TechFest</span>
+</div>
+<p class="text-[11px] text-text-muted">Protokol Keuangan Versi 2.4 • Supabase Auto-sync</p>
+</div>
+</main>
+<!-- BOTTOM NAVIGATION BAR (Shared Component JSON Execution with Semantic Lock: Approvals ACTIVE) -->
+<nav aria-label="Bottom Navigation" class="fixed bottom-0 left-0 w-full z-50 bg-[#131316]/95 backdrop-blur-md border-t border-[#2a2a30] px-4 py-2 flex justify-around items-center">
+  <!-- Destination 1: Overview -->
+  <a class="flex flex-col items-center justify-center text-text-secondary hover:text-text-primary transition-colors duration-150 font-label-sm text-[11px] py-1 active:scale-95" href="dashboard.html">
+    <span class="material-symbols-outlined text-[24px]">dashboard</span>
+    <span class="mt-0.5">Overview</span>
+  </a>
+  <!-- Destination 2: Tasks -->
+  <a class="flex flex-col items-center justify-center text-text-secondary hover:text-text-primary transition-colors duration-150 font-label-sm text-[11px] py-1 active:scale-95" href="task.html">
+    <span class="material-symbols-outlined text-[24px]">checklist</span>
+    <span class="mt-0.5">Tasks</span>
+  </a>
+  <!-- Destination 3: Approvals (AKTIF) -->
+  <a aria-current="page" class="flex flex-col items-center justify-center text-[#dfff00] font-label-sm text-[11px] py-1 active:scale-95 relative" href="approvals.html">
+    <div class="relative flex items-center justify-center">
+      <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+      <!-- Red counter badge 7 -->
+      <span class="absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-full bg-vibrant-coral text-white font-bold text-[9px] flex items-center justify-center leading-none border border-[#131316]">
+        7
+      </span>
+    </div>
+    <span class="mt-0.5 font-bold">Approvals</span>
+    <!-- Active neon horizontal indicator bar -->
+    <span class="h-1 w-6 bg-[#dfff00] rounded-full mt-0.5 shadow-[0_0_8px_rgba(223,255,0,0.5)]"></span>
+  </a>
+  <!-- Destination 4: Presensi -->
+  <a class="flex flex-col items-center justify-center text-text-secondary hover:text-text-primary transition-colors duration-150 font-label-sm text-[11px] py-1 active:scale-95" href="presensi.html">
+    <span class="material-symbols-outlined text-[24px]">qr_code_scanner</span>
+    <span class="mt-0.5">Presensi</span>
+  </a>
+  <!-- Destination 5: Broadcast -->
+  <a class="flex flex-col items-center justify-center text-text-secondary hover:text-text-primary transition-colors duration-150 font-label-sm text-[11px] py-1 active:scale-95" href="broadcast.html">
+    <span class="material-symbols-outlined text-[24px]">podcasts</span>
+    <span class="mt-0.5">Broadcast</span>
+  </a>
+</nav>
+<script>
+    (function () {
+      function readActive() {
+        try {
+          var raw = localStorage.getItem('payent_active_event');
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        try {
+          var fallback = sessionStorage.getItem('payent_active_event');
+          return fallback ? JSON.parse(fallback) : null;
+        } catch (e) { return null; }
+      }
+      var active = readActive();
+      if (!active || !active.name) return;
+      document.querySelectorAll('[data-active-event]').forEach(function (el) {
+        el.textContent = active.name;
+      });
+      document.title = active.name + ' - Approvals';
+    })();
+  </script>
+
+
+</body></html>

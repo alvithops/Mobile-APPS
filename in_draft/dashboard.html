@@ -1,0 +1,646 @@
+<!DOCTYPE html><html class="dark" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>TechFest BPH Command - Mobile Executive Dashboard</title>
+<script>
+    (function () {
+      function readActive() {
+        try {
+          var raw = localStorage.getItem('payent_active_event');
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        try {
+          var fallback = sessionStorage.getItem('payent_active_event');
+          return fallback ? JSON.parse(fallback) : null;
+        } catch (e) { return null; }
+      }
+      var active = readActive();
+      if (!active || !active.name) window.location.replace('../draft.html');
+    })();
+  </script>
+<!-- Google Fonts: Syne & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#571bc1",
+            "tertiary": "#ffffff",
+            "primary-container": "#d2f000",
+            "surface-card-hover": "#22222D",
+            "inverse-primary": "#576500",
+            "on-primary-fixed": "#191e00",
+            "on-tertiary-container": "#ba3200",
+            "surface-tint": "#b8d300",
+            "outline": "#909378",
+            "secondary-fixed-dim": "#d0bcff",
+            "text-muted": "#626270",
+            "tertiary-container": "#ffdbd1",
+            "inverse-surface": "#e5e1e6",
+            "electric-violet": "#8B5CF6",
+            "on-secondary-container": "#c4abff",
+            "surface-bright": "#39393c",
+            "on-tertiary-fixed-variant": "#862200",
+            "surface-border": "#2E2E3A",
+            "surface-container-highest": "#353438",
+            "on-secondary-fixed": "#23005c",
+            "on-error": "#690005",
+            "on-secondary": "#3c0091",
+            "on-error-container": "#ffdad6",
+            "primary-fixed": "#d2f000",
+            "inverse-on-surface": "#303033",
+            "primary": "#ffffff",
+            "secondary": "#d0bcff",
+            "error-container": "#93000a",
+            "cyan-sky": "#38BDF8",
+            "neon-lime": "#DFFF00",
+            "tertiary-fixed": "#ffdbd1",
+            "electric-violet-deep": "#7C3AED",
+            "surface-elevated": "#1F1F28",
+            "text-primary": "#F4F4F6",
+            "on-primary-container": "#5d6b00",
+            "surface-container": "#1f1f22",
+            "background": "#131316",
+            "tertiary-fixed-dim": "#ffb5a0",
+            "outline-variant": "#454932",
+            "vibrant-coral-warm": "#FF6B4A",
+            "on-primary": "#2c3400",
+            "primary-fixed-dim": "#b8d300",
+            "on-tertiary-fixed": "#3b0900",
+            "surface-container-lowest": "#0e0e11",
+            "error": "#ffb4ab",
+            "text-secondary": "#9E9EA8",
+            "surface-container-low": "#1b1b1e",
+            "vibrant-coral": "#FF5722",
+            "surface-base": "#0B0B0E",
+            "on-surface": "#e5e1e6",
+            "on-primary-fixed-variant": "#414c00",
+            "neon-lime-hover": "#CCFF00",
+            "on-secondary-fixed-variant": "#5516be",
+            "surface-card": "#18181F",
+            "secondary-fixed": "#e9ddff",
+            "surface-dim": "#131316",
+            "on-background": "#e5e1e6",
+            "on-surface-variant": "#c6c9ab",
+            "surface-variant": "#353438",
+            "on-tertiary": "#5f1500",
+            "surface-container-high": "#2a2a2d",
+            "surface": "#131316"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "margin-mobile": "1.25rem",
+            "space-xxl": "4rem",
+            "margin": "3rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-mobile": "1rem",
+            "space-xl": "2.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Syne"],
+            "headline-xl-mobile": ["Syne"],
+            "headline-sm": ["Syne"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Syne"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "display-hero": ["Syne"],
+            "display-hero-mobile": ["Syne"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-hero": ["80px", { "lineHeight": "84px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "display-hero-mobile": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+    }
+    .neon-pulse {
+      box-shadow: 0 0 20px rgba(223, 255, 0, 0.35);
+    }
+    .violet-glow {
+      box-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
+    }
+    /* Subtle sketchbook scribble line animation */
+    @keyframes sketchJiggle {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(1px, -0.5px) rotate(0.4deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    .animate-jiggle {
+      animation: sketchJiggle 0.6s infinite ease-in-out;
+    }
+    /* Hide scrollbars for clean carousel preview */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-base text-text-primary min-h-screen antialiased selection:bg-neon-lime selection:text-surface-base pb-28">
+<!-- Atmospheric Glow Backdrop Layers -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-72 bg-electric-violet opacity-20 blur-[100px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-20 right-0 w-80 h-80 bg-neon-lime opacity-10 blur-[120px] pointer-events-none -z-10"></div>
+<!-- SHARED COMPONENT: TopAppBar (Docked Top Execution) -->
+<header class="sticky top-0 z-40 bg-surface-card border-b border-surface-border">
+<div class="flex justify-between items-center w-full px-margin-mobile py-space-sm bg-surface-card border-b border-surface-border">
+<!-- Leading Item & Brand Cluster -->
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl bg-surface-elevated border border-surface-border flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-headline-sm" data-icon="shield">shield</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h1 class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight max-w-[170px] truncate" data-active-event>TechFest BPH Command</h1>
+</div>
+<!-- Live Telemetry Status Pill -->
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-lime opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-neon-lime"></span>
+</span>
+<span class="font-label-sm text-[10px] uppercase tracking-wider text-neon-lime font-bold">LIVE</span>
+<span class="text-text-muted text-[10px]">•</span>
+<span class="font-label-sm text-[10px] text-text-secondary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px] text-cyan-sky" data-icon="sync">sync</span>
+              Supabase RT
+            </span>
+</div>
+</div>
+</div>
+<!-- Trailing Action Cluster: Emergency Alert & Avatar -->
+<div class="flex items-center gap-space-sm">
+<a aria-label="Ganti Event / Kembali ke Draft" class="w-9 h-9 rounded-full bg-surface-elevated border border-surface-border flex items-center justify-center text-text-secondary hover:text-neon-lime hover:border-neon-lime transition-all active:scale-95" href="../draft.html" title="Ganti Event / Kembali ke Draft">
+<span class="material-symbols-outlined text-headline-sm" data-icon="swap_horiz">swap_horiz</span>
+</a>
+<button class="relative w-9 h-9 rounded-full bg-surface-elevated border border-surface-border flex items-center justify-center text-vibrant-coral hover:border-vibrant-coral transition-all active:scale-95" title="Emergency Broadcast">
+<span class="material-symbols-outlined text-headline-sm" data-icon="campaign">campaign</span>
+<span class="absolute -top-1 -right-1 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-vibrant-coral opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-vibrant-coral border-2 border-surface-card"></span>
+</span>
+</button>
+<!-- Chairperson Profile Avatar -->
+<div class="relative w-9 h-9 rounded-full p-0.5 bg-gradient-to-tr from-neon-lime to-electric-violet">
+<img class="w-full h-full rounded-full object-cover" data-alt="Close up portrait photograph of an Indonesian tech event executive chairperson wearing modern black techwear hoodie with subtle neon badge in dark ambient studio lighting with electric violet highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUhTpIEUSV5C2RnFFTMqLMVQgOOCJ0pNPzkYtOqGNG5YcRQwmQzpz7-CPy1Yl6gyKmIx-JViVWLzKRKviR5wa2Rww2g5m1RROuWsrXp2vZuuqktcbQRz4InIwx0HeLP-y6AX6WKCc1BczQe06NOOyTpYinzSzQ5ioH_E8WQ1HiTNDAqamtLqH5CfGvf1NDAC0F0qEh991t3LDgcZJCNRNizT208SpXBb2xtYhk8A4">
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="px-margin-mobile pt-space-md space-y-space-md max-w-xl mx-auto">
+<!-- 1. STICKY EMERGENCY BROADCAST BANNER -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-card border-2 border-vibrant-coral p-space-md shadow-lg shadow-vibrant-coral/10">
+<!-- Kinetic Sketch Accent: Energy scribbles -->
+<div class="absolute -right-4 -top-4 w-16 h-16 pointer-events-none opacity-20">
+<svg class="w-full h-full stroke-vibrant-coral fill-none stroke-[3] animate-jiggle" viewBox="0 0 100 100">
+<path d="M10,20 Q50,0 90,30 T40,90 Z"></path>
+<line x1="20" x2="80" y1="20" y2="80"></line>
+</svg>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="p-2 rounded-xl bg-vibrant-coral/20 border border-vibrant-coral/40 text-vibrant-coral shrink-0">
+<span class="material-symbols-outlined text-headline-sm" data-icon="priority_high">priority_high</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-vibrant-coral font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="crisis_alert">crisis_alert</span>
+              Instruksi Mendesak BPH
+            </span>
+<span class="font-label-sm text-[11px] text-text-muted">Baru saja</span>
+</div>
+<p class="font-headline-sm text-sm text-text-primary mt-1 font-semibold leading-snug">
+            Gladi Bersih Panggung Utama dimajukan ke pukul 15.00 WIB
+          </p>
+<div class="flex items-center gap-space-xs mt-3">
+<button class="flex-1 py-2 px-space-sm rounded-full bg-vibrant-coral hover:bg-vibrant-coral-warm text-surface-base font-label-lg text-xs font-bold text-center transition-all active:scale-95 shadow-md flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check_circle">check_circle</span>
+              Konfirmasi Kesiapan
+            </button>
+<button class="px-3 py-2 rounded-full bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-xs font-label-sm transition-all active:scale-95">
+              Detail
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. EXECUTIVE QUICK METRICS CARDS (Horizontal Carousel & Touch-friendly Grid) -->
+<section class="space-y-space-xs">
+<div class="flex justify-between items-center px-1">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Ringkasan Eksekutif</h2>
+<span class="inline-block w-2 h-2 rounded-full bg-neon-lime"></span>
+</div>
+<span class="font-label-sm text-xs text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="calendar_month">calendar_month</span>
+          H-14 Event
+        </span>
+</div>
+<!-- Bento 2x2 + Highlight Grid -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Metric 1: Countdown Hari-H (Span 2 for impact) -->
+<div class="col-span-2 relative overflow-hidden rounded-2xl bg-surface-card border border-surface-border p-space-md group hover:border-neon-lime/40 transition-all">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-neon-lime" data-icon="hourglass_top">hourglass_top</span>
+                Countdown Hari-H Kick-off
+              </span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-3xl font-headline-lg font-extrabold text-neon-lime tracking-tight">14 Hari 08 Jam</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">Target Kick-off: 15 Nov 2025 • Jakarta Int. Convention</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-elevated border border-surface-border flex items-center justify-center text-neon-lime">
+<span class="material-symbols-outlined text-2xl" data-icon="flag">flag</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Penyelesaian Tugas -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md flex flex-col justify-between hover:border-electric-violet/40 transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-text-secondary">Penyelesaian Tugas</span>
+<span class="material-symbols-outlined text-electric-violet text-lg" data-icon="checklist">checklist</span>
+</div>
+<div class="my-2">
+<div class="font-headline-lg text-2xl text-text-primary font-bold">72% <span class="text-xs font-normal text-text-muted">Tuntas</span></div>
+<p class="font-body-sm text-xs text-text-secondary">142/196 Task Selesai</p>
+</div>
+<!-- Mini Progress Bar -->
+<div class="w-full bg-surface-elevated h-2 rounded-full overflow-hidden border border-surface-border">
+<div class="bg-electric-violet h-full rounded-full transition-all" style="width: 72%"></div>
+</div>
+</div>
+<!-- Metric 3: Sisa Kas BPH -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md flex flex-col justify-between hover:border-cyan-sky/40 transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-text-secondary">Sisa Kas BPH</span>
+<span class="material-symbols-outlined text-cyan-sky text-lg" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="my-2">
+<div class="font-headline-lg text-lg text-text-primary font-bold tracking-tight">Rp 48.750.000</div>
+<p class="font-body-sm text-xs text-cyan-sky font-semibold">57.3% terkendali</p>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted">Plafon: Rp 85.000.000</span>
+</div>
+<!-- Metric 4: Panitia Lapangan Standby -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md flex flex-col justify-between hover:border-neon-lime/40 transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-text-secondary">Panitia Lapangan</span>
+<span class="material-symbols-outlined text-neon-lime text-lg" data-icon="group">group</span>
+</div>
+<div class="my-2">
+<div class="font-headline-lg text-2xl text-text-primary font-bold">64 <span class="text-sm font-normal text-text-muted">/ 78</span></div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-neon-lime animate-pulse"></span>
+<span class="font-body-sm text-xs text-neon-lime font-semibold">Standby Active</span>
+</div>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted">Presensi QR Check-in</span>
+</div>
+<!-- Metric 5: Pending Urgent Approval -->
+<div class="rounded-2xl bg-surface-card border border-vibrant-coral/50 p-space-md flex flex-col justify-between hover:border-vibrant-coral transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-vibrant-coral font-bold">Pending Approval</span>
+<span class="material-symbols-outlined text-vibrant-coral text-lg" data-icon="notification_important">notification_important</span>
+</div>
+<div class="my-2">
+<div class="font-headline-lg text-2xl text-vibrant-coral font-extrabold">7</div>
+<p class="font-body-sm text-xs text-text-primary font-semibold">Permintaan Urgent</p>
+</div>
+<a class="font-label-sm text-[11px] text-vibrant-coral underline decoration-dotted flex items-center gap-0.5" href="#quick-approval-section">
+            Tinjau sekarang
+            <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 3. QUICK APPROVAL DRAWER / CARD (Approval Cepat BPH) -->
+<section class="space-y-space-xs pt-space-xs" id="quick-approval-section">
+<div class="flex justify-between items-center px-1">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Approval Cepat BPH</h2>
+<span class="px-2 py-0.5 rounded-full bg-vibrant-coral/20 border border-vibrant-coral/40 font-label-sm text-[11px] font-bold text-vibrant-coral">
+            7 Urgent
+          </span>
+</div>
+<span class="font-label-sm text-xs text-neon-lime flex items-center gap-0.5 cursor-pointer">
+          Lihat Semua (12)
+          <span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+</span>
+</div>
+<!-- Action Card 1: Urgent Dana Konsumsi Pleno -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md space-y-3 relative hover:border-neon-lime/40 transition-all">
+<!-- Tag & Timestamp -->
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-lg bg-surface-elevated border border-surface-border font-label-sm text-[11px] text-cyan-sky font-semibold">
+              Sie Konsumsi
+            </span>
+<span class="w-1.5 h-1.5 rounded-full bg-vibrant-coral animate-ping"></span>
+<span class="font-label-sm text-[11px] text-vibrant-coral font-bold">Butuh Segera</span>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted">12 menit lalu</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-base text-text-primary font-bold">Snack &amp; Kopi Rapat Pleno</h3>
+<p class="font-body-sm text-xs text-text-secondary mt-0.5">Pengajuan dana darurat konsumsi 45 koordinator panitia rapat malam ini di Ruang VIP.</p>
+</div>
+<!-- Budget Value Box -->
+<div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-elevated border border-surface-border">
+<span class="font-label-sm text-xs text-text-muted">Total Nominal:</span>
+<span class="font-headline-sm text-base text-neon-lime font-bold">Rp 650.000</span>
+</div>
+<!-- Dual Action Touch Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<button class="py-2.5 rounded-full bg-surface-elevated border border-surface-border hover:border-error text-error font-label-lg text-xs font-semibold flex items-center justify-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+            Tolak
+          </button>
+<button class="py-2.5 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-lg text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition-all neon-pulse">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="done_all">done_all</span>
+            Setujui
+          </button>
+</div>
+</div>
+<!-- Action Card 2: Pengajuan Logistik HT Lapangan -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md space-y-3 relative hover:border-electric-violet/40 transition-all">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-lg bg-surface-elevated border border-surface-border font-label-sm text-[11px] text-electric-violet font-semibold">
+              Sie Lapangan &amp; Logistik
+            </span>
+<span class="px-2 py-0.5 rounded-lg bg-surface-container font-label-sm text-[11px] text-text-muted">
+              Peminjaman Aset
+            </span>
+</div>
+<span class="font-label-sm text-[11px] text-text-muted">34 menit lalu</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-base text-text-primary font-bold">Peminjaman 4 HT &amp; Megaphone</h3>
+<p class="font-body-sm text-xs text-text-secondary mt-0.5">Keperluan simulasi loading dock dan flow parkir gladi resik kontainer multimedia.</p>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-elevated border border-surface-border">
+<span class="font-label-sm text-xs text-text-muted">Penanggung Jawab:</span>
+<span class="font-body-sm text-xs text-text-primary font-semibold">Fajar H. (Sie Lapangan)</span>
+</div>
+<!-- Single Primary Touch Button -->
+<div class="pt-1">
+<button class="w-full py-2.5 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-lg text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+            Setujui Peminjaman
+          </button>
+</div>
+</div>
+</section>
+<!-- 4. PROGRES DIVISI & MILESTONE PANITIA (Accordion / Dynamic List View) -->
+<section class="space-y-space-xs pt-space-xs">
+<div class="flex justify-between items-center px-1">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Progres Divisi</h2>
+<span class="font-label-sm text-[11px] text-text-muted">(4 Divisi Utama)</span>
+</div>
+<button class="font-label-sm text-xs text-cyan-sky flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs" data-icon="tune">tune</span>
+          Filter
+        </button>
+</div>
+<div class="space-y-space-xs">
+<!-- Divisi 1: Sie Acara -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-neon-lime/10 border border-neon-lime/30 text-neon-lime flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="theater_comedy">theater_comedy</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-text-primary font-bold">Sie Acara</h4>
+<p class="font-body-sm text-xs text-text-secondary">Rundown finalized, MC rehearsal booked</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-base font-bold text-neon-lime">85%</span>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-surface-elevated h-2 rounded-full overflow-hidden">
+<div class="bg-neon-lime h-full rounded-full transition-all" style="width: 85%"></div>
+</div>
+<div class="flex justify-between items-center pt-1 font-label-sm text-[11px] text-text-muted">
+<span>Milestone 4/5 Rampung</span>
+<span class="text-text-secondary">PIC: Sarah Amelia</span>
+</div>
+</div>
+<!-- Divisi 2: Sie Perlengkapan -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-electric-violet/10 border border-electric-violet/30 text-electric-violet flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="speaker">speaker</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-text-primary font-bold">Sie Perlengkapan</h4>
+<p class="font-body-sm text-xs text-text-secondary">Sound system 20.000W &amp; LED Main Stage</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-base font-bold text-electric-violet">68%</span>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-surface-elevated h-2 rounded-full overflow-hidden">
+<div class="bg-electric-violet h-full rounded-full transition-all" style="width: 68%"></div>
+</div>
+<div class="flex justify-between items-center pt-1 font-label-sm text-[11px] text-text-muted">
+<span>Instalasi Rigging &amp; Genset</span>
+<span class="text-text-secondary">PIC: Doni Prasetya</span>
+</div>
+</div>
+<!-- Divisi 3: Sie Humas & Pubdok -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-cyan-sky/10 border border-cyan-sky/30 text-cyan-sky flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="photo_camera">photo_camera</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-text-primary font-bold">Sie Humas &amp; Pubdok</h4>
+<p class="font-body-sm text-xs text-text-secondary">Media partner &amp; press release live</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-base font-bold text-cyan-sky">90%</span>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-surface-elevated h-2 rounded-full overflow-hidden">
+<div class="bg-cyan-sky h-full rounded-full transition-all" style="width: 90%"></div>
+</div>
+<div class="flex justify-between items-center pt-1 font-label-sm text-[11px] text-text-muted">
+<span>Broadcast Nasional &amp; Press Kit</span>
+<span class="text-text-secondary">PIC: Nabila Rahma</span>
+</div>
+</div>
+<!-- Divisi 4: Sie Konsumsi -->
+<div class="rounded-2xl bg-surface-card border border-surface-border p-space-md space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-vibrant-coral/10 border border-vibrant-coral/30 text-vibrant-coral flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-text-primary font-bold">Sie Konsumsi</h4>
+<p class="font-body-sm text-xs text-text-secondary">Catering vendor DP paid, meal count locked</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-base font-bold text-vibrant-coral">60%</span>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-surface-elevated h-2 rounded-full overflow-hidden">
+<div class="bg-vibrant-coral h-full rounded-full transition-all" style="width: 60%"></div>
+</div>
+<div class="flex justify-between items-center pt-1 font-label-sm text-[11px] text-text-muted">
+<span>Finalisasi Menu Kru &amp; Tamu VIP</span>
+<span class="text-text-secondary">PIC: Ari Wibowo</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. KINETIC QUICK NOTES & DOODLE FLOURISH -->
+<div class="relative p-space-md rounded-2xl bg-surface-elevated border border-surface-border/80 flex items-center justify-between overflow-hidden">
+<!-- Mascot / Sketch vector flourish -->
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-sm text-neon-lime font-bold">💡 BPH Direct Memo</span>
+<span class="text-[10px] font-label-sm bg-neon-lime/20 text-neon-lime px-2 py-0.5 rounded-full font-bold">Sinkronisasi</span>
+</div>
+<p class="font-body-sm text-xs text-text-secondary">
+          Briefing seluruh koordinator divisi diagendakan malam ini pkl 20.00 WIB via Hybrid Command Room.
+        </p>
+</div>
+<div class="w-12 h-12 shrink-0 flex items-center justify-center text-neon-lime">
+<svg class="w-10 h-10 stroke-neon-lime fill-none stroke-[3] animate-jiggle" viewBox="0 0 100 100">
+<path d="M20,50 C20,30 35,20 50,20 C65,20 80,30 80,50 C80,75 50,85 50,85 C50,85 20,75 20,50 Z"></path>
+<circle cx="40" cy="45" fill="#DFFF00" r="4"></circle>
+<circle cx="60" cy="45" fill="#DFFF00" r="4"></circle>
+<path d="M42,60 Q50,66 58,60"></path>
+</svg>
+</div>
+</div>
+</main>
+<!-- SHARED COMPONENT: BottomNavBar (Fixed docked bottom execution) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center py-2 px-2 bg-[#131316]/95 backdrop-blur-md border-t border-[#2a2a30]">
+<!-- Tab 1: Overview (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-neon-lime font-semibold py-1 transition-transform active:scale-95 group" href="dashboard.html">
+  <span class="material-symbols-outlined text-2xl" data-icon="dashboard">dashboard</span>
+  <span class="font-label-sm text-[11px] mt-0.5 font-bold">Overview</span>
+  <div class="h-1 w-6 bg-neon-lime rounded-full mt-0.5 shadow-[0_0_8px_rgba(223,255,0,0.5)]"></div>
+</a>
+<!-- Tab 2: Tasks -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-text-primary py-1 transition-colors active:scale-95 group" href="task.html">
+  <span class="material-symbols-outlined text-2xl" data-icon="checklist">checklist</span>
+  <span class="font-label-sm text-[11px] mt-0.5">Tasks</span>
+</a>
+<!-- Tab 3: Approvals (with Badge 7) -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-text-primary py-1 transition-colors active:scale-95 relative group" href="approvals.html">
+  <div class="relative">
+    <span class="material-symbols-outlined text-2xl" data-icon="fact_check">fact_check</span>
+    <span class="absolute -top-1.5 -right-2 px-1.5 py-0.2 rounded-full bg-vibrant-coral text-surface-base font-label-sm text-[10px] font-extrabold flex items-center justify-center">
+      7
+    </span>
+  </div>
+  <span class="font-label-sm text-[11px] mt-0.5">Approvals</span>
+</a>
+<!-- Tab 4: Presensi -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-text-primary py-1 transition-colors active:scale-95 group" href="presensi.html">
+  <span class="material-symbols-outlined text-2xl" data-icon="qr_code_scanner">qr_code_scanner</span>
+  <span class="font-label-sm text-[11px] mt-0.5">Presensi</span>
+</a>
+<!-- Tab 5: Broadcast -->
+<a class="flex flex-col items-center justify-center text-text-muted hover:text-text-primary py-1 transition-colors active:scale-95 group" href="broadcast.html">
+  <span class="material-symbols-outlined text-2xl" data-icon="podcasts">podcasts</span>
+  <span class="font-label-sm text-[11px] mt-0.5">Broadcast</span>
+</a>
+</nav>
+<script>
+    (function () {
+      function readActive() {
+        try {
+          var raw = localStorage.getItem('payent_active_event');
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        try {
+          var fallback = sessionStorage.getItem('payent_active_event');
+          return fallback ? JSON.parse(fallback) : null;
+        } catch (e) { return null; }
+      }
+      var active = readActive();
+      if (!active || !active.name) return;
+      document.querySelectorAll('[data-active-event]').forEach(function (el) {
+        el.textContent = active.name;
+      });
+      document.title = active.name + ' - BPH Command Center';
+    })();
+  </script>
+<!-- Interactive script for approval actions micro-feedback -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Simple feedback handler for touch interactions
+      const approveBtns = document.querySelectorAll('button');
+      approveBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          if (this.innerText.includes('Setujui') || this.innerText.includes('Konfirmasi')) {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span class="material-symbols-outlined text-sm">done</span> Tersimpan';
+            setTimeout(() => {
+              this.innerHTML = originalText;
+            }, 1800);
+          }
+        });
+      });
+    });
+  </script>
+
+
+</body></html>

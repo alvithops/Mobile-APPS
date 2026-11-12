@@ -174,7 +174,7 @@
 <header class="bg-surface-base dark:bg-surface-base border-b border-surface-border dark:border-surface-border sticky top-0 z-40 w-full px-margin-mobile py-space-sm backdrop-blur-md bg-opacity-95">
 <div class="flex justify-between items-center w-full">
 <div class="flex items-center gap-space-sm">
-<button aria-label="Go back" class="w-10 h-10 rounded-full bg-surface-card border border-surface-border flex items-center justify-center text-text-primary hover:text-neon-lime dark:hover:text-neon-lime transition-colors duration-200 active:scale-95 transition-transform">
+<button aria-label="Kembali ke Beranda" class="w-10 h-10 rounded-full bg-surface-card border border-surface-border flex items-center justify-center text-text-primary hover:text-neon-lime dark:hover:text-neon-lime transition-colors duration-200 active:scale-95 transition-transform" onclick="window.location.href='index.html'" title="Kembali ke Beranda">
 <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
 </button>
 <div>
@@ -267,38 +267,45 @@
       </div>
       <div>
         <h2 class="text-headline-sm font-headline-sm font-bold text-text-primary flex items-center gap-1.5">
-          Buat &amp; Namai Wadah Baru
+          Buat Draft Event Baru
           <svg class="w-3.5 h-3.5 text-neon-lime kinetic-jiggle" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </h2>
-        <p class="text-label-sm font-label-sm text-text-secondary">Konfigurasi wadah organisasi mandiri &amp; partisi multi-tenant</p>
+        <p class="text-label-sm font-label-sm text-text-secondary">Konfigurasi wadah event mandiri &amp; partisi multi-tenant</p>
       </div>
     </div>
-    <form class="pt-3 space-y-3.5" onsubmit="event.preventDefault();">
+    <form class="pt-3 space-y-3.5" id="create-event-form">
       <div>
-        <label class="block text-label-sm font-label-sm text-text-secondary mb-1">Nama Wadah / Organisasi</label>
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1" for="event-name">Nama Wadah / Event</label>
         <div class="relative">
-          <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2.5 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" placeholder="e.g. BEM Fakultas Ilmu Komputer 2025" type="text">
+          <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2.5 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" id="event-name" placeholder="e.g. BEM Fakultas Ilmu Komputer 2025" required type="text">
           <span class="absolute right-3 top-2.5 text-text-muted material-symbols-outlined !text-base" data-icon="apartment">apartment</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1" for="event-date">Tanggal Event</label>
+        <div class="relative">
+          <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2.5 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" id="event-date" required type="date">
+          <span class="absolute right-3 top-2.5 text-text-muted material-symbols-outlined !text-base" data-icon="calendar_month">calendar_month</span>
         </div>
       </div>
       <div>
         <label class="block text-label-sm font-label-sm text-text-secondary mb-1.5">Tipe &amp; Klasifikasi Wadah</label>
         <div class="grid grid-cols-2 gap-2">
-          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-neon-lime text-neon-lime text-label-sm font-label-sm font-semibold flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(223,255,0,0.15)]" type="button">
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-neon-lime text-neon-lime text-label-sm font-label-sm font-semibold flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(223,255,0,0.15)]" data-event-type="Organisasi Kampus" type="button">
             <span class="material-symbols-outlined !text-sm" data-icon="school">school</span>
             Organisasi Kampus
           </button>
-          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" type="button">
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" data-event-type="Event Organizer" type="button">
             <span class="material-symbols-outlined !text-sm" data-icon="confirmation_number">confirmation_number</span>
             Event Organizer
           </button>
-          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" type="button">
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" data-event-type="Komunitas" type="button">
             <span class="material-symbols-outlined !text-sm" data-icon="groups">groups</span>
             Komunitas
           </button>
-          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" type="button">
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" data-event-type="Korporat" type="button">
             <span class="material-symbols-outlined !text-sm" data-icon="business">business</span>
             Korporat
           </button>
@@ -307,21 +314,22 @@
       <div>
         <label class="block text-label-sm font-label-sm text-text-secondary mb-1.5">Aksen Warna &amp; Identitas Wadah</label>
         <div class="flex items-center gap-2.5">
-          <button class="w-8 h-8 rounded-full bg-neon-lime ring-2 ring-neon-lime ring-offset-2 ring-offset-surface-card flex items-center justify-center text-surface-base font-bold text-xs" type="button">✓</button>
-          <button class="w-8 h-8 rounded-full bg-cyan-sky hover:scale-105 transition-transform" type="button"></button>
-          <button class="w-8 h-8 rounded-full bg-electric-violet hover:scale-105 transition-transform" type="button"></button>
-          <button class="w-8 h-8 rounded-full bg-vibrant-coral hover:scale-105 transition-transform" type="button"></button>
-          <button class="w-8 h-8 rounded-full bg-amber-400 hover:scale-105 transition-transform" type="button"></button>
-          <span class="text-label-sm font-label-sm text-text-muted ml-auto">Neon Green</span>
+          <button class="w-8 h-8 rounded-full bg-neon-lime ring-2 ring-neon-lime ring-offset-2 ring-offset-surface-card flex items-center justify-center text-surface-base font-bold text-xs" data-color="#DFFF00" data-color-name="Neon Green" type="button">✓</button>
+          <button class="w-8 h-8 rounded-full bg-cyan-sky hover:scale-105 transition-transform" data-color="#38BDF8" data-color-name="Cyan Sky" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-electric-violet hover:scale-105 transition-transform" data-color="#8B5CF6" data-color-name="Electric Violet" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-vibrant-coral hover:scale-105 transition-transform" data-color="#FF5722" data-color-name="Vibrant Coral" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-amber-400 hover:scale-105 transition-transform" data-color="#FBBF24" data-color-name="Amber" type="button"></button>
+          <span class="text-label-sm font-label-sm text-text-muted ml-auto" id="color-label">Neon Green</span>
         </div>
       </div>
       <div>
-        <label class="block text-label-sm font-label-sm text-text-secondary mb-1">Deskripsi Singkat Wadah</label>
-        <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" placeholder="e.g. Wadah koordinasi kepanitiaan tahun kerja 2025" type="text">
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1" for="event-desc">Deskripsi Singkat Event</label>
+        <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" id="event-desc" placeholder="e.g. Wadah koordinasi kepanitiaan tahun kerja 2025" type="text">
       </div>
-      <button class="w-full mt-2 rounded-full bg-neon-lime text-surface-base py-3 px-4 font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(223,255,0,0.35)] hover:bg-neon-lime-hover hover:scale-[1.02] active:scale-95 transition-all" type="button">
+      <p class="hidden text-label-sm font-label-sm text-vibrant-coral-warm" id="event-form-error">Nama dan tanggal event wajib diisi.</p>
+      <button class="w-full mt-2 rounded-full bg-neon-lime text-surface-base py-3 px-4 font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(223,255,0,0.35)] hover:bg-neon-lime-hover hover:scale-[1.02] active:scale-95 transition-all" type="submit">
         <span class="material-symbols-outlined !text-xl" data-icon="check_circle">check_circle</span>
-        <span>Buat &amp; Aktifkan Wadah</span>
+        <span>Buat Draft &amp; Buka Dashboard</span>
       </button>
     </form>
   </div>
@@ -511,7 +519,7 @@
 </section><div class="flex items-center justify-between pt-2">
 <div class="flex items-center gap-2">
 <h2 class="text-headline-sm font-headline-sm font-bold text-text-primary">Daftar Proyek &amp; Event</h2>
-<span class="px-2 py-0.5 rounded-full bg-surface-card border border-surface-border text-label-sm font-label-sm text-neon-lime">3 Terdaftar</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-card border border-surface-border text-label-sm font-label-sm text-neon-lime" id="event-count-badge">3 Terdaftar</span>
 </div>
 <button class="text-label-sm font-label-sm text-neon-lime hover:underline flex items-center gap-0.5">
 <span>Arsip (12)</span>
@@ -519,9 +527,9 @@
 </button>
 </div>
 <!-- CARDS CONTAINER -->
-<section class="space-y-space-md">
+<section class="space-y-space-md" id="event-list">
 <!-- CARD 1: TechFest Campus 2025 (Draft Siap Diluncurkan) -->
-<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-cyan-sky/50 shadow-lg">
+<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-cyan-sky/50 shadow-lg" data-event-id="techfest-campus-2025">
 <!-- Top Metadata Row: Badge & Status Tag -->
 <div class="flex items-start justify-between gap-2 mb-2">
 <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-sky/15 text-cyan-sky border border-cyan-sky/30 text-label-sm font-label-sm font-bold">
@@ -573,7 +581,7 @@
 </div>
 </article>
 <!-- CARD 2: SoundWave Fest (Draft Baru Dibuat) -->
-<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-electric-violet/50 shadow-lg">
+<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-electric-violet/50 shadow-lg" data-event-id="soundwave-fest-2025">
 <!-- Top Metadata Row -->
 <div class="flex items-start justify-between gap-2 mb-2">
 <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-electric-violet/15 text-secondary border border-electric-violet/30 text-label-sm font-label-sm font-bold">
@@ -614,7 +622,7 @@
 </div>
 </article>
 <!-- CARD 3: National Startup Pitch Summit (Event Sedang Berjalan / Live) -->
-<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-emerald-500/50 shadow-lg">
+<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-emerald-500/50 shadow-lg" data-event-id="national-startup-pitch-summit-2025">
 <!-- Live Neon Indicator Stroke -->
 <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]"></div>
 <!-- Top Metadata Row -->
@@ -691,18 +699,256 @@
 <!-- BOTTOM NAVIGATION BAR (Shared Component Anchored) -->
 <!-- Contextual Active: 'Workspaces' or 'Events' (We highlight Workspaces as it represents the Workspace Hub) -->
 
-<!-- Interactive script for category pills toggle -->
+<!-- Interactive script: draft event, localStorage & category pills -->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const pills = document.querySelectorAll('section div.overflow-x-auto button');
-      pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          pills.forEach(p => {
+    document.addEventListener('DOMContentLoaded', function () {
+      var EVENTS_KEY = 'payent_events';
+      var ACTIVE_KEY = 'payent_active_event';
+
+      var SEED_EVENTS = [
+        {
+          id: 'techfest-campus-2025',
+          name: 'TechFest Campus 2025 - Hackathon & Expo',
+          type: 'Campus Expo & Tech',
+          date: '2025-11-15',
+          description: 'Hackathon, expo teknologi, dan kompetisi kampus dalam satu wadah kepanitiaan.',
+          color: '#38BDF8',
+          createdAt: '2025-11-01T08:00:00.000Z'
+        },
+        {
+          id: 'soundwave-fest-2025',
+          name: 'SoundWave Fest: Indie & Cultural Night',
+          type: 'Music & Art Festival',
+          date: '2025-11-22',
+          description: 'Festival musik indie dan pentas seni budaya dengan tiga panggung live.',
+          color: '#8B5CF6',
+          createdAt: '2025-11-02T08:00:00.000Z'
+        },
+        {
+          id: 'national-startup-pitch-summit-2025',
+          name: 'National Startup Pitch Summit 2025',
+          type: 'Corporate Summit',
+          date: '2025-11-20',
+          description: 'Konferensi dan kompetisi pitch startup nasional bersama partner korporat.',
+          color: '#34D399',
+          createdAt: '2025-11-03T08:00:00.000Z'
+        }
+      ];
+
+      function storageGet(key) {
+        try {
+          var value = localStorage.getItem(key);
+          if (value !== null) return value;
+        } catch (e) {}
+        try { return sessionStorage.getItem(key); } catch (e) { return null; }
+      }
+
+      function storageSet(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) {}
+        try { sessionStorage.setItem(key, value); } catch (e) {}
+      }
+
+      function readEvents() {
+        try {
+          var raw = storageGet(EVENTS_KEY);
+          var parsed = raw ? JSON.parse(raw) : null;
+          return Array.isArray(parsed) ? parsed : null;
+        } catch (e) { return null; }
+      }
+
+      function writeEvents(list) {
+        storageSet(EVENTS_KEY, JSON.stringify(list));
+      }
+
+      function formatDate(value) {
+        if (!value) return 'Tanggal belum ditentukan';
+        var d = new Date(value + 'T00:00:00');
+        if (isNaN(d.getTime())) return value;
+        return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+      }
+
+      function activateEvent(event) {
+        if (!event || !event.name) return;
+        storageSet(ACTIVE_KEY, JSON.stringify(event));
+        window.location.href = 'in_draft/dashboard.html';
+      }
+
+      var events = readEvents();
+      if (!events || events.length === 0) {
+        events = SEED_EVENTS.slice();
+        writeEvents(events);
+      } else {
+        var ids = events.map(function (event) { return event.id; });
+        var missing = SEED_EVENTS.filter(function (event) { return ids.indexOf(event.id) === -1; });
+        if (missing.length) {
+          events = events.concat(missing);
+          writeEvents(events);
+        }
+      }
+
+      function findEvent(id) {
+        for (var i = 0; i < events.length; i++) {
+          if (events[i].id === id) return events[i];
+        }
+        return null;
+      }
+
+      function buildEventCard(ev) {
+        var color = ev.color || '#DFFF00';
+        var article = document.createElement('article');
+        article.className = 'bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-neon-lime/50 shadow-lg cursor-pointer';
+        article.setAttribute('data-event-id', ev.id);
+        article.innerHTML =
+          '<div class="flex items-start justify-between gap-2 mb-2">' +
+            '<span data-field="type-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-label-sm font-label-sm font-bold">' +
+              '<span class="material-symbols-outlined !text-xs">event</span>' +
+              '<span data-field="type"></span>' +
+            '</span>' +
+            '<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30 text-label-sm font-label-sm font-bold">' +
+              '<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>DRAFT BARU' +
+            '</span>' +
+          '</div>' +
+          '<h3 data-field="name" class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight mb-1"></h3>' +
+          '<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-neon-lime mb-3">' +
+            '<span class="material-symbols-outlined !text-sm">calendar_month</span>' +
+            '<span data-field="date"></span>' +
+          '</div>' +
+          '<div class="p-2.5 bg-surface-elevated rounded-xl border border-surface-border/60 mb-4 min-h-[52px]">' +
+            '<p data-field="description" class="text-body-sm font-body-sm text-text-secondary line-clamp-2"></p>' +
+          '</div>' +
+          '<div class="w-full bg-surface-container rounded-full h-1.5 mb-4 overflow-hidden">' +
+            '<div class="bg-neon-lime h-full rounded-full" style="width:0%"></div>' +
+          '</div>' +
+          '<div class="flex items-center gap-2">' +
+            '<button type="button" class="flex-1 py-2.5 px-3 rounded-full bg-neon-lime text-surface-base font-label-lg text-label-lg font-bold flex items-center justify-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.25)] hover:bg-neon-lime-hover active:scale-95 transition-all">' +
+              '<span class="material-symbols-outlined !text-base">play_arrow</span>' +
+              '<span>Buka Draft</span>' +
+            '</button>' +
+          '</div>';
+
+        var typeBadge = article.querySelector('[data-field="type-badge"]');
+        typeBadge.style.backgroundColor = color + '1a';
+        typeBadge.style.borderColor = color + '66';
+        typeBadge.style.color = color;
+        article.querySelector('[data-field="type"]').textContent = ev.type || 'Event';
+        article.querySelector('[data-field="name"]').textContent = ev.name || 'Draft Tanpa Nama';
+        article.querySelector('[data-field="date"]').textContent = formatDate(ev.date);
+        article.querySelector('[data-field="description"]').textContent = ev.description || 'Belum ada deskripsi singkat.';
+        return article;
+      }
+
+      var eventList = document.getElementById('event-list');
+      if (eventList) {
+        eventList.addEventListener('click', function (e) {
+          var card = e.target.closest('[data-event-id]');
+          if (!card || !eventList.contains(card)) return;
+          var selected = findEvent(card.getAttribute('data-event-id'));
+          if (selected) activateEvent(selected);
+        });
+
+        eventList.querySelectorAll('[data-event-id]').forEach(function (card) {
+          card.classList.add('cursor-pointer');
+        });
+
+        var seedIds = SEED_EVENTS.map(function (event) { return event.id; });
+        var customEvents = events
+          .filter(function (event) { return seedIds.indexOf(event.id) === -1; })
+          .sort(function (a, b) { return new Date(b.createdAt || 0) - new Date(a.createdAt || 0); });
+
+        customEvents.forEach(function (event) {
+          eventList.insertBefore(buildEventCard(event), eventList.firstElementChild);
+        });
+      }
+
+      var form = document.getElementById('create-event-form');
+      if (form) {
+        var nameInput = document.getElementById('event-name');
+        var dateInput = document.getElementById('event-date');
+        var descInput = document.getElementById('event-desc');
+        var errorBox = document.getElementById('event-form-error');
+        var colorLabel = document.getElementById('color-label');
+        var selectedType = 'Organisasi Kampus';
+        var selectedColor = '#DFFF00';
+
+        if (dateInput && !dateInput.value) {
+          dateInput.value = new Date().toISOString().slice(0, 10);
+        }
+
+        var typeButtons = Array.prototype.slice.call(form.querySelectorAll('[data-event-type]'));
+        typeButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            typeButtons.forEach(function (item) {
+              item.classList.remove('border-neon-lime', 'text-neon-lime', 'font-semibold', 'shadow-[0_0_10px_rgba(223,255,0,0.15)]');
+              item.classList.add('border-surface-border', 'text-text-secondary');
+            });
+            button.classList.remove('border-surface-border', 'text-text-secondary');
+            button.classList.add('border-neon-lime', 'text-neon-lime', 'font-semibold', 'shadow-[0_0_10px_rgba(223,255,0,0.15)]');
+            selectedType = button.getAttribute('data-event-type') || button.textContent.trim();
+          });
+        });
+
+        var colorButtons = Array.prototype.slice.call(form.querySelectorAll('[data-color]'));
+        function selectColor(button) {
+          colorButtons.forEach(function (item) {
+            item.style.boxShadow = '';
+            item.textContent = '';
+            item.classList.remove('flex', 'items-center', 'justify-center', 'text-surface-base', 'font-bold', 'text-xs');
+          });
+          var color = button.getAttribute('data-color');
+          var name = button.getAttribute('data-color-name') || 'Aksen';
+          button.style.boxShadow = '0 0 0 3px ' + color;
+          button.textContent = '✓';
+          button.classList.add('flex', 'items-center', 'justify-center', 'text-surface-base', 'font-bold', 'text-xs');
+          selectedColor = color;
+          if (colorLabel) colorLabel.textContent = name;
+        }
+        colorButtons.forEach(function (button) {
+          button.addEventListener('click', function () { selectColor(button); });
+        });
+        var defaultColorButton = form.querySelector('[data-color][data-color-name="Neon Green"]');
+        if (defaultColorButton) selectColor(defaultColorButton);
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = (nameInput && nameInput.value || '').trim();
+          var date = (dateInput && dateInput.value || '').trim();
+          var description = (descInput && descInput.value || '').trim();
+
+          if (!name || !date) {
+            if (errorBox) errorBox.classList.remove('hidden');
+            if (!name && nameInput) { nameInput.classList.add('border-vibrant-coral'); nameInput.focus(); }
+            if (name && !date && dateInput) { dateInput.classList.add('border-vibrant-coral'); dateInput.focus(); }
+            return;
+          }
+
+          var newEvent = {
+            id: 'evt-' + Date.now(),
+            name: name,
+            type: selectedType,
+            date: date,
+            description: description,
+            color: selectedColor,
+            createdAt: new Date().toISOString()
+          };
+
+          events.push(newEvent);
+          writeEvents(events);
+          activateEvent(newEvent);
+        });
+      }
+
+      var pills = document.querySelectorAll('section div.overflow-x-auto button');
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          pills.forEach(function (p) {
             p.className = 'shrink-0 px-3.5 py-2 rounded-full bg-surface-card border border-surface-border text-text-secondary hover:text-text-primary hover:border-surface-tint font-label-sm text-label-sm transition-colors active:scale-95';
           });
           pill.className = 'shrink-0 px-4 py-2 rounded-full bg-neon-lime text-surface-base font-label-lg text-label-lg font-bold flex items-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.35)] transition-transform active:scale-95';
         });
       });
+
+      var countBadge = document.getElementById('event-count-badge');
+      if (countBadge) countBadge.textContent = events.length + ' Terdaftar';
     });
   </script>
 
