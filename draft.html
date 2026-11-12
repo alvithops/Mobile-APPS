@@ -1,0 +1,710 @@
+<!DOCTYPE html><html class="dark" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Draft &amp; Wadah Event (Mobile) - EventCommand</title>
+<!-- Fonts: Syne & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#1b1b1e",
+            "outline-variant": "#454932",
+            "on-background": "#e5e1e6",
+            "surface-tint": "#b8d300",
+            "inverse-primary": "#576500",
+            "primary": "#ffffff",
+            "neon-lime-hover": "#CCFF00",
+            "surface-base": "#0B0B0E",
+            "on-secondary-fixed-variant": "#5516be",
+            "tertiary-fixed": "#ffdbd1",
+            "primary-container": "#d2f000",
+            "tertiary-container": "#ffdbd1",
+            "on-secondary-fixed": "#23005c",
+            "on-secondary-container": "#c4abff",
+            "on-primary-fixed-variant": "#414c00",
+            "electric-violet-deep": "#7C3AED",
+            "surface-border": "#2E2E3A",
+            "on-tertiary-fixed": "#3b0900",
+            "surface-container": "#1f1f22",
+            "secondary": "#d0bcff",
+            "on-primary-container": "#5d6b00",
+            "secondary-fixed-dim": "#d0bcff",
+            "cyan-sky": "#38BDF8",
+            "tertiary-fixed-dim": "#ffb5a0",
+            "tertiary": "#ffffff",
+            "inverse-on-surface": "#303033",
+            "on-secondary": "#3c0091",
+            "surface-elevated": "#1F1F28",
+            "surface-container-high": "#2a2a2d",
+            "outline": "#909378",
+            "surface-bright": "#39393c",
+            "on-primary": "#2c3400",
+            "on-tertiary-fixed-variant": "#862200",
+            "surface-variant": "#353438",
+            "surface-container-lowest": "#0e0e11",
+            "neon-lime": "#DFFF00",
+            "surface-container-highest": "#353438",
+            "on-tertiary-container": "#ba3200",
+            "electric-violet": "#8B5CF6",
+            "on-primary-fixed": "#191e00",
+            "text-secondary": "#9E9EA8",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#e5e1e6",
+            "vibrant-coral-warm": "#FF6B4A",
+            "primary-fixed-dim": "#b8d300",
+            "inverse-surface": "#e5e1e6",
+            "error": "#ffb4ab",
+            "primary-fixed": "#d2f000",
+            "secondary-fixed": "#e9ddff",
+            "vibrant-coral": "#FF5722",
+            "on-tertiary": "#5f1500",
+            "surface": "#131316",
+            "surface-card": "#18181F",
+            "surface-card-hover": "#22222D",
+            "on-error": "#690005",
+            "text-primary": "#F4F4F6",
+            "surface-dim": "#131316",
+            "error-container": "#93000a",
+            "on-surface-variant": "#c6c9ab",
+            "secondary-container": "#571bc1",
+            "text-muted": "#626270",
+            "background": "#131316"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "margin-mobile": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin": "3rem",
+            "space-xl": "2.5rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-xxl": "4rem"
+          },
+          "fontFamily": {
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Syne"],
+            "display-hero": ["Syne"],
+            "headline-xl-mobile": ["Syne"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Syne"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Syne"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Syne"]
+          },
+          "fontSize": {
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display-hero": ["80px", { "lineHeight": "84px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-hero-mobile": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Kinetic Doodle 2-step loop micro-animation */
+    @keyframes kinetic-jiggle {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(1.5deg) scale(1.02); }
+      100% { transform: rotate(-1.5deg) scale(0.99); }
+    }
+    .kinetic-jiggle {
+      animation: kinetic-jiggle 2.5s steps(2, start) infinite alternate;
+    }
+    
+    /* Custom Hide Scrollbar for Horizontal Chips */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-base text-text-primary antialiased min-h-screen selection:bg-neon-lime selection:text-surface-base relative overflow-x-hidden font-body-md text-body-md pb-8">
+<!-- Ambient Vector Glow Blobs -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-neon-lime/10 blur-[110px] pointer-events-none -z-10 rounded-full"></div>
+<div class="fixed bottom-24 right-0 w-80 h-80 bg-electric-violet/15 blur-[120px] pointer-events-none -z-10 rounded-full"></div>
+<div class="fixed top-1/3 left-0 w-72 h-72 bg-cyan-sky/10 blur-[100px] pointer-events-none -z-10 rounded-full"></div>
+<!-- TOP APP BAR (Shared Component Anchored) -->
+<header class="bg-surface-base dark:bg-surface-base border-b border-surface-border dark:border-surface-border sticky top-0 z-40 w-full px-margin-mobile py-space-sm backdrop-blur-md bg-opacity-95">
+<div class="flex justify-between items-center w-full">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-surface-card border border-surface-border flex items-center justify-center text-text-primary hover:text-neon-lime dark:hover:text-neon-lime transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div>
+<div class="flex items-center gap-1.5">
+<h1 class="text-headline-xl-mobile font-headline-xl-mobile font-bold text-text-primary dark:text-text-primary tracking-tight">Wadah &amp; Draft</h1>
+<!-- Doodle Star / Flash -->
+<svg class="w-4 h-4 text-neon-lime kinetic-jiggle fill-current" viewBox="0 0 24 24">
+<path d="M12 2L14.4 8.6L21 11L14.4 13.4L12 20L9.6 13.4L3 11L9.6 8.6L12 2Z"></path>
+</svg>
+</div>
+<p class="text-label-sm font-label-sm text-text-secondary tracking-normal">Workspace Hub &amp; Manajemen Multi-Tenant</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Search and Filter" class="w-10 h-10 rounded-full bg-surface-card border border-surface-border flex items-center justify-center text-text-secondary hover:text-neon-lime dark:hover:text-neon-lime transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="px-margin-mobile pt-space-md space-y-space-lg max-w-md mx-auto">
+<!-- METRIC / SUMMARY BAR -->
+<section class="grid grid-cols-3 gap-2 p-2 bg-surface-card rounded-2xl border border-surface-border relative shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+<!-- Total Wadah -->
+<div class="p-3 bg-surface-elevated/70 rounded-xl border border-surface-border/50 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm text-text-secondary">Wadah</span>
+<span class="w-2 h-2 rounded-full bg-neon-lime shadow-[0_0_8px_rgba(223,255,0,0.8)] animate-pulse"></span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-text-primary">8</span>
+<span class="text-label-sm font-label-sm text-neon-lime ml-0.5">Aktif</span>
+</div>
+</div>
+<!-- Draft Tersimpan -->
+<div class="p-3 bg-surface-elevated/70 rounded-xl border border-surface-border/50 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm text-text-secondary">Draft</span>
+<span class="material-symbols-outlined text-vibrant-coral-warm !text-sm" data-icon="edit_note">edit_note</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-text-primary">3</span>
+<span class="text-label-sm font-label-sm text-vibrant-coral-warm ml-0.5">Pending</span>
+</div>
+</div>
+<!-- Template Siap Pakai -->
+<div class="p-3 bg-surface-elevated/70 rounded-xl border border-surface-border/50 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm text-text-secondary">Template</span>
+<span class="material-symbols-outlined text-cyan-sky !text-sm" data-icon="layers">layers</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold text-text-primary">48</span>
+<span class="text-label-sm font-label-sm text-cyan-sky ml-0.5">Siap</span>
+</div>
+</div>
+</section>
+<!-- HORIZONTAL SCROLLABLE CATEGORY PILLS -->
+<section>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-margin-mobile px-margin-mobile">
+<!-- Active Pill -->
+<button class="shrink-0 px-4 py-2 rounded-full bg-neon-lime text-surface-base font-label-lg text-label-lg font-bold flex items-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.35)] transition-transform active:scale-95">
+<span>Semua Wadah (8)</span>
+</button>
+<!-- Inactive Pills -->
+<button class="shrink-0 px-3.5 py-2 rounded-full bg-surface-card border border-surface-border text-text-secondary hover:text-text-primary hover:border-surface-tint font-label-sm text-label-sm transition-colors active:scale-95">
+          Festival &amp; Konser (2)
+        </button>
+<button class="shrink-0 px-3.5 py-2 rounded-full bg-surface-card border border-surface-border text-text-secondary hover:text-text-primary hover:border-surface-tint font-label-sm text-label-sm transition-colors active:scale-95">
+          Campus &amp; Expo (3)
+        </button>
+<button class="shrink-0 px-3.5 py-2 rounded-full bg-surface-card border border-surface-border text-text-secondary hover:text-text-primary hover:border-surface-tint font-label-sm text-label-sm transition-colors active:scale-95">
+          Corporate &amp; Summit (2)
+        </button>
+<button class="shrink-0 px-3.5 py-2 rounded-full bg-surface-card border border-surface-border text-text-secondary hover:text-text-primary hover:border-surface-tint font-label-sm text-label-sm transition-colors active:scale-95">
+          Sports &amp; Tournament (1)
+        </button>
+</div>
+</section>
+<!-- INTERACTIVE "+ TAMBAH DRAFT BARU" DRAWER / FORM CARD -->
+<section class="space-y-space-md">
+  <div class="bg-surface-card rounded-2xl border-2 border-neon-lime/60 p-4 relative overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+    <div class="absolute -right-4 -top-3 rotate-12 bg-neon-lime text-surface-base text-[10px] font-extrabold uppercase px-6 py-1 tracking-wider shadow-md">
+      Wadah Utama
+    </div>
+    <div class="flex items-center gap-2 pb-3 border-b border-surface-border">
+      <div class="w-8 h-8 rounded-lg bg-neon-lime/10 border border-neon-lime/40 flex items-center justify-center text-neon-lime">
+        <span class="material-symbols-outlined" data-icon="domain_add">domain_add</span>
+      </div>
+      <div>
+        <h2 class="text-headline-sm font-headline-sm font-bold text-text-primary flex items-center gap-1.5">
+          Buat &amp; Namai Wadah Baru
+          <svg class="w-3.5 h-3.5 text-neon-lime kinetic-jiggle" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </h2>
+        <p class="text-label-sm font-label-sm text-text-secondary">Konfigurasi wadah organisasi mandiri &amp; partisi multi-tenant</p>
+      </div>
+    </div>
+    <form class="pt-3 space-y-3.5" onsubmit="event.preventDefault();">
+      <div>
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1">Nama Wadah / Organisasi</label>
+        <div class="relative">
+          <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2.5 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" placeholder="e.g. BEM Fakultas Ilmu Komputer 2025" type="text">
+          <span class="absolute right-3 top-2.5 text-text-muted material-symbols-outlined !text-base" data-icon="apartment">apartment</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1.5">Tipe &amp; Klasifikasi Wadah</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-neon-lime text-neon-lime text-label-sm font-label-sm font-semibold flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(223,255,0,0.15)]" type="button">
+            <span class="material-symbols-outlined !text-sm" data-icon="school">school</span>
+            Organisasi Kampus
+          </button>
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" type="button">
+            <span class="material-symbols-outlined !text-sm" data-icon="confirmation_number">confirmation_number</span>
+            Event Organizer
+          </button>
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" type="button">
+            <span class="material-symbols-outlined !text-sm" data-icon="groups">groups</span>
+            Komunitas
+          </button>
+          <button class="px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-surface-border text-text-secondary hover:text-text-primary text-label-sm font-label-sm flex items-center justify-center gap-1" type="button">
+            <span class="material-symbols-outlined !text-sm" data-icon="business">business</span>
+            Korporat
+          </button>
+        </div>
+      </div>
+      <div>
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1.5">Aksen Warna &amp; Identitas Wadah</label>
+        <div class="flex items-center gap-2.5">
+          <button class="w-8 h-8 rounded-full bg-neon-lime ring-2 ring-neon-lime ring-offset-2 ring-offset-surface-card flex items-center justify-center text-surface-base font-bold text-xs" type="button">✓</button>
+          <button class="w-8 h-8 rounded-full bg-cyan-sky hover:scale-105 transition-transform" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-electric-violet hover:scale-105 transition-transform" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-vibrant-coral hover:scale-105 transition-transform" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-amber-400 hover:scale-105 transition-transform" type="button"></button>
+          <span class="text-label-sm font-label-sm text-text-muted ml-auto">Neon Green</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-label-sm font-label-sm text-text-secondary mb-1">Deskripsi Singkat Wadah</label>
+        <input class="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2 text-body-sm font-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" placeholder="e.g. Wadah koordinasi kepanitiaan tahun kerja 2025" type="text">
+      </div>
+      <button class="w-full mt-2 rounded-full bg-neon-lime text-surface-base py-3 px-4 font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(223,255,0,0.35)] hover:bg-neon-lime-hover hover:scale-[1.02] active:scale-95 transition-all" type="button">
+        <span class="material-symbols-outlined !text-xl" data-icon="check_circle">check_circle</span>
+        <span>Buat &amp; Aktifkan Wadah</span>
+      </button>
+    </form>
+  </div>
+
+  <div>
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="text-headline-sm font-headline-sm font-bold text-text-primary flex items-center gap-1.5">
+        <span>Wadah Tersedia Saat Ini</span>
+        <span class="px-2 py-0.5 rounded-full bg-neon-lime/10 border border-neon-lime/30 text-neon-lime text-label-sm font-label-sm font-bold">4 Terdaftar</span>
+      </h3>
+    </div>
+    <div class="grid grid-cols-2 gap-2">
+      <div class="p-3 bg-surface-card rounded-xl border border-neon-lime/50 shadow-md flex flex-col justify-between hover:border-neon-lime transition-all">
+        <div class="flex items-start justify-between mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-neon-lime shadow-[0_0_6px_rgba(223,255,0,0.8)]"></span>
+          <span class="px-1.5 py-0.5 rounded bg-surface-elevated text-[10px] font-bold text-neon-lime border border-neon-lime/30">Aktif</span>
+        </div>
+        <div>
+          <h4 class="text-body-sm font-body-sm font-bold text-text-primary truncate">Wadah BEM KM</h4>
+          <p class="text-label-sm font-label-sm text-text-secondary mt-0.5 flex items-center gap-1">
+            <span class="material-symbols-outlined !text-xs text-neon-lime" data-icon="event">event</span>
+            3 Event Berjalan
+          </p>
+        </div>
+      </div>
+      <div class="p-3 bg-surface-card rounded-xl border border-surface-border shadow-md flex flex-col justify-between hover:border-cyan-sky/50 transition-all">
+        <div class="flex items-start justify-between mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-sky"></span>
+          <span class="px-1.5 py-0.5 rounded bg-surface-elevated text-[10px] font-bold text-cyan-sky border border-cyan-sky/30">Kampus</span>
+        </div>
+        <div>
+          <h4 class="text-body-sm font-body-sm font-bold text-text-primary truncate">BEM Fakultas Komputer</h4>
+          <p class="text-label-sm font-label-sm text-text-secondary mt-0.5 flex items-center gap-1">
+            <span class="material-symbols-outlined !text-xs text-cyan-sky" data-icon="event">event</span>
+            2 Event Berjalan
+          </p>
+        </div>
+      </div>
+      <div class="p-3 bg-surface-card rounded-xl border border-surface-border shadow-md flex flex-col justify-between hover:border-electric-violet/50 transition-all">
+        <div class="flex items-start justify-between mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-electric-violet"></span>
+          <span class="px-1.5 py-0.5 rounded bg-surface-elevated text-[10px] font-bold text-secondary border border-electric-violet/30">Seni &amp; UKM</span>
+        </div>
+        <div>
+          <h4 class="text-body-sm font-body-sm font-bold text-text-primary truncate">Senat &amp; UKM Seni</h4>
+          <p class="text-label-sm font-label-sm text-text-secondary mt-0.5 flex items-center gap-1">
+            <span class="material-symbols-outlined !text-xs text-secondary" data-icon="event">event</span>
+            1 Event Berjalan
+          </p>
+        </div>
+      </div>
+      <div class="p-3 bg-surface-card rounded-xl border border-surface-border shadow-md flex flex-col justify-between hover:border-emerald-500/50 transition-all">
+        <div class="flex items-start justify-between mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <span class="px-1.5 py-0.5 rounded bg-surface-elevated text-[10px] font-bold text-emerald-400 border border-emerald-500/30">Mitra</span>
+        </div>
+        <div>
+          <h4 class="text-body-sm font-body-sm font-bold text-text-primary truncate">Eksekutif Partner Hub</h4>
+          <p class="text-label-sm font-label-sm text-text-secondary mt-0.5 flex items-center gap-1">
+            <span class="material-symbols-outlined !text-xs text-emerald-400" data-icon="event">event</span>
+            1 Event Berjalan
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SECTION TITLE: DAFTAR WADAH & DRAFT -->
+<section class="bg-surface-card rounded-2xl border border-surface-border p-4 shadow-lg space-y-3.5">
+  <div class="flex items-center justify-between pb-2 border-b border-surface-border">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-cyan-sky/15 border border-cyan-sky/30 flex items-center justify-center text-cyan-sky">
+        <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+      </div>
+      <div>
+        <h2 class="text-headline-sm font-headline-sm font-bold text-text-primary flex items-center gap-1.5">
+          Kalender Event Terintegrasi
+        </h2>
+        <p class="text-label-sm font-label-sm text-text-secondary">Pantau &amp; tandai jadwal timeline acara</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1 bg-surface-elevated rounded-lg p-1 border border-surface-border">
+      <button class="px-2 py-0.5 text-label-sm font-label-sm text-text-muted hover:text-text-primary" type="button">&lt;</button>
+      <span class="text-label-sm font-label-sm font-bold text-text-primary px-1">Nov 2025</span>
+      <button class="px-2 py-0.5 text-label-sm font-label-sm text-text-muted hover:text-text-primary" type="button">&gt;</button>
+    </div>
+  </div>
+
+  <!-- Days of week -->
+  <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-text-muted uppercase tracking-wider">
+    <span>Sen</span>
+    <span>Sel</span>
+    <span>Rab</span>
+    <span>Kam</span>
+    <span>Jum</span>
+    <span>Sab</span>
+    <span>Min</span>
+  </div>
+
+  <!-- Calendar Dates Grid -->
+  <div class="grid grid-cols-7 gap-1.5 text-center text-label-sm font-label-sm">
+    <span class="py-1.5 text-text-muted/40">10</span>
+    <span class="py-1.5 text-text-muted/40">11</span>
+    <span class="py-1.5 text-text-muted/40">12</span>
+    <span class="py-1.5 text-text-muted/40">13</span>
+    <!-- Day 14 (Has Campus Expo Event) -->
+    <button class="py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-elevated/90 relative flex flex-col items-center justify-center font-semibold text-text-primary border border-cyan-sky/40" type="button">
+      <span>14</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-cyan-sky mt-0.5"></span>
+    </button>
+    <!-- Day 15 (Active Selected Date) -->
+    <button class="py-1.5 rounded-lg bg-neon-lime text-surface-base font-bold relative flex flex-col items-center justify-center shadow-[0_0_12px_rgba(223,255,0,0.4)] scale-105 ring-2 ring-neon-lime/80" type="button">
+      <span>15</span>
+      <div class="flex items-center gap-0.5 mt-0.5">
+        <span class="w-1 h-1 rounded-full bg-surface-base"></span>
+        <span class="w-1 h-1 rounded-full bg-vibrant-coral"></span>
+      </div>
+    </button>
+    <!-- Day 16 (Event ends) -->
+    <button class="py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-elevated/90 relative flex flex-col items-center justify-center font-semibold text-text-primary border border-cyan-sky/40" type="button">
+      <span>16</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-cyan-sky mt-0.5"></span>
+    </button>
+    <span class="py-1.5 text-text-secondary">17</span>
+    <span class="py-1.5 text-text-secondary">18</span>
+    <span class="py-1.5 text-text-secondary">19</span>
+    <!-- Day 20 (Live Summit) -->
+    <button class="py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-elevated/90 relative flex flex-col items-center justify-center font-semibold text-text-primary border border-emerald-400/40" type="button">
+      <span>20</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-0.5"></span>
+    </button>
+    <span class="py-1.5 text-text-secondary">21</span>
+    <!-- Day 22 (SoundWave Fest) -->
+    <button class="py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-elevated/90 relative flex flex-col items-center justify-center font-semibold text-text-primary border border-electric-violet/40" type="button">
+      <span>22</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-electric-violet mt-0.5"></span>
+    </button>
+    <span class="py-1.5 text-text-secondary">23</span>
+    <span class="py-1.5 text-text-secondary">24</span>
+    <span class="py-1.5 text-text-secondary">25</span>
+    <span class="py-1.5 text-text-secondary">26</span>
+    <span class="py-1.5 text-text-secondary">27</span>
+    <span class="py-1.5 text-text-secondary">28</span>
+    <span class="py-1.5 text-text-secondary">29</span>
+    <span class="py-1.5 text-text-secondary">30</span>
+  </div>
+
+  <!-- Schedule Panel for Selected Date -->
+  <div class="bg-surface-elevated rounded-xl p-3 border border-surface-border/80 space-y-2.5">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-1.5 text-label-sm font-label-sm font-bold text-neon-lime">
+        <span class="material-symbols-outlined !text-sm" data-icon="event_available">event_available</span>
+        <span>Acara di Tanggal Terpilih (15 Nov 2025)</span>
+      </div>
+      <span class="text-[11px] font-semibold text-text-muted">2 Agenda</span>
+    </div>
+
+    <div class="space-y-1.5">
+      <div class="p-2 rounded-lg bg-surface-card border border-cyan-sky/30 flex items-center justify-between text-body-sm font-body-sm">
+        <div class="flex items-center gap-2 truncate">
+          <span class="w-2 h-2 rounded-full bg-cyan-sky shrink-0"></span>
+          <div>
+            <span class="font-bold text-text-primary block truncate">TechFest: Hackathon Day 2</span>
+            <span class="text-[11px] text-text-secondary">Wadah BEM KM • 09:00 - 17:00</span>
+          </div>
+        </div>
+        <span class="px-2 py-0.5 rounded-full bg-cyan-sky/15 text-cyan-sky text-[10px] font-bold shrink-0">Expo</span>
+      </div>
+
+      <div class="p-2 rounded-lg bg-surface-card border border-vibrant-coral/30 flex items-center justify-between text-body-sm font-body-sm">
+        <div class="flex items-center gap-2 truncate">
+          <span class="w-2 h-2 rounded-full bg-vibrant-coral shrink-0"></span>
+          <div>
+            <span class="font-bold text-text-primary block truncate">Briefing Panitia Panggung SoundWave</span>
+            <span class="text-[11px] text-text-secondary">Senat &amp; UKM • 19:30 - 21:00</span>
+          </div>
+        </div>
+        <span class="px-2 py-0.5 rounded-full bg-vibrant-coral/15 text-vibrant-coral-warm text-[10px] font-bold shrink-0">Briefing</span>
+      </div>
+    </div>
+
+    <button class="w-full py-2 px-3 rounded-lg bg-surface-card border border-dashed border-neon-lime/50 text-neon-lime hover:bg-neon-lime/10 text-label-sm font-label-sm font-semibold flex items-center justify-center gap-1.5 transition-colors" type="button">
+      <span class="material-symbols-outlined !text-sm" data-icon="add">add</span>
+      <span>+ Tandai Acara Baru di Kalender</span>
+    </button>
+  </div>
+</section><div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-2">
+<h2 class="text-headline-sm font-headline-sm font-bold text-text-primary">Daftar Proyek &amp; Event</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-card border border-surface-border text-label-sm font-label-sm text-neon-lime">3 Terdaftar</span>
+</div>
+<button class="text-label-sm font-label-sm text-neon-lime hover:underline flex items-center gap-0.5">
+<span>Arsip (12)</span>
+<span class="material-symbols-outlined !text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- CARDS CONTAINER -->
+<section class="space-y-space-md">
+<!-- CARD 1: TechFest Campus 2025 (Draft Siap Diluncurkan) -->
+<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-cyan-sky/50 shadow-lg">
+<!-- Top Metadata Row: Badge & Status Tag -->
+<div class="flex items-start justify-between gap-2 mb-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-sky/15 text-cyan-sky border border-cyan-sky/30 text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined !text-xs" data-icon="school">school</span>
+            Campus Expo &amp; Tech
+          </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30 text-label-sm font-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+            DRAFT 85% SIAP
+          </span>
+</div>
+<!-- Project Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight mb-1">
+          TechFest Campus 2025 - Hackathon &amp; Expo
+        </h3>
+<!-- Workspace Parent Indicator -->
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-cyan-sky mb-3">
+<span class="material-symbols-outlined !text-sm" data-icon="folder_special">folder_special</span>
+<span>Wadah: BEM Universitas / Bidang 3</span>
+</div>
+<!-- Key Stats / Modular Specs -->
+<div class="p-2.5 bg-surface-elevated rounded-xl border border-surface-border/60 mb-4 grid grid-cols-3 gap-1 text-center">
+<div>
+<span class="block text-[11px] text-text-muted uppercase">Sie Panitia</span>
+<span class="text-body-sm font-body-sm font-bold text-text-primary">12 Sie</span>
+</div>
+<div class="border-x border-surface-border/60">
+<span class="block text-[11px] text-text-muted uppercase">Checklist</span>
+<span class="text-body-sm font-body-sm font-bold text-text-primary">42 Modul</span>
+</div>
+<div>
+<span class="block text-[11px] text-text-muted uppercase">Kas Estimasi</span>
+<span class="text-body-sm font-body-sm font-bold text-neon-lime">Rp 65 Jt</span>
+</div>
+</div>
+<!-- Progress Bar Indicator -->
+<div class="w-full bg-surface-container rounded-full h-1.5 mb-4 overflow-hidden">
+<div class="bg-gradient-to-r from-cyan-sky to-neon-lime h-full rounded-full w-[85%]"></div>
+</div>
+<!-- Action Row -->
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2.5 px-3 rounded-full bg-neon-lime text-surface-base font-label-lg text-label-lg font-bold flex items-center justify-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.25)] hover:bg-neon-lime-hover active:scale-95 transition-all">
+<span class="material-symbols-outlined !text-base" data-icon="play_arrow">play_arrow</span>
+<span>Lanjutkan Draft</span>
+</button>
+<button class="py-2.5 px-4 rounded-full bg-surface-elevated border border-surface-border text-text-primary font-label-sm text-label-sm font-semibold hover:border-text-primary active:scale-95 transition-colors">
+            Edit Detail
+          </button>
+</div>
+</article>
+<!-- CARD 2: SoundWave Fest (Draft Baru Dibuat) -->
+<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-electric-violet/50 shadow-lg">
+<!-- Top Metadata Row -->
+<div class="flex items-start justify-between gap-2 mb-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-electric-violet/15 text-secondary border border-electric-violet/30 text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined !text-xs" data-icon="music_note">music_note</span>
+            Music &amp; Art Festival
+          </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-elevated text-text-secondary border border-surface-border text-label-sm font-label-sm font-semibold">
+            DRAFT AWAL 30%
+          </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight mb-1">
+          SoundWave Fest: Indie &amp; Cultural Night
+        </h3>
+<!-- Workspace Parent Indicator -->
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-secondary mb-3">
+<span class="material-symbols-outlined !text-sm" data-icon="folder_special">folder_special</span>
+<span>Wadah: Senat Mahasiswa &amp; UKM Seni</span>
+</div>
+<!-- Metadata pill list -->
+<div class="p-2.5 bg-surface-elevated rounded-xl border border-surface-border/60 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-label-sm font-label-sm text-text-secondary">
+<span class="text-text-primary font-semibold">6 Sie Terdaftar</span>
+<span>•</span>
+<span>3 Panggung Live</span>
+<span>•</span>
+<span class="text-neon-lime font-semibold">Kas Rp 120 Juta</span>
+</div>
+<!-- Progress Bar Indicator -->
+<div class="w-full bg-surface-container rounded-full h-1.5 mb-4 overflow-hidden">
+<div class="bg-electric-violet h-full rounded-full w-[30%]"></div>
+</div>
+<!-- Action Row -->
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2.5 px-3 rounded-full bg-surface-elevated border border-surface-border text-text-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-1.5 hover:border-neon-lime hover:text-neon-lime active:scale-95 transition-all">
+<span class="material-symbols-outlined !text-base" data-icon="edit">edit</span>
+<span>Lanjutkan Draft</span>
+</button>
+</div>
+</article>
+<!-- CARD 3: National Startup Pitch Summit (Event Sedang Berjalan / Live) -->
+<article class="bg-surface-card rounded-2xl border border-surface-border p-4 relative overflow-hidden transition-all duration-200 hover:border-emerald-500/50 shadow-lg">
+<!-- Live Neon Indicator Stroke -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]"></div>
+<!-- Top Metadata Row -->
+<div class="flex items-start justify-between gap-2 mb-2 pl-1">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined !text-xs" data-icon="business_center">business_center</span>
+            Corporate Summit
+          </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-label-sm font-label-sm font-bold shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            LIVE WORKSPACE
+          </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight mb-1 pl-1">
+          National Startup Pitch Summit 2025
+        </h3>
+<!-- Workspace Parent Indicator -->
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-emerald-400 mb-3 pl-1">
+<span class="material-symbols-outlined !text-sm" data-icon="apartment">apartment</span>
+<span>Wadah: Eksekutif Partner Hub</span>
+</div>
+<!-- Metadata Row -->
+<div class="p-2.5 bg-surface-elevated rounded-xl border border-surface-border/60 mb-4 pl-3 space-y-1">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-sm text-emerald-400" data-icon="sensors">sensors</span>
+              Gate Scanner Status:
+            </span>
+<span class="font-bold text-emerald-400 uppercase text-label-sm font-label-sm">ON (4 Pintu)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-sm text-cyan-sky" data-icon="badge">badge</span>
+              Panitia On-Duty:
+            </span>
+<span class="font-semibold text-text-primary text-label-sm font-label-sm">160 Panitia Aktif</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-sm text-neon-lime" data-icon="payments">payments</span>
+              Realtime Kas:
+            </span>
+<span class="font-bold text-neon-lime text-label-sm font-label-sm">Rp 340.200.000</span>
+</div>
+</div>
+<!-- Action Row -->
+<div class="flex items-center gap-2">
+<button class="w-full py-2.5 px-3 rounded-full bg-surface-elevated border border-emerald-400/40 text-emerald-300 font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 hover:bg-emerald-500/10 active:scale-95 transition-all shadow-[0_0_12px_rgba(52,211,153,0.15)]">
+<span class="material-symbols-outlined !text-base" data-icon="terminal">terminal</span>
+<span>Buka Command Center</span>
+<span class="material-symbols-outlined !text-base ml-auto" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</article>
+</section>
+<!-- KINETIC FOOTER BANNER / MOTTO -->
+<div class="p-4 rounded-2xl bg-gradient-to-r from-surface-card via-surface-elevated to-surface-card border border-surface-border text-center relative overflow-hidden">
+<!-- Doodle Squiggle SVG in background -->
+<svg class="absolute -bottom-2 -left-2 w-28 h-12 text-neon-lime/10 fill-none stroke-current stroke-2 pointer-events-none" viewBox="0 0 100 30">
+<path d="M0,15 Q25,0 50,15 T100,15"></path>
+</svg>
+<div class="inline-flex items-center gap-1 text-label-sm font-label-sm text-neon-lime font-bold mb-1">
+<span class="material-symbols-outlined !text-sm" data-icon="auto_awesome">auto_awesome</span>
+        Multi-Tenant Architecture
+      </div>
+<p class="text-body-sm font-body-sm text-text-secondary max-w-xs mx-auto">
+        Setiap wadah memiliki partisi kas, hak akses divisi, dan sinkronisasi QR scan tiket mandiri tanpa tercampur.
+      </p>
+</div>
+</main>
+<!-- QUICK ACTION DOCK / CONTEXTUAL FLOATING BUTTON -->
+
+<!-- BOTTOM NAVIGATION BAR (Shared Component Anchored) -->
+<!-- Contextual Active: 'Workspaces' or 'Events' (We highlight Workspaces as it represents the Workspace Hub) -->
+
+<!-- Interactive script for category pills toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pills = document.querySelectorAll('section div.overflow-x-auto button');
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => {
+            p.className = 'shrink-0 px-3.5 py-2 rounded-full bg-surface-card border border-surface-border text-text-secondary hover:text-text-primary hover:border-surface-tint font-label-sm text-label-sm transition-colors active:scale-95';
+          });
+          pill.className = 'shrink-0 px-4 py-2 rounded-full bg-neon-lime text-surface-base font-label-lg text-label-lg font-bold flex items-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.35)] transition-transform active:scale-95';
+        });
+      });
+    });
+  </script>
+
+
+</body></html>
