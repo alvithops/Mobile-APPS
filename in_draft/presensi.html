@@ -191,13 +191,13 @@
 <div class="pointer-events-none absolute -top-12 -right-16 w-60 h-60 bg-neon-lime/10 rounded-full blur-[80px]"></div>
 <div class="pointer-events-none absolute top-96 -left-20 w-72 h-72 bg-electric-violet/15 rounded-full blur-[90px]"></div>
 <!-- SHARED COMPONENT: TopAppBar (Sticky & Preserved Structure) -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-gutter-mobile py-space-sm bg-surface-base/95 backdrop-blur-md dark:bg-surface-base/95 border-b border-surface-border dark:border-surface-border"><div class="flex items-center gap-2">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-gutter-mobile py-space-sm bg-surface-base/95 backdrop-blur-md dark:bg-surface-base/95 border-b border-surface-border dark:border-surface-border"><div class="flex items-center gap-2 min-w-0">
 <button aria-label="Ganti Event / Kembali ke Draft" class="p-2 rounded-full hover:text-neon-lime hover:bg-surface-elevated active:scale-95 transition-transform duration-150 text-text-primary flex items-center justify-center" onclick="window.location.href='../draft.html'" title="Ganti Event / Kembali ke Draft" type="button">
 <span class="material-symbols-outlined text-[22px]">swap_horiz</span>
 </button>
-<div>
+<div class="min-w-0">
 <div class="flex items-center gap-1.5">
-<h1 class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight">Gate &amp; Presensi Scan</h1>
+<h1 class="text-headline-sm font-headline-sm font-bold text-text-primary tracking-tight max-w-[150px] truncate">Gate &amp; Presensi Scan</h1>
 <svg class="w-4 h-4 text-neon-lime doodle-jiggle" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M3 17l3-10 6 5 6-5 3 10H3z"></path>
 <circle cx="12" cy="5" fill="currentColor" r="1"></circle>
@@ -205,7 +205,7 @@
 </div>
 <div class="flex items-center gap-1.5 mt-0.5">
 <span class="w-2 h-2 rounded-full bg-neon-lime animate-ping"></span>
-<span class="font-label-sm text-label-sm text-neon-lime font-bold">Field Ops Terminal</span>
+<span class="font-label-sm text-label-sm text-neon-lime font-bold hidden min-[360px]:inline">Field Ops Terminal</span>
 <span class="text-text-muted font-body-sm text-[11px]">• <span data-active-event class="text-text-secondary max-w-[130px] truncate inline-block align-bottom">TechFest 2025</span></span>
 </div>
 </div>
@@ -214,7 +214,7 @@
 <button aria-label="Toggle Torch" class="p-2 rounded-full hover:text-neon-lime hover:bg-surface-elevated active:scale-95 transition-all duration-150 text-text-secondary flex items-center justify-center" id="torch-btn" type="button">
 <span class="material-symbols-outlined text-[20px]">flashlight_on</span>
 </button>
-<button aria-label="Switch Camera" class="p-2 rounded-full hover:text-neon-lime hover:bg-surface-elevated active:scale-95 transition-transform duration-150 text-text-secondary" type="button">
+<button aria-label="Switch Camera" class="p-2 rounded-full hover:text-neon-lime hover:bg-surface-elevated active:scale-95 transition-transform duration-150 text-text-secondary" id="switch-camera-btn" type="button">
 <span class="material-symbols-outlined text-[20px]">flip_camera_android</span>
 </button>
 </div></header>
@@ -222,12 +222,12 @@
 <div class="h-[74px]"></div>
 <!-- Active Geofence Indicator Strip -->
 <!-- MODE SWITCHER: Panitia vs Peserta -->
-<section class="px-gutter-mobile pt-3 pb-2"><div class="bg-surface-card border-2 border-surface-border rounded-2xl p-1.5 shadow-2xl"><div class="grid grid-cols-2 gap-1.5 p-1 bg-surface-base rounded-xl"><button class="py-2.5 px-3 rounded-lg bg-neon-lime text-surface-base font-label-lg font-bold flex items-center justify-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.4)] transition-all" type="button"><span class="material-symbols-outlined text-[18px]">badge</span><span>MODE PANITIA</span></button><button class="py-2.5 px-3 rounded-lg bg-surface-elevated text-cyan-sky border border-cyan-sky/40 hover:bg-cyan-sky/10 font-label-lg font-bold flex items-center justify-center gap-1.5 transition-all" type="button"><span class="material-symbols-outlined text-[18px]">confirmation_number</span><span>MODE PESERTA</span></button></div><div class="grid grid-cols-2 gap-2 mt-2"><div class="p-2.5 rounded-xl bg-neon-lime/10 border border-neon-lime/30"><div class="flex items-center justify-between"><span class="text-[11px] font-bold text-neon-lime uppercase font-mono tracking-wider">PANITIA INTERNAL</span><span class="px-1.5 py-0.2 rounded bg-neon-lime text-surface-base text-[10px] font-extrabold">AKTIF</span></div><div class="flex items-baseline gap-1 mt-1"><span class="text-[22px] font-headline-lg font-bold text-white">142</span><span class="text-[11px] text-text-muted">/ 160 Org</span></div><p class="text-[10px] text-neon-lime font-medium mt-0.5 truncate">Fokus: Divisi &amp; Shift Lanyard</p></div><div class="p-2.5 rounded-xl bg-cyan-sky/10 border border-cyan-sky/30"><div class="flex items-center justify-between"><span class="text-[11px] font-bold text-cyan-sky uppercase font-mono tracking-wider">PESERTA GATE</span><span class="px-1.5 py-0.2 rounded bg-surface-elevated text-cyan-sky text-[10px] font-bold border border-cyan-sky/40">STANDBY</span></div><div class="flex items-baseline gap-1 mt-1"><span class="text-[22px] font-headline-lg font-bold text-white">842</span><span class="text-[11px] text-text-muted">/ 1.200 Tiket</span></div><p class="text-[10px] text-cyan-sky font-medium mt-0.5 truncate">Fokus: Gate Pass &amp; Kit Seminar</p></div></div></div></section><section class="px-gutter-mobile py-2"><div class="bg-surface-card border border-surface-border rounded-2xl p-3.5 space-y-3"><div class="flex items-center justify-between border-b border-surface-border/60 pb-2"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-neon-lime text-[18px]">compare_arrows</span><h2 class="font-headline-sm text-[14px] font-bold text-text-primary tracking-tight">Komparasi &amp; Panduan Alur Presensi</h2></div><span class="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-text-muted border border-surface-border">SOP GATE v2.4</span></div><div class="grid grid-cols-2 gap-2 text-[11px]"><div class="bg-surface-elevated border-l-4 border-neon-lime border-y border-r border-surface-border/60 rounded-xl p-2.5 space-y-1.5"><div class="flex items-center gap-1 text-neon-lime font-bold"><span class="material-symbols-outlined text-[15px]">badge</span><span>PANITIA (NEON)</span></div><div class="space-y-1 text-text-secondary"><p><span class="text-white font-semibold block text-[10px] uppercase text-neon-lime/90">Format Barcode:</span><code class="text-neon-lime font-mono text-[10px] bg-surface-base px-1 py-0.5 rounded block truncate">PAN-TF25-[DIV]-[ID]</code></p><p><span class="text-white font-semibold block text-[10px] uppercase text-neon-lime/90">Validasi Manual:</span><span class="text-text-primary">PIN Divisi + Shift Jam Kerja</span></p><p><span class="text-white font-semibold block text-[10px] uppercase text-neon-lime/90">Hak &amp; Benefit:</span><span class="text-text-primary">Akses Ring 1 &amp; Konsumsi Sie</span></p></div></div><div class="bg-surface-elevated border-l-4 border-cyan-sky border-y border-r border-surface-border/60 rounded-xl p-2.5 space-y-1.5"><div class="flex items-center gap-1 text-cyan-sky font-bold"><span class="material-symbols-outlined text-[15px]">confirmation_number</span><span>PESERTA (CYAN)</span></div><div class="space-y-1 text-text-secondary"><p><span class="text-white font-semibold block text-[10px] uppercase text-cyan-sky/90">Format Barcode:</span><code class="text-cyan-sky font-mono text-[10px] bg-surface-base px-1 py-0.5 rounded block truncate">TKT-[VIP|REG]-XXXX</code></p><p><span class="text-white font-semibold block text-[10px] uppercase text-cyan-sky/90">Validasi Manual:</span><span class="text-text-primary">No. WhatsApp / Booking Code</span></p><p><span class="text-white font-semibold block text-[10px] uppercase text-cyan-sky/90">Hak &amp; Benefit:</span><span class="text-text-primary">Gate Entry Pass &amp; Goodie Bag</span></p></div></div></div></div></section>
+<section class="px-gutter-mobile pt-3 pb-2"><div class="bg-surface-card border-2 border-surface-border rounded-2xl p-1.5 shadow-2xl"><div class="grid grid-cols-2 gap-1.5 p-1 bg-surface-base rounded-xl"><button class="py-2.5 px-3 rounded-lg bg-neon-lime text-surface-base font-label-lg font-bold flex items-center justify-center gap-1.5 shadow-[0_0_16px_rgba(223,255,0,0.4)] transition-all" id="mode-panitia" data-mode="panitia" type="button"><span class="material-symbols-outlined text-[18px]">badge</span><span>MODE PANITIA</span></button><button class="py-2.5 px-3 rounded-lg bg-surface-elevated text-cyan-sky border border-cyan-sky/40 hover:bg-cyan-sky/10 font-label-lg font-bold flex items-center justify-center gap-1.5 transition-all" id="mode-peserta" data-mode="peserta" type="button"><span class="material-symbols-outlined text-[18px]">confirmation_number</span><span>MODE PESERTA</span></button></div><div class="grid grid-cols-2 gap-2 mt-2"><div class="p-2.5 rounded-xl bg-neon-lime/10 border border-neon-lime/30"><div class="flex items-center justify-between"><span class="text-[11px] font-bold text-neon-lime uppercase font-mono tracking-wider">PANITIA INTERNAL</span><span class="px-1.5 py-0.2 rounded bg-neon-lime text-surface-base text-[10px] font-extrabold" id="status-panitia">AKTIF</span></div><div class="flex items-baseline gap-1 mt-1"><span class="text-[22px] font-headline-lg font-bold text-white" data-presensi-count="panitia">142</span><span class="text-[11px] text-text-muted">/ 160 Org</span></div><p class="text-[10px] text-neon-lime font-medium mt-0.5 truncate">Fokus: Divisi &amp; Shift Lanyard</p></div><div class="p-2.5 rounded-xl bg-cyan-sky/10 border border-cyan-sky/30"><div class="flex items-center justify-between"><span class="text-[11px] font-bold text-cyan-sky uppercase font-mono tracking-wider">PESERTA GATE</span><span class="px-1.5 py-0.2 rounded bg-surface-elevated text-cyan-sky text-[10px] font-bold border border-cyan-sky/40" id="status-peserta">STANDBY</span></div><div class="flex items-baseline gap-1 mt-1"><span class="text-[22px] font-headline-lg font-bold text-white" data-presensi-count="peserta">842</span><span class="text-[11px] text-text-muted">/ 1.200 Tiket</span></div><p class="text-[10px] text-cyan-sky font-medium mt-0.5 truncate">Fokus: Gate Pass &amp; Kit Seminar</p></div></div></div></section><section class="px-gutter-mobile py-2"><div class="bg-surface-card border border-surface-border rounded-2xl p-3.5 space-y-3"><div class="flex items-center justify-between border-b border-surface-border/60 pb-2"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-neon-lime text-[18px]">compare_arrows</span><h2 class="font-headline-sm text-[14px] font-bold text-text-primary tracking-tight">Komparasi &amp; Panduan Alur Presensi</h2></div><span class="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-text-muted border border-surface-border">SOP GATE v2.4</span></div><div class="grid grid-cols-2 gap-2 text-[11px]"><div class="bg-surface-elevated border-l-4 border-neon-lime border-y border-r border-surface-border/60 rounded-xl p-2.5 space-y-1.5"><div class="flex items-center gap-1 text-neon-lime font-bold"><span class="material-symbols-outlined text-[15px]">badge</span><span>PANITIA (NEON)</span></div><div class="space-y-1 text-text-secondary"><p><span class="text-white font-semibold block text-[10px] uppercase text-neon-lime/90">Format Barcode:</span><code class="text-neon-lime font-mono text-[10px] bg-surface-base px-1 py-0.5 rounded block truncate">PAN-TF25-[DIV]-[ID]</code></p><p><span class="text-white font-semibold block text-[10px] uppercase text-neon-lime/90">Validasi Manual:</span><span class="text-text-primary">PIN Divisi + Shift Jam Kerja</span></p><p><span class="text-white font-semibold block text-[10px] uppercase text-neon-lime/90">Hak &amp; Benefit:</span><span class="text-text-primary">Akses Ring 1 &amp; Konsumsi Sie</span></p></div></div><div class="bg-surface-elevated border-l-4 border-cyan-sky border-y border-r border-surface-border/60 rounded-xl p-2.5 space-y-1.5"><div class="flex items-center gap-1 text-cyan-sky font-bold"><span class="material-symbols-outlined text-[15px]">confirmation_number</span><span>PESERTA (CYAN)</span></div><div class="space-y-1 text-text-secondary"><p><span class="text-white font-semibold block text-[10px] uppercase text-cyan-sky/90">Format Barcode:</span><code class="text-cyan-sky font-mono text-[10px] bg-surface-base px-1 py-0.5 rounded block truncate">TKT-[VIP|REG]-XXXX</code></p><p><span class="text-white font-semibold block text-[10px] uppercase text-cyan-sky/90">Validasi Manual:</span><span class="text-text-primary">No. WhatsApp / Booking Code</span></p><p><span class="text-white font-semibold block text-[10px] uppercase text-cyan-sky/90">Hak &amp; Benefit:</span><span class="text-text-primary">Gate Entry Pass &amp; Goodie Bag</span></p></div></div></div></div></section>
 <!-- Section: Quick Stats Grid (4 Key Metrics Bento) -->
-<section class="px-gutter-mobile py-2"><div class="w-full bg-surface-card border-2 border-neon-lime/60 rounded-3xl p-3 relative overflow-hidden shadow-[0_0_24px_rgba(223,255,0,0.15)]"><div class="w-full h-72 bg-surface-base rounded-2xl relative overflow-hidden flex flex-col items-center justify-center border border-surface-border/60"><div class="absolute inset-0 opacity-20 bg-[radial-gradient(#2E2E3A_1px,transparent_1px)] [background-size:14px_14px]"></div><div class="absolute top-3 inset-x-3 z-10 flex items-center justify-between"><div class="px-2.5 py-1 rounded-full bg-surface-base/90 border border-neon-lime/50 backdrop-blur-md flex items-center gap-1.5 text-[11px] font-label-sm text-neon-lime font-bold"><span class="w-2 h-2 rounded-full bg-neon-lime animate-ping"></span><span>ACTIVE: SCAN ID LANYARD PANITIA</span></div><div class="px-2 py-0.5 rounded-md bg-neon-lime/20 border border-neon-lime/50 text-neon-lime text-[10px] font-mono font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">nfc</span><span>NFC READ</span></div></div><div class="absolute top-12 inset-x-3 z-10 text-center"><div class="inline-block px-3 py-1 rounded-lg bg-surface-base/95 border border-neon-lime/40 text-[10px] font-mono text-neon-lime">Expected Format: <span class="text-white font-bold">PAN-TF25-[DIV]-[ID]</span></div></div><div class="w-52 h-52 relative flex items-center justify-center mt-3"><div class="absolute -top-1 -left-1 w-7 h-7 border-t-4 border-l-4 border-neon-lime rounded-tl-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute -top-1 -right-1 w-7 h-7 border-t-4 border-r-4 border-neon-lime rounded-tr-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute -bottom-1 -left-1 w-7 h-7 border-b-4 border-l-4 border-neon-lime rounded-bl-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute -bottom-1 -right-1 w-7 h-7 border-b-4 border-r-4 border-neon-lime rounded-br-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute inset-x-2 h-0.5 bg-gradient-to-r from-transparent via-neon-lime to-transparent shadow-[0_0_16px_#DFFF00] animate-scan z-20"></div><div class="w-12 h-12 rounded-full border border-neon-lime/30 flex items-center justify-center animate-pulse-aura"><div class="w-2.5 h-2.5 rounded-full bg-neon-lime shadow-[0_0_8px_#DFFF00]"></div></div></div><div class="absolute bottom-2.5 inset-x-3 text-center z-10"><p class="font-body-sm text-[11px] text-text-primary bg-surface-base/95 backdrop-blur-md py-1 px-3 rounded-full border border-neon-lime/30 inline-block shadow-lg"><span class="text-neon-lime font-bold">PANITIA:</span> Arahkan ke QR ID Lanyard atau tempelkan NFC Badge</p></div></div><div class="grid grid-cols-3 gap-2 mt-3"><button class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-neon-lime text-surface-base font-label-sm text-label-sm font-bold rounded-xl active:scale-95 transition-all shadow-[0_0_16px_rgba(223,255,0,0.35)] hover:bg-neon-lime-hover" type="button"><span class="material-symbols-outlined text-[17px]">qr_code_scanner</span><span>Auto Scan</span></button><button class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-surface-elevated border border-surface-border text-text-primary font-label-sm text-label-sm rounded-xl active:scale-95 transition-all hover:border-cyan-sky" type="button"><span class="material-symbols-outlined text-[17px] text-cyan-sky">pin</span><span>PIN Divisi</span></button><button class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-surface-elevated border border-surface-border text-text-secondary font-label-sm text-label-sm rounded-xl active:scale-95 transition-all hover:text-neon-lime hover:border-neon-lime/40" id="flash-toggle-btn" type="button"><span class="material-symbols-outlined text-[17px] text-neon-lime">flash_on</span><span id="flash-state-text">Flash On</span></button></div></div></section>
+<section class="px-gutter-mobile py-2"><div class="w-full bg-surface-card border-2 border-neon-lime/60 rounded-3xl p-3 relative overflow-hidden shadow-[0_0_24px_rgba(223,255,0,0.15)]"><div class="w-full h-72 bg-surface-base rounded-2xl relative overflow-hidden flex flex-col items-center justify-center border border-surface-border/60"><div class="absolute inset-0 opacity-20 bg-[radial-gradient(#2E2E3A_1px,transparent_1px)] [background-size:14px_14px]"></div><div class="absolute top-3 inset-x-3 z-10 flex items-center justify-between"><div class="px-2.5 py-1 rounded-full bg-surface-base/90 border border-neon-lime/50 backdrop-blur-md flex items-center gap-1.5 text-[11px] font-label-sm text-neon-lime font-bold"><span class="w-2 h-2 rounded-full bg-neon-lime animate-ping"></span><span id="scan-mode-label">ACTIVE: SCAN ID LANYARD PANITIA</span></div><div class="px-2 py-0.5 rounded-md bg-neon-lime/20 border border-neon-lime/50 text-neon-lime text-[10px] font-mono font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">nfc</span><span>NFC READ</span></div></div><div class="absolute top-12 inset-x-3 z-10 text-center"><div class="inline-block px-3 py-1 rounded-lg bg-surface-base/95 border border-neon-lime/40 text-[10px] font-mono text-neon-lime">Expected Format: <span class="text-white font-bold" id="scan-format">PAN-TF25-[DIV]-[ID]</span></div></div><div class="w-52 h-52 relative flex items-center justify-center mt-3"><div class="absolute -top-1 -left-1 w-7 h-7 border-t-4 border-l-4 border-neon-lime rounded-tl-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute -top-1 -right-1 w-7 h-7 border-t-4 border-r-4 border-neon-lime rounded-tr-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute -bottom-1 -left-1 w-7 h-7 border-b-4 border-l-4 border-neon-lime rounded-bl-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute -bottom-1 -right-1 w-7 h-7 border-b-4 border-r-4 border-neon-lime rounded-br-xl shadow-[0_0_12px_rgba(223,255,0,0.8)]"></div><div class="absolute inset-x-2 h-0.5 bg-gradient-to-r from-transparent via-neon-lime to-transparent shadow-[0_0_16px_#DFFF00] animate-scan z-20"></div><div class="w-12 h-12 rounded-full border border-neon-lime/30 flex items-center justify-center animate-pulse-aura"><div class="w-2.5 h-2.5 rounded-full bg-neon-lime shadow-[0_0_8px_#DFFF00]"></div></div></div><div class="absolute bottom-2.5 inset-x-3 text-center z-10"><p class="font-body-sm text-[11px] text-text-primary bg-surface-base/95 backdrop-blur-md py-1 px-3 rounded-full border border-neon-lime/30 inline-block shadow-lg" id="scan-instruction"><span class="text-neon-lime font-bold">PANITIA:</span> Arahkan ke QR ID Lanyard atau tempelkan NFC Badge</p></div></div><div class="grid grid-cols-3 gap-2 mt-3"><button class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-neon-lime text-surface-base font-label-sm text-label-sm font-bold rounded-xl active:scale-95 transition-all shadow-[0_0_16px_rgba(223,255,0,0.35)] hover:bg-neon-lime-hover" id="auto-scan-btn" type="button"><span class="material-symbols-outlined text-[17px]">qr_code_scanner</span><span>Auto Scan</span></button><button class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-surface-elevated border border-surface-border text-text-primary font-label-sm text-label-sm rounded-xl active:scale-95 transition-all hover:border-cyan-sky" id="pin-divisi-btn" type="button"><span class="material-symbols-outlined text-[17px] text-cyan-sky">pin</span><span>PIN Divisi</span></button><button class="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-surface-elevated border border-surface-border text-text-secondary font-label-sm text-label-sm rounded-xl active:scale-95 transition-all hover:text-neon-lime hover:border-neon-lime/40" id="flash-toggle-btn" type="button"><span class="material-symbols-outlined text-[17px] text-neon-lime">flash_on</span><span id="flash-state-text">Flash On</span></button></div></div></section>
 <!-- Tab Switcher / Filter Segmented Pills -->
 <!-- SECTION: Format Barcode & Validasi Code Manual Comparison -->
-<section class="px-gutter-mobile py-2"><div class="bg-surface-card border border-surface-border rounded-2xl p-3.5 space-y-3"><div class="flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-neon-lime">dialpad</span><h2 class="font-headline-sm text-[14px] font-bold text-text-primary">Validasi Manual &amp; Input ID</h2></div><span class="text-[10px] font-mono text-neon-lime bg-neon-lime/10 px-2 py-0.5 rounded border border-neon-lime/30">DUAL CHANNEL</span></div><div class="grid grid-cols-2 gap-1.5 p-1 bg-surface-base rounded-xl border border-surface-border"><button class="py-1.5 px-2 rounded-lg bg-neon-lime/20 border border-neon-lime/40 text-neon-lime font-label-sm text-[11px] font-bold flex items-center justify-center gap-1" type="button"><span class="w-1.5 h-1.5 rounded-full bg-neon-lime"></span><span>Input Panitia (NIM/PIN)</span></button><button class="py-1.5 px-2 rounded-lg bg-surface-elevated text-text-muted hover:text-cyan-sky font-label-sm text-[11px] font-medium flex items-center justify-center gap-1" type="button"><span class="w-1.5 h-1.5 rounded-full bg-cyan-sky/50"></span><span>Input Peserta (No. WA/Tiket)</span></button></div><div class="relative"><input class="w-full bg-surface-elevated border-2 border-neon-lime/50 focus:border-neon-lime rounded-xl py-2.5 pl-9 pr-24 text-[13px] text-text-primary placeholder:text-text-muted outline-none transition-all" placeholder="Masukkan NIM, Kode Sie, atau PIN Panitia..." type="text" value=""><span class="material-symbols-outlined text-[18px] text-neon-lime absolute left-3 top-3">badge</span><button class="absolute right-1.5 top-1.5 px-3 py-1.5 rounded-lg bg-neon-lime text-surface-base font-label-sm text-[11px] font-bold hover:bg-neon-lime-hover transition-colors shadow-sm" type="button">Verifikasi</button></div><div class="flex items-center justify-between text-[11px] text-text-secondary pt-1 border-t border-surface-border/50"><span class="text-neon-lime font-mono">Format: PAN-TF25-[DIV]-[ID]</span><button class="text-cyan-sky font-semibold hover:underline flex items-center gap-0.5" type="button"><span class="material-symbols-outlined text-[13px]">swap_horiz</span><span>Ganti ke Cari E-Tiket</span></button></div></div></section><!-- SECTION: Manual ID Lookup / Search Spesifik -->
+<section class="px-gutter-mobile py-2"><div class="bg-surface-card border border-surface-border rounded-2xl p-3.5 space-y-3"><div class="flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-neon-lime">dialpad</span><h2 class="font-headline-sm text-[14px] font-bold text-text-primary">Validasi Manual &amp; Input ID</h2></div><span class="text-[10px] font-mono text-neon-lime bg-neon-lime/10 px-2 py-0.5 rounded border border-neon-lime/30">DUAL CHANNEL</span></div><div class="grid grid-cols-2 gap-1.5 p-1 bg-surface-base rounded-xl border border-surface-border"><button class="py-1.5 px-2 rounded-lg bg-neon-lime/20 border border-neon-lime/40 text-neon-lime font-label-sm text-[11px] font-bold flex items-center justify-center gap-1" id="input-mode-panitia" data-input-mode="panitia" type="button"><span class="w-1.5 h-1.5 rounded-full bg-neon-lime"></span><span>Input Panitia (NIM/PIN)</span></button><button class="py-1.5 px-2 rounded-lg bg-surface-elevated text-text-muted hover:text-cyan-sky font-label-sm text-[11px] font-medium flex items-center justify-center gap-1" id="input-mode-peserta" data-input-mode="peserta" type="button"><span class="w-1.5 h-1.5 rounded-full bg-cyan-sky/50"></span><span>Input Peserta (No. WA/Tiket)</span></button></div><div class="relative"><input class="w-full bg-surface-elevated border-2 border-neon-lime/50 focus:border-neon-lime rounded-xl py-2.5 pl-9 pr-24 text-[13px] text-text-primary placeholder:text-text-muted outline-none transition-all" placeholder="Masukkan NIM, Kode Sie, atau PIN Panitia..." type="text" value="" id="manual-input"><span class="material-symbols-outlined text-[18px] text-neon-lime absolute left-3 top-3">badge</span><button class="absolute right-1.5 top-1.5 px-3 py-1.5 rounded-lg bg-neon-lime text-surface-base font-label-sm text-[11px] font-bold hover:bg-neon-lime-hover transition-colors shadow-sm" id="verify-input-btn" type="button">Verifikasi</button></div><div class="flex items-center justify-between text-[11px] text-text-secondary pt-1 border-t border-surface-border/50"><span class="text-neon-lime font-mono" id="manual-format">Format: PAN-TF25-[DIV]-[ID]</span><button class="text-cyan-sky font-semibold hover:underline flex items-center gap-0.5" id="switch-search-btn" type="button"><span class="material-symbols-outlined text-[13px]">swap_horiz</span><span>Ganti ke Cari E-Tiket</span></button></div></div></section><!-- SECTION: Manual ID Lookup / Search Spesifik -->
 
 <!-- QR Scanner Viewfinder & Live Camera Feed Simulation -->
 
@@ -239,9 +239,9 @@
 </div>
 <span class="font-label-sm text-label-sm text-text-muted">Live Dual-Stream</span>
 </div>
-<div class="space-y-2.5">
+<div class="space-y-2.5" id="activity-list">
 <!-- Panitia Card 1 (On-Time Panitia) -->
-<div class="bg-surface-card border border-surface-border hover:border-neon-lime/40 transition-all rounded-2xl p-3.5 flex items-start gap-3">
+<div class="bg-surface-card border border-surface-border hover:border-neon-lime/40 transition-all rounded-2xl p-3.5 flex items-start gap-3" data-attendee-type="panitia">
 <div class="relative flex-shrink-0">
 <div class="w-11 h-11 rounded-xl bg-surface-elevated border border-neon-lime/30 flex items-center justify-center font-headline-sm font-bold text-neon-lime">
 BA
@@ -252,7 +252,7 @@ BA
 </div>
 <div class="flex-1 min-w-0">
 <div class="flex items-start justify-between gap-1">
-<div>
+<div class="min-w-0 flex-1">
 <div class="flex items-center gap-1.5">
 <h2 class="font-label-lg text-text-primary font-bold truncate">Bima Arya</h2>
 <span class="px-1.5 py-0.2 rounded bg-neon-lime/10 text-neon-lime text-[10px] font-bold font-mono">PANITIA</span>
@@ -276,7 +276,7 @@ On-Time (07:12)
 </div>
 </div>
 <!-- Peserta Card 1 (E-Tiket VIP) -->
-<div class="bg-surface-card border border-cyan-sky/30 hover:border-cyan-sky/60 transition-all rounded-2xl p-3.5 flex items-start gap-3">
+<div class="bg-surface-card border border-cyan-sky/30 hover:border-cyan-sky/60 transition-all rounded-2xl p-3.5 flex items-start gap-3" data-attendee-type="peserta">
 <div class="relative flex-shrink-0">
 <div class="w-11 h-11 rounded-xl bg-surface-elevated border border-cyan-sky/40 flex items-center justify-center font-headline-sm font-bold text-cyan-sky">
 DH
@@ -287,7 +287,7 @@ DH
 </div>
 <div class="flex-1 min-w-0">
 <div class="flex items-start justify-between gap-1">
-<div>
+<div class="min-w-0 flex-1">
 <div class="flex items-center gap-1.5">
 <h2 class="font-label-lg text-text-primary font-bold truncate">Dimas Haryanto</h2>
 <span class="px-1.5 py-0.2 rounded bg-cyan-sky/15 text-cyan-sky text-[10px] font-bold font-mono">PESERTA VIP</span>
@@ -308,7 +308,7 @@ Check-In Gate 1
 </div>
 </div>
 <!-- Panitia Card 2 (Terlambat dengan PIN OTP Approval) -->
-<div class="bg-surface-card border border-vibrant-coral/30 hover:border-vibrant-coral/50 transition-all rounded-2xl p-3.5 flex items-start gap-3">
+<div class="bg-surface-card border border-vibrant-coral/30 hover:border-vibrant-coral/50 transition-all rounded-2xl p-3.5 flex items-start gap-3" data-attendee-type="panitia" data-late="1">
 <div class="relative flex-shrink-0">
 <div class="w-11 h-11 rounded-xl bg-surface-elevated border border-vibrant-coral/30 flex items-center justify-center font-headline-sm font-bold text-vibrant-coral">
 RF
@@ -319,7 +319,7 @@ RF
 </div>
 <div class="flex-1 min-w-0">
 <div class="flex items-start justify-between gap-1">
-<div>
+<div class="min-w-0 flex-1">
 <div class="flex items-center gap-1.5">
 <h2 class="font-label-lg text-text-primary font-bold truncate">Reza Fahmi</h2>
 <span class="px-1.5 py-0.2 rounded bg-neon-lime/10 text-neon-lime text-[10px] font-bold font-mono">PANITIA</span>
@@ -357,7 +357,7 @@ Terlambat +18m
 <span class="font-body-sm text-[11px] text-text-secondary">0 pending sync • Real-time DB Connected</span>
 </div>
 </div>
-<button class="p-2 rounded-xl bg-surface-elevated text-neon-lime border border-surface-border hover:bg-surface-card-hover active:scale-95 transition-transform" type="button">
+<button class="p-2 rounded-xl bg-surface-elevated text-neon-lime border border-surface-border hover:bg-surface-card-hover active:scale-95 transition-transform" id="sync-btn" type="button">
 <span class="material-symbols-outlined text-[18px]">refresh</span>
 </button>
 </div>
@@ -442,4 +442,265 @@ Terlambat +18m
   </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function readActive() {
+    try {
+      var raw = localStorage.getItem('payent_active_event');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    try {
+      var fallback = sessionStorage.getItem('payent_active_event');
+      return fallback ? JSON.parse(fallback) : null;
+    } catch (e) { return null; }
+  }
+  var active = readActive();
+  var eventId = active && (active.id || active.name) ? String(active.id || active.name) : 'default';
+  var STORE_KEY = 'payent_ui_presensi_' + encodeURIComponent(eventId);
+  var state = { mode: 'panitia', inputMode: 'panitia', checkins: [] };
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    if (saved && typeof saved === 'object') {
+      state.mode = saved.mode === 'peserta' ? 'peserta' : 'panitia';
+      state.inputMode = saved.inputMode === 'peserta' ? 'peserta' : 'panitia';
+      state.checkins = Array.isArray(saved.checkins) ? saved.checkins : [];
+    }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+  function toast(message, tone) {
+    var old = document.getElementById('payent-toast');
+    if (old) old.remove();
+    var el = document.createElement('div');
+    el.id = 'payent-toast';
+    el.setAttribute('role', 'status');
+    el.style.cssText = 'position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:120;max-width:calc(100vw - 32px);padding:11px 16px;border-radius:999px;font:600 12px/1.35 "Plus Jakarta Sans",sans-serif;box-shadow:0 12px 32px rgba(0,0,0,.45);border:1px solid ' + (tone === 'error' ? '#ff5722' : '#3a3a42') + ';background:' + (tone === 'error' ? 'rgba(80,22,12,.96)' : 'rgba(24,24,29,.96)') + ';color:' + (tone === 'error' ? '#ffb4a2' : '#f5f5f5') + ';text-align:center;';
+    el.textContent = message;
+    document.body.appendChild(el);
+    setTimeout(function () { if (el.parentNode) el.remove(); }, 2600);
+  }
+  function sheet(title, body, actions) {
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:110;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.62);';
+    var panel = document.createElement('div');
+    panel.style.cssText = 'width:100%;max-width:30rem;max-height:86vh;overflow:auto;background:#151519;border:1px solid #34343c;border-radius:22px 22px 0 0;padding:20px;color:#f5f5f5;box-shadow:0 -16px 40px rgba(0,0,0,.5);';
+    panel.innerHTML = '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px"><h3 style="font:700 16px/1.3 Plus Jakarta Sans,sans-serif;margin:0">' + title + '</h3><button type="button" data-sheet-close style="border:0;background:#24242b;color:#aaa;border-radius:999px;width:30px;height:30px;font-size:18px;line-height:1;cursor:pointer">×</button></div><div style="font:400 13px/1.55 Plus Jakarta Sans,sans-serif;color:#c7c7cf">' + body + '</div><div data-sheet-actions style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"></div>';
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    var actionsBox = panel.querySelector('[data-sheet-actions]');
+    (actions || []).forEach(function (action) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = action.label;
+      var primary = action.tone === 'primary';
+      var error = action.tone === 'error';
+      btn.style.cssText = 'flex:1;min-width:120px;padding:10px 14px;border-radius:999px;border:1px solid ' + (primary ? '#dfff00' : error ? '#ff5722' : '#383840') + ';background:' + (primary ? '#dfff00' : error ? 'rgba(255,87,34,.16)' : '#24242b') + ';color:' + (primary ? '#0b0b0d' : error ? '#ffb4a2' : '#ddd') + ';font:700 12px Plus Jakarta Sans,sans-serif;cursor:pointer';
+      btn.addEventListener('click', function () { var keep = action.onClick && action.onClick(); if (keep !== false) close(); });
+      actionsBox.appendChild(btn);
+    });
+    function close() { if (overlay.parentNode) overlay.remove(); }
+    overlay.addEventListener('click', function (ev) { if (ev.target === overlay || ev.target.closest('[data-sheet-close]')) close(); });
+    return close;
+  }
+
+  var modeButtons = Array.prototype.slice.call(document.querySelectorAll('[data-mode]'));
+  var inputButtons = Array.prototype.slice.call(document.querySelectorAll('[data-input-mode]'));
+  var list = document.getElementById('activity-list');
+  var input = document.getElementById('manual-input');
+  var scanLabel = document.getElementById('scan-mode-label');
+  var scanFormat = document.getElementById('scan-format');
+  var scanInstruction = document.getElementById('scan-instruction');
+  var manualFormat = document.getElementById('manual-format');
+  var statusPanitia = document.getElementById('status-panitia');
+  var statusPeserta = document.getElementById('status-peserta');
+  function initials(name) {
+    return String(name || '??').split(/\s+/).map(function (part) { return part.charAt(0); }).join('').slice(0, 2).toUpperCase();
+  }
+  function nowLabel() {
+    return new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+  }
+  function renderCheckin(checkin, prepend) {
+    if (!list || document.querySelector('[data-checkin-id="' + checkin.id + '"]')) return;
+    var panitia = checkin.type === 'panitia';
+    var color = panitia ? 'neon-lime' : 'cyan-sky';
+    var card = document.createElement('div');
+    card.className = 'bg-surface-card border ' + (panitia ? 'border-neon-lime/30 hover:border-neon-lime/60' : 'border-cyan-sky/30 hover:border-cyan-sky/60') + ' transition-all rounded-2xl p-3.5 flex items-start gap-3';
+    card.setAttribute('data-attendee-type', checkin.type);
+    card.setAttribute('data-checkin-id', checkin.id);
+    card.innerHTML = '<div class="relative flex-shrink-0"><div class="w-11 h-11 rounded-xl bg-surface-elevated border border-' + color + '/40 flex items-center justify-center font-headline-sm font-bold text-' + color + '">' + esc(initials(checkin.name)) + '</div><div class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-surface-card flex items-center justify-center"><span class="w-2.5 h-2.5 rounded-full bg-' + color + '"></span></div></div><div class="flex-1 min-w-0"><div class="flex items-start justify-between gap-1"><div class="min-w-0 flex-1"><div class="flex items-center gap-1.5"><h2 class="font-label-lg text-text-primary font-bold truncate">' + esc(checkin.name) + '</h2><span class="px-1.5 py-0.2 rounded bg-' + color + '/10 text-' + color + ' text-[10px] font-bold font-mono">' + (panitia ? 'PANITIA' : 'PESERTA') + '</span></div><span class="font-body-sm text-[12px] text-text-secondary block">' + esc(checkin.division || 'Verifikasi Manual') + ' • Code: <code class="text-' + color + ' font-mono">' + esc(checkin.code) + '</code></span></div><span class="px-2 py-0.5 rounded-full bg-' + color + '/15 border border-' + color + '/30 text-' + color + ' font-label-sm text-[10px] font-bold whitespace-nowrap">Check-In (' + esc(checkin.time) + ')</span></div><div class="flex items-center gap-3 mt-2 pt-2 border-t border-surface-border/50 text-text-muted font-body-sm text-[12px]"><div class="flex items-center gap-1 text-text-secondary"><span class="material-symbols-outlined text-[14px] text-' + color + '">verified</span><span>Verified • ' + (panitia ? 'Shift Active' : 'E-Tiket Valid') + '</span></div><div class="flex items-center gap-1 text-text-secondary"><span class="material-symbols-outlined text-[14px] text-cyan-sky">door_front</span><span>Gate 1 (Utama)</span></div></div></div>';
+    if (prepend && list.firstChild) list.insertBefore(card, list.firstChild);
+    else list.appendChild(card);
+    card.style.display = state.mode === checkin.type ? '' : 'none';
+  }
+  function updateCounts() {
+    var panitiaExtra = state.checkins.filter(function (item) { return item.type === 'panitia'; }).length;
+    var pesertaExtra = state.checkins.filter(function (item) { return item.type === 'peserta'; }).length;
+    var pEl = document.querySelector('[data-presensi-count="panitia"]');
+    var tEl = document.querySelector('[data-presensi-count="peserta"]');
+    if (pEl) pEl.textContent = 142 + panitiaExtra;
+    if (tEl) tEl.textContent = 842 + pesertaExtra;
+  }
+  function applyMode(mode) {
+    state.mode = mode === 'peserta' ? 'peserta' : 'panitia';
+    state.inputMode = state.mode;
+    save();
+    modeButtons.forEach(function (btn) {
+      var isPanitia = btn.dataset.mode === 'panitia';
+      var active = btn.dataset.mode === state.mode;
+      btn.classList.remove('bg-neon-lime', 'bg-cyan-sky', 'bg-surface-elevated', 'text-surface-base', 'text-cyan-sky', 'text-neon-lime', 'shadow-[0_0_16px_rgba(223,255,0,0.4)]', 'shadow-[0_0_16px_rgba(56,189,248,0.35)]', 'border', 'border-cyan-sky/40', 'border-neon-lime/40', 'hover:bg-cyan-sky/10', 'hover:bg-neon-lime/10');
+      if (active && isPanitia) btn.classList.add('bg-neon-lime', 'text-surface-base', 'shadow-[0_0_16px_rgba(223,255,0,0.4)]');
+      else if (active) btn.classList.add('bg-cyan-sky', 'text-surface-base', 'shadow-[0_0_16px_rgba(56,189,248,0.35)]');
+      else if (isPanitia) btn.classList.add('bg-surface-elevated', 'text-neon-lime', 'border', 'border-neon-lime/40', 'hover:bg-neon-lime/10');
+      else btn.classList.add('bg-surface-elevated', 'text-cyan-sky', 'border', 'border-cyan-sky/40', 'hover:bg-cyan-sky/10');
+    });
+    if (state.mode === 'panitia') {
+      if (scanLabel) scanLabel.textContent = 'ACTIVE: SCAN ID LANYARD PANITIA';
+      if (scanFormat) scanFormat.textContent = 'PAN-TF25-[DIV]-[ID]';
+      if (scanInstruction) scanInstruction.innerHTML = '<span class="text-neon-lime font-bold">PANITIA:</span> Arahkan ke QR ID Lanyard atau tempelkan NFC Badge';
+      if (statusPanitia) statusPanitia.textContent = 'AKTIF';
+      if (statusPeserta) statusPeserta.textContent = 'STANDBY';
+    } else {
+      if (scanLabel) scanLabel.textContent = 'ACTIVE: SCAN E-TIKET PESERTA';
+      if (scanFormat) scanFormat.textContent = 'TKT-[VIP|REG]-XXXX';
+      if (scanInstruction) scanInstruction.innerHTML = '<span class="text-cyan-sky font-bold">PESERTA:</span> Arahkan kamera ke QR E-Tiket atau masukkan kode booking';
+      if (statusPanitia) statusPanitia.textContent = 'STANDBY';
+      if (statusPeserta) statusPeserta.textContent = 'AKTIF';
+    }
+    if (list) {
+      list.querySelectorAll('[data-attendee-type]').forEach(function (card) {
+        card.style.display = card.dataset.attendeeType === state.mode ? '' : 'none';
+      });
+    }
+    applyInputMode(state.inputMode);
+  }
+  function applyInputMode(mode) {
+    state.inputMode = mode === 'peserta' ? 'peserta' : 'panitia';
+    save();
+    inputButtons.forEach(function (btn) {
+      var isPanitia = btn.dataset.inputMode === 'panitia';
+      var active = btn.dataset.inputMode === state.inputMode;
+      btn.classList.remove('bg-neon-lime/20', 'bg-cyan-sky/20', 'bg-surface-elevated', 'text-neon-lime', 'text-cyan-sky', 'text-text-muted', 'border', 'border-neon-lime/40', 'border-cyan-sky/40', 'font-bold', 'font-medium');
+      if (active && isPanitia) btn.classList.add('bg-neon-lime/20', 'border', 'border-neon-lime/40', 'text-neon-lime', 'font-bold');
+      else if (active) btn.classList.add('bg-cyan-sky/20', 'border', 'border-cyan-sky/40', 'text-cyan-sky', 'font-bold');
+      else btn.classList.add('bg-surface-elevated', 'text-text-muted', 'font-medium');
+    });
+    if (input) input.placeholder = state.inputMode === 'panitia' ? 'Masukkan NIM, Kode Sie, atau PIN Panitia...' : 'Masukkan No. WhatsApp, Booking Code, atau E-Tiket...';
+    if (manualFormat) {
+      manualFormat.textContent = state.inputMode === 'panitia' ? 'Format: PAN-TF25-[DIV]-[ID]' : 'Format: TKT-[VIP|REG]-XXXX';
+      manualFormat.className = state.inputMode === 'panitia' ? 'text-neon-lime font-mono' : 'text-cyan-sky font-mono';
+    }
+  }
+  function addCheckin(type, code, name, division) {
+    var checkin = {
+      id: 'chk-' + Date.now() + '-' + Math.floor(Math.random() * 999),
+      type: type,
+      code: code,
+      name: name,
+      division: division,
+      time: nowLabel()
+    };
+    state.checkins.unshift(checkin);
+    if (state.checkins.length > 30) state.checkins.length = 30;
+    save();
+    renderCheckin(checkin, true);
+    updateCounts();
+    if (state.mode !== type) applyMode(type);
+    toast((type === 'panitia' ? 'Presensi panitia' : 'Check-in peserta') + ' berhasil: ' + name);
+  }
+
+  modeButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () { applyMode(btn.dataset.mode); });
+  });
+  inputButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () { applyInputMode(btn.dataset.inputMode); });
+  });
+  var switchSearch = document.getElementById('switch-search-btn');
+  if (switchSearch) {
+    switchSearch.addEventListener('click', function () {
+      applyInputMode('peserta');
+      if (input) { input.focus(); input.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      toast('Mode pencarian E-Tiket peserta aktif.');
+    });
+  }
+  var verifyBtn = document.getElementById('verify-input-btn');
+  if (verifyBtn) {
+    verifyBtn.addEventListener('click', function () {
+      var value = input ? input.value.trim() : '';
+      if (!value) { toast('Masukkan kode presensi terlebih dahulu.', 'error'); return; }
+      if (state.inputMode === 'panitia') {
+        if (!/^PAN-[A-Za-z0-9]+-[A-Za-z]+-\d+$/.test(value)) { toast('Format kode panitia tidak valid. Contoh: PAN-TF25-PK-042', 'error'); return; }
+      } else {
+        if (!/^(TKT-[A-Za-z0-9-]+|BOOK-[A-Za-z0-9-]+|WA-[0-9]+|[0-9]{6,})$/i.test(value)) { toast('Format tiket peserta tidak valid. Contoh: TKT-PUB-D1-884920', 'error'); return; }
+      }
+      var isPanitia = state.inputMode === 'panitia';
+      addCheckin(isPanitia ? 'panitia' : 'peserta', value, isPanitia ? 'Panitia Manual' : 'Peserta Manual', isPanitia ? 'Verifikasi Manual' : 'E-Tiket Manual');
+      if (input) input.value = '';
+    });
+  }
+  var autoBtn = document.getElementById('auto-scan-btn');
+  var panitiaSamples = [
+    { name: 'Alya Putri', code: 'PAN-TF25-PD-117', division: 'Sie Pubdok' },
+    { name: 'Raka Mahendra', code: 'PAN-TF25-PK-088', division: 'Sie Perlengkapan' },
+    { name: 'Intan Permata', code: 'PAN-TF25-KS-021', division: 'Sie Konsumsi' }
+  ];
+  var pesertaSamples = [
+    { name: 'Fajar Nugroho', code: 'TKT-VIP-A1-552014', division: 'VIP • Seat A-21' },
+    { name: 'Sinta Maharani', code: 'TKT-REG-B2-773021', division: 'Reguler • Seat B-08' }
+  ];
+  if (autoBtn) {
+    autoBtn.addEventListener('click', function () {
+      if (autoBtn.disabled) return;
+      autoBtn.disabled = true;
+      var original = autoBtn.innerHTML;
+      autoBtn.innerHTML = '<span class="material-symbols-outlined text-[17px]">progress_activity</span><span>Scanning...</span>';
+      setTimeout(function () {
+        var pool = state.mode === 'panitia' ? panitiaSamples : pesertaSamples;
+        var sample = pool[Math.floor(Math.random() * pool.length)];
+        addCheckin(state.mode, sample.code, sample.name, sample.division);
+        autoBtn.innerHTML = original;
+        autoBtn.disabled = false;
+      }, 900);
+    });
+  }
+  var pinBtn = document.getElementById('pin-divisi-btn');
+  if (pinBtn) {
+    pinBtn.addEventListener('click', function () {
+      sheet('Validasi PIN Divisi', '<label style="display:block;font-size:11px;font-weight:700;color:#a9a9b3">PIN Divisi Panitia<input id="pin-value" inputmode="numeric" maxlength="6" style="width:100%;margin-top:6px;padding:11px;border-radius:12px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:700 16px monospace;letter-spacing:.25em" placeholder="••••"></label><p style="margin:10px 0 0;font-size:11px;color:#8f8f99">Demo: gunakan 4–6 digit angka, mis. 7712.</p>', [
+        { label: 'Batal' },
+        { label: 'Verifikasi', tone: 'primary', onClick: function () {
+          var pin = document.getElementById('pin-value');
+          var value = pin ? pin.value.trim() : '';
+          if (!/^\d{4,6}$/.test(value)) { toast('PIN harus 4–6 digit angka.', 'error'); return false; }
+          addCheckin('panitia', 'PIN-' + value, 'Panitia PIN Divisi', 'Verifikasi PIN');
+        } }
+      ]);
+    });
+  }
+  var switchCamera = document.getElementById('switch-camera-btn');
+  var rearCamera = true;
+  if (switchCamera) {
+    switchCamera.addEventListener('click', function () {
+      rearCamera = !rearCamera;
+      var icon = switchCamera.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = rearCamera ? 'flip_camera_android' : 'camera_front';
+      toast(rearCamera ? 'Kamera belakang aktif.' : 'Kamera depan aktif.');
+    });
+  }
+  var syncBtn = document.getElementById('sync-btn');
+  if (syncBtn) {
+    syncBtn.addEventListener('click', function () {
+      syncBtn.classList.add('opacity-50');
+      setTimeout(function () { syncBtn.classList.remove('opacity-50'); toast('Sinkronisasi selesai • 0 pending sync.'); }, 650);
+    });
+  }
+
+  state.checkins.slice().reverse().forEach(function (checkin) { renderCheckin(checkin, true); });
+  updateCounts();
+  applyMode(state.mode);
+});
+</script>
 </body></html>

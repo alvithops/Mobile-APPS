@@ -193,10 +193,10 @@
 </div>
 <!-- Trailing Group: Search, Urgent Bell & Avatar -->
 <div class="flex items-center space-x-1">
-<button class="text-text-secondary dark:text-text-secondary hover:text-neon-lime-hover dark:hover:text-neon-lime-hover hover:bg-surface-card-hover dark:hover:bg-surface-card-hover active:scale-95 transition-transform duration-150 p-1.5 rounded-lg flex items-center justify-center">
+<button class="text-text-secondary dark:text-text-secondary hover:text-neon-lime-hover dark:hover:text-neon-lime-hover hover:bg-surface-card-hover dark:hover:bg-surface-card-hover active:scale-95 transition-transform duration-150 p-1.5 rounded-lg flex items-center justify-center" id="task-search-btn" type="button">
 <span class="material-symbols-outlined text-[22px]">search</span>
 </button>
-<button class="relative text-text-secondary hover:text-neon-lime hover:bg-surface-card-hover active:scale-95 transition-transform duration-150 p-1.5 rounded-lg flex items-center justify-center">
+<button class="relative text-text-secondary hover:text-neon-lime hover:bg-surface-card-hover active:scale-95 transition-transform duration-150 p-1.5 rounded-lg flex items-center justify-center" id="task-notify-btn" type="button">
 <span class="material-symbols-outlined text-[22px]">notifications</span>
 <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-vibrant-coral rounded-full border-2 border-surface-base"></span>
 </button>
@@ -213,71 +213,71 @@
 <section class="flex items-center space-x-2">
 <div class="flex-1 relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-text-muted text-[18px]">search</span>
-<input class="w-full bg-surface-card border border-surface-border text-text-primary placeholder:text-text-muted text-body-sm font-body-sm rounded-xl pl-9 pr-3 py-2 focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" placeholder="Cari task, PIC, atau sie..." type="text">
+<input class="w-full bg-surface-card border border-surface-border text-text-primary placeholder:text-text-muted text-body-sm font-body-sm rounded-xl pl-9 pr-3 py-2 focus:outline-none focus:border-neon-lime focus:ring-1 focus:ring-neon-lime transition-all" placeholder="Cari task, PIC, atau sie..." type="text" id="task-search">
 </div>
-<button class="bg-surface-card border border-surface-border hover:border-neon-lime/40 text-text-secondary hover:text-neon-lime p-2 rounded-xl active:scale-95 transition flex items-center justify-center">
+<button class="bg-surface-card border border-surface-border hover:border-neon-lime/40 text-text-secondary hover:text-neon-lime p-2 rounded-xl active:scale-95 transition flex items-center justify-center" id="task-filter-btn" type="button">
 <span class="material-symbols-outlined text-[20px]">tune</span>
 </button>
 </section>
 <!-- Horizontal Scrollable Division Filter Pills -->
 <section class="overflow-x-auto scrollbar-none -mx-space-md px-space-md flex items-center space-x-2 pb-1">
 <!-- Active Pill (Semua) -->
-<button class="flex-shrink-0 bg-neon-lime text-surface-base font-label-sm font-bold text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 shadow-[0_0_12px_rgba(223,255,0,0.35)] active:scale-95 transition">
+<button class="flex-shrink-0 bg-neon-lime text-surface-base font-label-sm font-bold text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 shadow-[0_0_12px_rgba(223,255,0,0.35)] active:scale-95 transition" data-division-filter="all" type="button">
 <span>Semua</span>
-<span class="bg-surface-base/20 text-surface-base px-1.5 py-0.2 rounded-full text-[10px]">42</span>
+<span class="bg-surface-base/20 text-surface-base px-1.5 py-0.2 rounded-full text-[10px]" data-task-total>42</span>
 </button>
 <!-- Sie Acara -->
-<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition">
+<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition" data-division-filter="Sie Acara" type="button">
 <span>Sie Acara</span>
-<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]">12</span>
+<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]" data-division-count="Sie Acara">12</span>
 </button>
 <!-- Sie Perlengkapan -->
-<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition">
+<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition" data-division-filter="Sie Perlengkapan" type="button">
 <span>Sie Perlengkapan</span>
-<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]">9</span>
+<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]" data-division-count="Sie Perlengkapan">9</span>
 </button>
 <!-- Sie Humas -->
-<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition">
+<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition" data-division-filter="Sie Humas" type="button">
 <span>Sie Humas</span>
-<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]">8</span>
+<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]" data-division-count="Sie Humas">8</span>
 </button>
 <!-- Sie Konsumsi -->
-<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition">
+<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition" data-division-filter="Sie Konsumsi" type="button">
 <span>Sie Konsumsi</span>
-<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]">7</span>
+<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]" data-division-count="Sie Konsumsi">7</span>
 </button>
 <!-- Sie Keamanan -->
-<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition">
+<button class="flex-shrink-0 bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-[12px] px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 active:scale-95 transition" data-division-filter="Sie Keamanan" type="button">
 <span>Sie Keamanan</span>
-<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]">6</span>
+<span class="bg-surface-elevated text-text-muted px-1.5 py-0.2 rounded-full text-[10px]" data-division-count="Sie Keamanan">6</span>
 </button>
 </section>
 <!-- Status Tabs Segmented Bar -->
 <section class="bg-surface-card/80 p-1 rounded-xl border border-surface-border grid grid-cols-4 gap-1 text-center font-label-sm">
-<button class="py-2 text-text-secondary hover:text-text-primary rounded-lg text-[12px] transition flex flex-col items-center">
+<button class="py-2 text-text-secondary hover:text-text-primary rounded-lg text-[12px] transition flex flex-col items-center" data-status-filter="todo" type="button">
 <span>To Do</span>
-<span class="text-[10px] text-text-muted">8</span>
+<span class="text-[10px] text-text-muted" data-task-count="todo">8</span>
 </button>
 <!-- In Progress: Active Tab with neon lime underline & indicator -->
-<button class="relative py-2 bg-surface-elevated text-neon-lime font-bold rounded-lg text-[12px] shadow-sm border border-neon-lime/30 flex flex-col items-center">
+<button class="relative py-2 bg-surface-elevated text-neon-lime font-bold rounded-lg text-[12px] shadow-sm border border-neon-lime/30 flex flex-col items-center" data-status-filter="inprogress" type="button">
 <span class="flex items-center space-x-1">
 <span>In Progress</span>
 <span class="w-1.5 h-1.5 rounded-full bg-neon-lime animate-pulse"></span>
 </span>
-<span class="text-[10px] text-neon-lime">14</span>
+<span class="text-[10px] text-neon-lime" data-task-count="inprogress">14</span>
 <span class="absolute bottom-0 w-8 h-[2px] bg-neon-lime rounded-full"></span>
 </button>
-<button class="py-2 text-text-secondary hover:text-text-primary rounded-lg text-[12px] transition flex flex-col items-center">
+<button class="py-2 text-text-secondary hover:text-text-primary rounded-lg text-[12px] transition flex flex-col items-center" data-status-filter="review" type="button">
 <span>Review</span>
-<span class="text-[10px] text-text-muted">5</span>
+<span class="text-[10px] text-text-muted" data-task-count="review">5</span>
 </button>
-<button class="py-2 text-text-secondary hover:text-text-primary rounded-lg text-[12px] transition flex flex-col items-center">
+<button class="py-2 text-text-secondary hover:text-text-primary rounded-lg text-[12px] transition flex flex-col items-center" data-status-filter="done" type="button">
 <span>Selesai</span>
-<span class="text-[10px] text-text-muted">15</span>
+<span class="text-[10px] text-text-muted" data-task-count="done">15</span>
 </button>
 </section>
 <!-- Quick Summary Micro-Banner (Kinetic Warning) -->
-<section class="bg-gradient-to-r from-vibrant-coral/15 to-surface-card border border-vibrant-coral/40 p-3 rounded-xl flex items-center justify-between">
+<section class="bg-gradient-to-r from-vibrant-coral/15 to-surface-card border border-vibrant-coral/40 p-3 rounded-xl flex items-center justify-between cursor-pointer" id="task-urgent-banner">
 <div class="flex items-center space-x-2.5">
 <div class="w-8 h-8 rounded-lg bg-vibrant-coral/20 border border-vibrant-coral/40 flex items-center justify-center text-vibrant-coral flex-shrink-0">
 <span class="material-symbols-outlined text-[18px]">acute</span>
@@ -292,9 +292,9 @@
 <span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
 </section>
 <!-- Task Card List (Interactive Rich Mobile Cards) -->
-<section class="space-y-3.5 pb-6">
+<section class="space-y-3.5 pb-6" id="task-list">
 <!-- CARD 1: URGENT Task -->
-<article class="bg-surface-card hover:bg-surface-elevated border border-vibrant-coral/50 hover:border-vibrant-coral rounded-2xl p-4 transition-all duration-200 relative overflow-hidden group shadow-lg">
+<article data-task-id="task-acara-riders" data-division="Sie Acara" data-status="inprogress" data-priority="urgent" data-title="Finalisasi Riders &amp; Rundown Bintang Guest Star" data-pic="Sarah" class="bg-surface-card hover:bg-surface-elevated border border-vibrant-coral/50 hover:border-vibrant-coral rounded-2xl p-4 transition-all duration-200 relative overflow-hidden group shadow-lg">
 <!-- Ambient red accent stripe on side -->
 <div class="absolute left-0 top-0 bottom-0 w-1 bg-vibrant-coral"></div>
 <!-- Header Tags -->
@@ -308,7 +308,7 @@
                 Sie Acara
               </span>
 </div>
-<button class="text-text-muted hover:text-text-primary p-1">
+<button class="text-text-muted hover:text-text-primary p-1" data-task-action="menu" type="button">
 <span class="material-symbols-outlined text-[18px]">more_horiz</span>
 </button>
 </div>
@@ -368,17 +368,17 @@
 </div>
 <!-- Quick Action Button -->
 <div class="mt-3 flex items-center space-x-2">
-<button class="flex-1 bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm font-bold text-[12px] py-2 px-3 rounded-xl flex items-center justify-center space-x-1 active:scale-95 transition shadow-sm">
+<button class="flex-1 bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm font-bold text-[12px] py-2 px-3 rounded-xl flex items-center justify-center space-x-1 active:scale-95 transition shadow-sm" data-task-action="review" type="button">
 <span class="material-symbols-outlined text-[16px]">check</span>
 <span>Pindahkan ke Review</span>
 </button>
-<button class="bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary p-2 rounded-xl active:scale-95 transition">
+<button class="bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary p-2 rounded-xl active:scale-95 transition" data-task-action="status" type="button">
 <span class="material-symbols-outlined text-[18px]">sync_alt</span>
 </button>
 </div>
 </article>
 <!-- CARD 2: HIGH Priority Task -->
-<article class="bg-surface-card hover:bg-surface-elevated border border-surface-border hover:border-primary-container/40 rounded-2xl p-4 transition-all duration-200 group shadow-md">
+<article data-task-id="task-perkap-genset" data-division="Sie Perlengkapan" data-status="inprogress" data-priority="high" data-title="Penyewaan Genset 50 KVA &amp; Distribusi Kabel Lapangan" data-pic="Doni" class="bg-surface-card hover:bg-surface-elevated border border-surface-border hover:border-primary-container/40 rounded-2xl p-4 transition-all duration-200 group shadow-md">
 <div class="flex items-center justify-between mb-2">
 <div class="flex items-center space-x-2">
 <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 font-label-sm text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
@@ -388,7 +388,7 @@
                 Sie Perlengkapan
               </span>
 </div>
-<span class="material-symbols-outlined text-text-muted text-[18px]">more_horiz</span>
+<button class="text-text-muted hover:text-text-primary p-1" data-task-action="menu" type="button"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
 </div>
 <h2 class="text-headline-sm font-headline-sm text-text-primary text-[16px] leading-snug group-hover:text-neon-lime transition-colors">
             Penyewaan Genset 50 KVA &amp; Distribusi Kabel Lapangan
@@ -425,7 +425,7 @@
 </div>
 </article>
 <!-- CARD 3: MEDIUM Priority Task -->
-<article class="bg-surface-card hover:bg-surface-elevated border border-surface-border hover:border-electric-violet/40 rounded-2xl p-4 transition-all duration-200 group">
+<article data-task-id="task-humas-teaser" data-division="Sie Humas &amp; Pubdok" data-status="inprogress" data-priority="medium" data-title="Shooting Video Teaser Instagram Episode 2" data-pic="Nabila" class="bg-surface-card hover:bg-surface-elevated border border-surface-border hover:border-electric-violet/40 rounded-2xl p-4 transition-all duration-200 group">
 <div class="flex items-center justify-between mb-2">
 <div class="flex items-center space-x-2">
 <span class="bg-electric-violet/20 text-electric-violet border border-electric-violet/30 font-label-sm text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
@@ -435,7 +435,7 @@
                 Sie Humas &amp; Pubdok
               </span>
 </div>
-<span class="material-symbols-outlined text-text-muted text-[18px]">more_horiz</span>
+<button class="text-text-muted hover:text-text-primary p-1" data-task-action="menu" type="button"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
 </div>
 <h2 class="text-headline-sm font-headline-sm text-text-primary text-[16px] leading-snug group-hover:text-neon-lime transition-colors">
             Shooting Video Teaser Instagram Episode 2
@@ -466,7 +466,7 @@
 </div>
 </article>
 <!-- CARD 4: LOW / DONE PREVIEW -->
-<article class="bg-surface-card/60 border border-surface-border/60 rounded-2xl p-4 transition-all opacity-85">
+<article data-task-id="task-konsumsi-nasibox" data-division="Sie Konsumsi" data-status="done" data-priority="low" data-title="Pemesanan Nasi Box Kru Gladi Resik (75 Porsi)" data-pic="Ari Wibowo" class="bg-surface-card/60 border border-surface-border/60 rounded-2xl p-4 transition-all opacity-85">
 <div class="flex items-center justify-between mb-2">
 <div class="flex items-center space-x-2">
 <span class="bg-surface-elevated text-text-muted border border-surface-border font-label-sm text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
@@ -496,7 +496,7 @@
 </main>
 <!-- FLOATING ACTION BUTTON (+ Buat Task) -->
 <div class="fixed bottom-24 right-5 z-40">
-<button class="bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-lg font-extrabold flex items-center space-x-2 px-4 py-3 rounded-full shadow-[0_0_24px_rgba(223,255,0,0.45)] active:scale-95 transition-all duration-150 border-2 border-surface-base">
+<button class="bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-lg font-extrabold flex items-center space-x-2 px-4 py-3 rounded-full shadow-[0_0_24px_rgba(223,255,0,0.45)] active:scale-95 transition-all duration-150 border-2 border-surface-base" id="create-task-btn" type="button">
 <span class="material-symbols-outlined text-[20px] font-bold">add</span>
 <span class="text-[13px] tracking-tight">Buat Task</span>
 </button>
@@ -557,4 +557,341 @@
   </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function readActive() {
+    try {
+      var raw = localStorage.getItem('payent_active_event');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    try {
+      var fallback = sessionStorage.getItem('payent_active_event');
+      return fallback ? JSON.parse(fallback) : null;
+    } catch (e) { return null; }
+  }
+  var active = readActive();
+  var eventId = active && (active.id || active.name) ? String(active.id || active.name) : 'default';
+  var STORE_KEY = 'payent_ui_tasks_' + encodeURIComponent(eventId);
+  var state = { statuses: {}, custom: [], deleted: [] };
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    if (saved && typeof saved === 'object') {
+      state.statuses = saved.statuses || {};
+      state.custom = Array.isArray(saved.custom) ? saved.custom : [];
+      state.deleted = Array.isArray(saved.deleted) ? saved.deleted : [];
+    }
+  } catch (e) {}
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+  function toast(message, tone) {
+    var old = document.getElementById('payent-toast');
+    if (old) old.remove();
+    var el = document.createElement('div');
+    el.id = 'payent-toast';
+    el.setAttribute('role', 'status');
+    el.style.cssText = 'position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:120;max-width:calc(100vw - 32px);padding:11px 16px;border-radius:999px;font:600 12px/1.35 "Plus Jakarta Sans",sans-serif;box-shadow:0 12px 32px rgba(0,0,0,.45);border:1px solid ' + (tone === 'error' ? '#ff5722' : '#3a3a42') + ';background:' + (tone === 'error' ? 'rgba(80,22,12,.96)' : 'rgba(24,24,29,.96)') + ';color:' + (tone === 'error' ? '#ffb4a2' : '#f5f5f5') + ';text-align:center;';
+    el.textContent = message;
+    document.body.appendChild(el);
+    setTimeout(function () { if (el.parentNode) el.remove(); }, 2600);
+  }
+  function sheet(title, body, actions) {
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:110;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.62);';
+    var panel = document.createElement('div');
+    panel.style.cssText = 'width:100%;max-width:30rem;max-height:86vh;overflow:auto;background:#151519;border:1px solid #34343c;border-radius:22px 22px 0 0;padding:20px;color:#f5f5f5;box-shadow:0 -16px 40px rgba(0,0,0,.5);';
+    panel.innerHTML = '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px"><h3 style="font:700 16px/1.3 Plus Jakarta Sans,sans-serif;margin:0">' + title + '</h3><button type="button" data-sheet-close style="border:0;background:#24242b;color:#aaa;border-radius:999px;width:30px;height:30px;font-size:18px;line-height:1;cursor:pointer">×</button></div><div style="font:400 13px/1.55 Plus Jakarta Sans,sans-serif;color:#c7c7cf">' + body + '</div><div data-sheet-actions style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"></div>';
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    var actionsBox = panel.querySelector('[data-sheet-actions]');
+    (actions || []).forEach(function (action) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = action.label;
+      var primary = action.tone === 'primary';
+      var danger = action.tone === 'error';
+      btn.style.cssText = 'flex:1;min-width:120px;padding:10px 14px;border-radius:999px;border:1px solid ' + (primary ? '#dfff00' : danger ? '#ff5722' : '#383840') + ';background:' + (primary ? '#dfff00' : danger ? 'rgba(255,87,34,.16)' : '#24242b') + ';color:' + (primary ? '#0b0b0d' : danger ? '#ffb4a2' : '#ddd') + ';font:700 12px Plus Jakarta Sans,sans-serif;cursor:pointer';
+      btn.addEventListener('click', function () { var keep = action.onClick && action.onClick(); if (keep !== false) close(); });
+      actionsBox.appendChild(btn);
+    });
+    function close() { if (overlay.parentNode) overlay.remove(); }
+    overlay.addEventListener('click', function (ev) { if (ev.target === overlay || ev.target.closest('[data-sheet-close]')) close(); });
+    return close;
+  }
+
+  var list = document.getElementById('task-list');
+  var searchInput = document.getElementById('task-search');
+  var divisionFilter = 'all';
+  var statusFilter = 'inprogress';
+  var urgentOnly = false;
+  var query = '';
+  function cards() { return Array.prototype.slice.call(list.querySelectorAll('[data-task-id]')); }
+  function isDeleted(card) { return card.dataset.deleted === '1'; }
+
+  function applyStoredState() {
+    cards().forEach(function (card) {
+      var id = card.dataset.taskId;
+      if (state.statuses[id]) card.dataset.status = state.statuses[id];
+      if (state.deleted.indexOf(id) !== -1) card.dataset.deleted = '1';
+    });
+  }
+  function priorityClasses(priority) {
+    if (priority === 'urgent') return 'bg-vibrant-coral/20 text-vibrant-coral border-vibrant-coral/40';
+    if (priority === 'high') return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+    if (priority === 'medium') return 'bg-electric-violet/20 text-electric-violet border-electric-violet/30';
+    return 'bg-surface-elevated text-text-muted border-surface-border';
+  }
+  function makeCard(task) {
+    var article = document.createElement('article');
+    var priority = task.priority || 'medium';
+    article.className = 'bg-surface-card hover:bg-surface-elevated border border-surface-border hover:border-neon-lime/40 rounded-2xl p-4 transition-all duration-200 group';
+    article.dataset.taskId = task.id;
+    article.dataset.division = task.division || 'Sie Acara';
+    article.dataset.status = task.status || 'todo';
+    article.dataset.priority = priority;
+    article.dataset.title = task.title || 'Task Baru';
+    article.dataset.pic = task.pic || '';
+    article.innerHTML = '<div class="flex items-center justify-between mb-2"><div class="flex items-center space-x-2"><span class="' + priorityClasses(priority) + ' border font-label-sm text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">' + esc(priority) + '</span><span class="bg-surface-elevated text-text-secondary border border-surface-border font-label-sm text-[11px] px-2.5 py-0.5 rounded-full">' + esc(task.division) + '</span></div><button class="text-text-muted hover:text-text-primary p-1" data-task-action="menu" type="button"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button></div><h2 class="text-headline-sm font-headline-sm text-text-primary text-[16px] leading-snug group-hover:text-neon-lime transition-colors">' + esc(task.title) + '</h2><p class="text-body-sm font-body-sm text-text-secondary text-[12px] mt-1">' + esc(task.description || 'Task baru dibuat dari panel Buat Task.') + '</p><div class="mt-3 pt-2.5 border-t border-surface-border flex items-center justify-between text-[11px] text-text-muted"><span class="flex items-center space-x-1 text-text-secondary"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span>' + esc(task.deadline || 'Belum ditentukan') + '</span></span><span class="flex items-center space-x-1.5 bg-surface-elevated px-2 py-1 rounded-full border border-surface-border"><span class="text-text-secondary font-label-sm text-[10px]">PIC: ' + esc(task.pic || 'Belum ada') + '</span></span></div><div class="mt-3 flex items-center space-x-2"><button class="flex-1 bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm font-bold text-[12px] py-2 px-3 rounded-xl flex items-center justify-center space-x-1 active:scale-95 transition" data-task-action="review" type="button"><span class="material-symbols-outlined text-[16px]">check</span><span>Pindahkan ke Review</span></button><button class="bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary p-2 rounded-xl active:scale-95 transition" data-task-action="status" type="button"><span class="material-symbols-outlined text-[18px]">sync_alt</span></button></div>';
+    return article;
+  }
+  function renderCustom() {
+    state.custom.forEach(function (task) {
+      if (document.querySelector('[data-task-id="' + task.id + '"]')) return;
+      list.appendChild(makeCard(task));
+    });
+  }
+  function updateCounts() {
+    var all = cards().filter(function (card) { return !isDeleted(card); });
+    var total = document.querySelector('[data-task-total]');
+    if (total) total.textContent = all.length;
+    ['todo', 'inprogress', 'review', 'done'].forEach(function (status) {
+      var el = document.querySelector('[data-task-count="' + status + '"]');
+      if (el) el.textContent = all.filter(function (card) { return card.dataset.status === status; }).length;
+    });
+    ['Sie Acara', 'Sie Perlengkapan', 'Sie Humas', 'Sie Konsumsi', 'Sie Keamanan'].forEach(function (division) {
+      var el = document.querySelector('[data-division-count="' + division + '"]');
+      if (el) el.textContent = all.filter(function (card) { return (card.dataset.division || '').indexOf(division) === 0; }).length;
+    });
+  }
+  function ensureEmptyState() {
+    var empty = document.getElementById('task-empty');
+    if (!empty) {
+      empty = document.createElement('div');
+      empty.id = 'task-empty';
+      empty.className = 'rounded-2xl bg-surface-card border border-surface-border p-6 text-center';
+      empty.innerHTML = '<span class="material-symbols-outlined text-3xl text-neon-lime">task_alt</span><p class="font-label-sm text-xs text-text-secondary mt-2">Tidak ada task yang cocok dengan filter ini.</p>';
+      list.appendChild(empty);
+    }
+    return empty;
+  }
+  function applyFilters() {
+    var visible = 0;
+    cards().forEach(function (card) {
+      var matches = !isDeleted(card);
+      if (matches && divisionFilter !== 'all') matches = (card.dataset.division || '').indexOf(divisionFilter) === 0;
+      if (matches && statusFilter) matches = card.dataset.status === statusFilter;
+      if (matches && urgentOnly) matches = card.dataset.priority === 'urgent';
+      if (matches && query) matches = card.textContent.toLowerCase().indexOf(query) !== -1;
+      card.style.display = matches ? '' : 'none';
+      if (matches) visible += 1;
+    });
+    var empty = ensureEmptyState();
+    empty.style.display = visible ? 'none' : '';
+    updateCounts();
+  }
+  var divisionButtons = Array.prototype.slice.call(document.querySelectorAll('[data-division-filter]'));
+  var statusButtons = Array.prototype.slice.call(document.querySelectorAll('[data-status-filter]'));
+  function paintDivision(selected) {
+    divisionButtons.forEach(function (btn) {
+      var active = btn.dataset.divisionFilter === selected;
+      btn.classList.toggle('bg-neon-lime', active);
+      btn.classList.toggle('text-surface-base', active);
+      btn.classList.toggle('font-bold', active);
+      btn.classList.toggle('shadow-[0_0_12px_rgba(223,255,0,0.35)]', active);
+      btn.classList.toggle('bg-surface-card', !active);
+      btn.classList.toggle('border', !active);
+      btn.classList.toggle('border-surface-border', !active);
+      btn.classList.toggle('text-text-secondary', !active);
+      btn.classList.toggle('hover:bg-surface-card-hover', !active);
+      btn.classList.toggle('hover:text-text-primary', !active);
+      var badge = btn.querySelector('span:last-child');
+      if (badge) {
+        badge.classList.toggle('bg-surface-base/20', active);
+        badge.classList.toggle('text-surface-base', active);
+        badge.classList.toggle('bg-surface-elevated', !active);
+        badge.classList.toggle('text-text-muted', !active);
+      }
+    });
+  }
+  function paintStatus(selected) {
+    statusButtons.forEach(function (btn) {
+      var active = btn.dataset.statusFilter === selected;
+      btn.classList.toggle('bg-surface-elevated', active);
+      btn.classList.toggle('text-neon-lime', active);
+      btn.classList.toggle('font-bold', active);
+      btn.classList.toggle('shadow-sm', active);
+      btn.classList.toggle('border', active);
+      btn.classList.toggle('border-neon-lime/30', active);
+      btn.classList.toggle('text-text-secondary', !active);
+      btn.classList.toggle('hover:text-text-primary', !active);
+      var bar = btn.querySelector('.absolute.bottom-0');
+      if (bar) bar.style.display = active ? '' : 'none';
+    });
+  }
+  divisionButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      divisionFilter = btn.dataset.divisionFilter;
+      paintDivision(divisionFilter);
+      applyFilters();
+    });
+  });
+  statusButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      statusFilter = btn.dataset.statusFilter;
+      urgentOnly = false;
+      paintStatus(statusFilter);
+      applyFilters();
+    });
+  });
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      query = searchInput.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
+  var searchBtn = document.getElementById('task-search-btn');
+  if (searchBtn) searchBtn.addEventListener('click', function () { if (searchInput) { searchInput.focus(); searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); } });
+
+  function setStatus(card, status) {
+    var id = card.dataset.taskId;
+    state.statuses[id] = status;
+    save();
+    card.dataset.status = status;
+    applyFilters();
+    toast('Status task diubah ke ' + status + '.');
+  }
+  function removeTask(card) {
+    var id = card.dataset.taskId;
+    if (id.indexOf('task-custom-') === 0) {
+      state.custom = state.custom.filter(function (task) { return task.id !== id; });
+      card.remove();
+    } else {
+      if (state.deleted.indexOf(id) === -1) state.deleted.push(id);
+      card.dataset.deleted = '1';
+    }
+    save();
+    applyFilters();
+    toast('Task dihapus dari daftar.');
+  }
+  function openTaskMenu(card) {
+    var title = esc(card.dataset.title || 'Task');
+    var content = '<p style="margin:0 0 4px">Pilih status baru atau kelola task ini.</p><p style="margin:0;color:#8f8f99;font-size:12px">Saat ini: <strong style="color:#dfff00">' + esc(card.dataset.status) + '</strong></p>';
+    sheet(title, content, [
+      { label: 'To Do', onClick: function () { setStatus(card, 'todo'); } },
+      { label: 'In Progress', onClick: function () { setStatus(card, 'inprogress'); } },
+      { label: 'Review', onClick: function () { setStatus(card, 'review'); } },
+      { label: 'Selesai', tone: 'primary', onClick: function () { setStatus(card, 'done'); } },
+      { label: 'Hapus Task', tone: 'error', onClick: function () {
+        setTimeout(function () {
+          sheet('Hapus task?', '<p style="margin:0">Task <strong>' + title + '</strong> akan dihapus dari daftar.</p>', [
+            { label: 'Batal' },
+            { label: 'Ya, hapus', tone: 'error', onClick: function () { removeTask(card); } }
+          ]);
+        }, 0);
+      } }
+    ]);
+  }
+  list.addEventListener('click', function (ev) {
+    var actionBtn = ev.target.closest('[data-task-action]');
+    if (!actionBtn) return;
+    var card = actionBtn.closest('[data-task-id]');
+    if (!card) return;
+    var action = actionBtn.dataset.taskAction;
+    if (action === 'review') setStatus(card, 'review');
+    else if (action === 'done') setStatus(card, 'done');
+    else if (action === 'status' || action === 'menu') openTaskMenu(card);
+  });
+
+  var urgentBanner = document.getElementById('task-urgent-banner');
+  if (urgentBanner) {
+    urgentBanner.addEventListener('click', function () {
+      urgentOnly = true;
+      statusFilter = '';
+      paintStatus('');
+      applyFilters();
+      if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      toast('Menampilkan task mendesak saja.');
+    });
+  }
+  var filterBtn = document.getElementById('task-filter-btn');
+  if (filterBtn) {
+    filterBtn.addEventListener('click', function () {
+      sheet('Filter Task', '<p style="margin:0">Gunakan filter cepat untuk mempersempit daftar task.</p>', [
+        { label: 'Task Mendesak', tone: 'primary', onClick: function () { urgentOnly = true; statusFilter = ''; paintStatus(''); applyFilters(); toast('Menampilkan task mendesak.'); } },
+        { label: 'Semua Task', onClick: function () { urgentOnly = false; divisionFilter = 'all'; statusFilter = 'inprogress'; query = ''; if (searchInput) searchInput.value = ''; paintDivision('all'); paintStatus('inprogress'); applyFilters(); toast('Filter dikembalikan ke default.'); } }
+      ]);
+    });
+  }
+  var notifyBtn = document.getElementById('task-notify-btn');
+  if (notifyBtn) {
+    notifyBtn.addEventListener('click', function () {
+      sheet('Notifikasi Task', '<div style="display:grid;gap:10px"><div style="padding:10px;border:1px solid #ff5722;border-radius:12px;background:rgba(255,87,34,.1);color:#ffb4a2"><strong>3 task mendesak</strong><br>Deadline sebelum pukul 18:00 WIB.</div><div style="padding:10px;border:1px solid #34343c;border-radius:12px"><strong style="color:#f5f5f5">1 task menunggu review</strong><br>Finalisasi riders &amp; rundown.</div></div>', [{ label: 'Tutup' }]);
+    });
+  }
+
+  var createBtn = document.getElementById('create-task-btn');
+  if (createBtn) {
+    createBtn.addEventListener('click', function () {
+      var form = '<div style="display:grid;gap:9px">' +
+        '<label style="font-size:11px;font-weight:700;color:#a9a9b3">Judul task<input id="new-task-title" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif" placeholder="Contoh: Finalisasi lighting panggung"></label>' +
+        '<label style="font-size:11px;font-weight:700;color:#a9a9b3">Divisi<select id="new-task-division" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif"><option>Sie Acara</option><option>Sie Perlengkapan</option><option>Sie Humas &amp; Pubdok</option><option>Sie Konsumsi</option><option>Sie Keamanan</option></select></label>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><label style="font-size:11px;font-weight:700;color:#a9a9b3">Prioritas<select id="new-task-priority" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif"><option value="medium">Medium</option><option value="urgent">Urgent</option><option value="high">High</option><option value="low">Low</option></select></label><label style="font-size:11px;font-weight:700;color:#a9a9b3">Status<select id="new-task-status" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif"><option value="todo">To Do</option><option value="inprogress" selected>In Progress</option><option value="review">Review</option><option value="done">Selesai</option></select></label></div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><label style="font-size:11px;font-weight:700;color:#a9a9b3">Deadline<input id="new-task-deadline" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif" placeholder="Besok, 10:00"></label><label style="font-size:11px;font-weight:700;color:#a9a9b3">PIC<input id="new-task-pic" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif" placeholder="Nama PIC"></label></div>' +
+        '<label style="font-size:11px;font-weight:700;color:#a9a9b3">Deskripsi<textarea id="new-task-desc" rows="3" style="width:100%;margin-top:5px;padding:10px;border-radius:10px;border:1px solid #383840;background:#0f0f12;color:#f5f5f5;font:500 13px Plus Jakarta Sans,sans-serif;resize:vertical" placeholder="Detail singkat task..."></textarea></label></div>';
+      sheet('Buat Task Baru', form, [
+        { label: 'Batal' },
+        { label: 'Simpan Task', tone: 'primary', onClick: function () {
+          var titleEl = document.getElementById('new-task-title');
+          var title = titleEl ? titleEl.value.trim() : '';
+          if (!title) { toast('Judul task wajib diisi.', 'error'); return false; }
+          var task = {
+            id: 'task-custom-' + Date.now(),
+            title: title,
+            division: document.getElementById('new-task-division').value,
+            priority: document.getElementById('new-task-priority').value,
+            status: document.getElementById('new-task-status').value,
+            deadline: document.getElementById('new-task-deadline').value.trim(),
+            pic: document.getElementById('new-task-pic').value.trim(),
+            description: document.getElementById('new-task-desc').value.trim()
+          };
+          state.custom.push(task);
+          save();
+          list.appendChild(makeCard(task));
+          statusFilter = task.status;
+          urgentOnly = false;
+          divisionFilter = 'all';
+          query = '';
+          if (searchInput) searchInput.value = '';
+          paintDivision('all');
+          paintStatus(statusFilter);
+          applyFilters();
+          toast('Task "' + task.title + '" berhasil dibuat.');
+        } }
+      ]);
+    });
+  }
+
+  applyStoredState();
+  renderCustom();
+  applyStoredState();
+  paintDivision(divisionFilter);
+  paintStatus(statusFilter);
+  applyFilters();
+});
+</script>
 </body></html>

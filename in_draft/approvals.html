@@ -177,19 +177,19 @@
 <div class="fixed bottom-20 left-1/4 w-64 h-64 bg-cyan-sky/10 rounded-full blur-[90px] pointer-events-none -z-10"></div>
 <!-- TOP APP BAR (Shared Component Execution from JSON) -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter-mobile py-space-sm bg-surface-base/90 backdrop-blur-md border-b border-surface-border">
-<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
 <button aria-label="Ganti Event / Kembali ke Draft" class="w-10 h-10 rounded-full bg-surface-card border border-surface-border flex items-center justify-center text-text-primary active:scale-95 transition-transform" onclick="window.location.href='../draft.html'" title="Ganti Event / Kembali ke Draft">
 <span class="material-symbols-outlined text-headline-sm">swap_horiz</span>
 </button>
-<div>
+<div class="min-w-0">
 <div class="flex items-center gap-1.5">
 <h1 class="font-headline-sm text-headline-sm font-bold text-text-primary">Approvals</h1>
 <span class="text-neon-lime font-headline-sm">•</span>
 </div>
-<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-text-secondary">
-<span data-active-event class="max-w-[150px] truncate">TechFest 2025</span>
-<span class="text-text-muted">•</span>
-<span class="inline-flex items-center gap-1 text-[11px] text-neon-lime font-semibold">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-text-secondary min-w-0">
+<span data-active-event class="max-w-[150px] truncate min-w-0">TechFest 2025</span>
+<span class="text-text-muted hidden min-[480px]:inline">•</span>
+<span class="inline-flex items-center gap-1 text-[11px] text-neon-lime font-semibold hidden min-[480px]:inline-flex">
 <span class="w-1.5 h-1.5 rounded-full bg-neon-lime animate-pulse"></span>
             Supabase Live
           </span>
@@ -197,13 +197,13 @@
 </div>
 </div>
 <!-- Trailing Action Counter Chip -->
-<div class="flex items-center gap-2">
-<button aria-label="History Log" class="w-9 h-9 rounded-full bg-surface-elevated border border-surface-border flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95 transition-all">
+<div class="flex items-center gap-2 shrink-0">
+<button aria-label="History Log" class="w-9 h-9 rounded-full bg-surface-elevated border border-surface-border flex items-center justify-center text-text-secondary hover:text-text-primary active:scale-95 transition-all" id="approval-history-btn" type="button">
 <span class="material-symbols-outlined text-[20px]">history</span>
 </button>
 <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neon-lime/10 border border-neon-lime/30 text-neon-lime font-label-sm text-label-sm font-bold">
 <span class="w-2 h-2 rounded-full bg-neon-lime animate-ping"></span>
-<span>7 Pending</span>
+<span data-approvals-pending-label>7 Pending</span>
 </div>
 </div>
 </header>
@@ -221,7 +221,7 @@
 <span class="material-symbols-outlined text-[18px]">warning</span>
 </div>
 <div>
-<h2 class="font-headline-sm text-[16px] leading-5 font-bold text-text-primary">3 Pengajuan Mendesak</h2>
+<h2 class="font-headline-sm text-[16px] leading-5 font-bold text-text-primary" data-approvals-urgent>3 Pengajuan Mendesak</h2>
 <p class="font-body-sm text-body-sm text-text-secondary mt-0.5">Membutuhkan persetujuan koordinator BPH hari ini</p>
 </div>
 </div>
@@ -229,11 +229,11 @@
 <div class="grid grid-cols-3 gap-2 pt-2 border-t border-surface-border/60">
 <div class="bg-surface-elevated/70 rounded-xl p-2 border border-surface-border">
 <span class="block font-label-sm text-[11px] text-text-muted">Total Tertunda</span>
-<span class="font-headline-sm text-headline-sm font-bold text-text-primary">7</span>
+<span class="font-headline-sm text-headline-sm font-bold text-text-primary" data-approvals-total>7</span>
 </div>
 <div class="bg-surface-elevated/70 rounded-xl p-2 border border-surface-border col-span-1">
 <span class="block font-label-sm text-[11px] text-text-muted">Nominal Dana</span>
-<span class="font-headline-sm text-[13px] leading-6 font-bold text-neon-lime truncate block">Rp 14,85M</span>
+<span class="font-headline-sm text-[13px] leading-6 font-bold text-neon-lime truncate block" data-approvals-dana>Rp 14,85M</span>
 </div>
 <div class="bg-surface-elevated/70 rounded-xl p-2 border border-surface-border">
 <span class="block font-label-sm text-[11px] text-text-muted">Logistik</span>
@@ -243,30 +243,31 @@
 </section>
 <!-- HORIZONTAL FILTER TABS -->
 <nav aria-label="Approvals Filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-<button class="flex-shrink-0 px-4 py-2 rounded-full bg-neon-lime text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center gap-1.5">
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-neon-lime text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center gap-1.5" data-approval-filter="all" type="button">
 <span>Semua</span>
-<span class="w-4 h-4 rounded-full bg-surface-base text-neon-lime text-[10px] flex items-center justify-center font-bold">7</span>
+<span class="w-4 h-4 rounded-full bg-surface-base text-neon-lime text-[10px] flex items-center justify-center font-bold" data-filter-count="all">7</span>
 </button>
-<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1">
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1" data-approval-filter="dana" type="button">
 <span>Dana Kas</span>
-<span class="text-text-muted font-normal">(3)</span>
+<span class="text-text-muted font-normal" data-filter-count="dana">(3)</span>
 </button>
-<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1">
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1" data-approval-filter="alat" type="button">
 <span>Peminjaman Alat</span>
-<span class="text-text-muted font-normal">(2)</span>
+<span class="text-text-muted font-normal" data-filter-count="alat">(2)</span>
 </button>
-<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1">
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1" data-approval-filter="izin" type="button">
 <span>Perizinan &amp; MoU</span>
-<span class="text-text-muted font-normal">(2)</span>
+<span class="text-text-muted font-normal" data-filter-count="izin">(2)</span>
 </button>
-<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95">
+<button class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-card hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-all active:scale-95 flex items-center gap-1" data-approval-filter="approved" type="button">
         Disetujui
+        <span class="text-text-muted font-normal" data-filter-count="approved">(0)</span>
       </button>
 </nav>
 <!-- REQUEST CARDS STREAM -->
 <div class="space-y-space-md">
 <!-- CARD 1: URGENT - Dana Kas / Sie Konsumsi -->
-<article class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<article data-approval-id="REQ-1082" data-category="dana" data-title="Snack &amp; Kopi Rapat Pleno Gabungan (45 Pax)" data-amount="650000" class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
 <!-- Accent indicator bar -->
 <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-vibrant-coral"></div>
 <!-- Badges & Meta -->
@@ -305,11 +306,11 @@
 </div>
 <!-- Attachments Row -->
 <div class="mt-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
-<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary font-label-sm text-[11px]" href="#">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary font-label-sm text-[11px]" href="#" data-attachment="Invoice-Nota-081.pdf">
 <span class="material-symbols-outlined text-[14px] text-vibrant-coral">picture_as_pdf</span>
               Invoice-Nota-081.pdf
             </a>
-<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary font-label-sm text-[11px]" href="#">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary font-label-sm text-[11px]" href="#" data-attachment="Bukti DP (Rp 300k)">
 <span class="material-symbols-outlined text-[14px] text-cyan-sky">receipt_long</span>
               Bukti DP (Rp 300k)
             </a>
@@ -329,11 +330,11 @@
 </div>
 <!-- Action Buttons -->
 <div class="mt-4 grid grid-cols-2 gap-2.5">
-<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border hover:border-vibrant-coral/50 text-text-secondary hover:text-vibrant-coral font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1">
+<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border hover:border-vibrant-coral/50 text-text-secondary hover:text-vibrant-coral font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1" data-decision="reject" type="button">
 <span class="material-symbols-outlined text-[16px]">close</span>
               Tolak
             </button>
-<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1">
+<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1" data-decision="approve" type="button">
 <span class="material-symbols-outlined text-[18px]">done_all</span>
               Setujui Pengajuan
             </button>
@@ -341,7 +342,7 @@
 </div>
 </article>
 <!-- CARD 2: URGENT - Peminjaman Logistik / Sie Lapangan -->
-<article class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<article data-approval-id="AST-0419" data-category="alat" data-title="Peminjaman 4 Unit Handy Talky (HT) &amp; 2 Megaphone" data-amount="0" class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
 <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-vibrant-coral"></div>
 <div class="flex items-center justify-between gap-2 mb-2.5 pl-1">
 <div class="flex items-center gap-1.5 flex-wrap">
@@ -394,11 +395,11 @@
 <span class="font-label-sm text-[11px] text-cyan-sky bg-cyan-sky/10 px-2 py-0.5 rounded">ID: #AST-0419</span>
 </div>
 <div class="mt-4 grid grid-cols-2 gap-2.5">
-<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border hover:border-vibrant-coral/50 text-text-secondary hover:text-vibrant-coral font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1">
+<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border hover:border-vibrant-coral/50 text-text-secondary hover:text-vibrant-coral font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1" data-decision="reject" type="button">
 <span class="material-symbols-outlined text-[16px]">close</span>
               Tolak
             </button>
-<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1">
+<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1" data-decision="approve" type="button">
 <span class="material-symbols-outlined text-[18px]">verified</span>
               Setujui Peminjaman
             </button>
@@ -406,7 +407,7 @@
 </div>
 </article>
 <!-- CARD 3: HIGH - Perizinan & Kontrak / Sie Acara -->
-<article class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<article data-approval-id="MOU-RC" data-category="izin" data-title="Finalisasi Klausul Kontrak &amp; Riders Guest Star Reality Club" data-amount="4200000" class="bg-surface-card border border-surface-border hover:border-neon-lime/40 rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
 <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-yellow-400"></div>
 <div class="flex items-center justify-between gap-2 mb-2.5 pl-1">
 <div class="flex items-center gap-1.5 flex-wrap">
@@ -434,7 +435,7 @@
 <span class="font-headline-lg-mobile text-text-primary font-bold tracking-tight">+ Rp 4.200.000</span>
 </div>
 <div class="flex items-center">
-<a class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-surface-border text-cyan-sky font-label-sm text-[11px]" href="#">
+<a class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-surface-border text-cyan-sky font-label-sm text-[11px]" href="#" data-attachment="Draft_RC_v3.pdf">
 <span class="material-symbols-outlined text-[15px]">description</span>
                 Draft_RC_v3.pdf
               </a>
@@ -453,11 +454,11 @@
 <span class="font-label-sm text-[11px] text-yellow-300 bg-yellow-400/10 px-2 py-0.5 rounded">MoU Stage 2</span>
 </div>
 <div class="mt-4 grid grid-cols-2 gap-2.5">
-<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1">
+<button class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-secondary hover:text-text-primary font-label-sm text-label-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-1" data-decision="revision" type="button">
 <span class="material-symbols-outlined text-[16px]">edit_note</span>
               Minta Revisi
             </button>
-<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1">
+<button class="py-2.5 px-3 rounded-full bg-neon-lime hover:bg-neon-lime-hover text-surface-base font-label-sm text-label-sm font-bold neon-glow-lime transition-all active:scale-95 flex items-center justify-center gap-1" data-decision="approve" type="button">
 <span class="material-symbols-outlined text-[18px]">gavel</span>
               Verifikasi BPH
             </button>
@@ -465,7 +466,7 @@
 </div>
 </article>
 <!-- CARD 4: MEDIUM - Reimburse Operasional / Sie Pubdok -->
-<article class="bg-surface-card border border-surface-border hover:border-surface-card-hover rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
+<article data-approval-id="REQ-1184" data-category="dana" data-title="Reimburse Pembelian Domain &amp; Cloud Backup Footage" data-amount="480000" class="bg-surface-card border border-surface-border hover:border-surface-card-hover rounded-2xl p-space-md relative overflow-hidden transition-all duration-200">
 <div class="flex items-center justify-between gap-2 mb-2.5">
 <div class="flex items-center gap-1.5 flex-wrap">
 <span class="px-2.5 py-0.5 rounded-full bg-surface-elevated border border-surface-border text-text-secondary font-label-sm text-[11px] font-semibold">
@@ -496,10 +497,10 @@
             </div>
 </div>
 <div class="mt-3.5 grid grid-cols-2 gap-2">
-<button class="py-2 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-muted hover:text-text-secondary font-label-sm text-label-sm transition-all active:scale-95">
+<button class="py-2 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-surface-border text-text-muted hover:text-text-secondary font-label-sm text-label-sm transition-all active:scale-95" data-decision="reject" type="button">
               Tolak
             </button>
-<button class="py-2 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-neon-lime/40 text-neon-lime font-label-sm text-label-sm font-semibold transition-all active:scale-95">
+<button class="py-2 px-3 rounded-full bg-surface-elevated hover:bg-surface-card-hover border border-neon-lime/40 text-neon-lime font-label-sm text-label-sm font-semibold transition-all active:scale-95" data-decision="approve" type="button">
               Setujui
             </button>
 </div>
@@ -573,4 +574,249 @@
   </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function readActive() {
+    try {
+      var raw = localStorage.getItem('payent_active_event');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    try {
+      var fallback = sessionStorage.getItem('payent_active_event');
+      return fallback ? JSON.parse(fallback) : null;
+    } catch (e) { return null; }
+  }
+  var active = readActive();
+  var eventId = active && (active.id || active.name) ? String(active.id || active.name) : 'default';
+  var STORE_KEY = 'payent_ui_approvals_' + encodeURIComponent(eventId);
+  var state = { decisions: {}, log: [] };
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    if (saved && typeof saved === 'object') {
+      state.decisions = saved.decisions || {};
+      state.log = Array.isArray(saved.log) ? saved.log : [];
+    }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+  function toast(message, tone) {
+    var old = document.getElementById('payent-toast');
+    if (old) old.remove();
+    var el = document.createElement('div');
+    el.id = 'payent-toast';
+    el.setAttribute('role', 'status');
+    el.style.cssText = 'position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:120;max-width:calc(100vw - 32px);padding:11px 16px;border-radius:999px;font:600 12px/1.35 "Plus Jakarta Sans",sans-serif;box-shadow:0 12px 32px rgba(0,0,0,.45);border:1px solid ' + (tone === 'error' ? '#ff5722' : '#3a3a42') + ';background:' + (tone === 'error' ? 'rgba(80,22,12,.96)' : 'rgba(24,24,29,.96)') + ';color:' + (tone === 'error' ? '#ffb4a2' : '#f5f5f5') + ';text-align:center;';
+    el.textContent = message;
+    document.body.appendChild(el);
+    setTimeout(function () { if (el.parentNode) el.remove(); }, 2600);
+  }
+  function sheet(title, body, actions) {
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:110;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.62);';
+    var panel = document.createElement('div');
+    panel.style.cssText = 'width:100%;max-width:30rem;max-height:86vh;overflow:auto;background:#151519;border:1px solid #34343c;border-radius:22px 22px 0 0;padding:20px;color:#f5f5f5;box-shadow:0 -16px 40px rgba(0,0,0,.5);';
+    panel.innerHTML = '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px"><h3 style="font:700 16px/1.3 Plus Jakarta Sans,sans-serif;margin:0">' + title + '</h3><button type="button" data-sheet-close style="border:0;background:#24242b;color:#aaa;border-radius:999px;width:30px;height:30px;font-size:18px;line-height:1;cursor:pointer">×</button></div><div style="font:400 13px/1.55 Plus Jakarta Sans,sans-serif;color:#c7c7cf">' + body + '</div><div data-sheet-actions style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"></div>';
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    var actionsBox = panel.querySelector('[data-sheet-actions]');
+    (actions || []).forEach(function (action) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = action.label;
+      var primary = action.tone === 'primary';
+      var danger = action.tone === 'error';
+      btn.style.cssText = 'flex:1;min-width:120px;padding:10px 14px;border-radius:999px;border:1px solid ' + (primary ? '#dfff00' : danger ? '#ff5722' : '#383840') + ';background:' + (primary ? '#dfff00' : danger ? 'rgba(255,87,34,.16)' : '#24242b') + ';color:' + (primary ? '#0b0b0d' : danger ? '#ffb4a2' : '#ddd') + ';font:700 12px Plus Jakarta Sans,sans-serif;cursor:pointer';
+      btn.addEventListener('click', function () { var keep = action.onClick && action.onClick(); if (keep !== false) close(); });
+      actionsBox.appendChild(btn);
+    });
+    function close() { if (overlay.parentNode) overlay.remove(); }
+    overlay.addEventListener('click', function (ev) { if (ev.target === overlay || ev.target.closest('[data-sheet-close]')) close(); });
+    return close;
+  }
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-approval-id]'));
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll('[data-approval-filter]'));
+  var currentFilter = 'all';
+  var baseCounts = { total: 7, dana: 3, alat: 2, izin: 2, urgent: 3 };
+  function decisionLabel(decision) {
+    return decision === 'approve' ? 'Disetujui' : decision === 'reject' ? 'Ditolak' : 'Minta Revisi';
+  }
+  function resolvedCount() { return Object.keys(state.decisions).length; }
+  function resolvedByCategory(category) {
+    return cards.filter(function (card) {
+      return card.dataset.category === category && state.decisions[card.dataset.approvalId];
+    }).length;
+  }
+  function resolvedUrgent() {
+    return cards.filter(function (card) {
+      var id = card.dataset.approvalId;
+      return (id === 'REQ-1082' || id === 'AST-0419' || id === 'MOU-RC') && state.decisions[id];
+    }).length;
+  }
+  function formatMillion(value) {
+    return 'Rp ' + (Math.max(0, value) / 1000000).toFixed(2).replace('.', ',') + 'M';
+  }
+  function updateSummary() {
+    var pending = Math.max(0, baseCounts.total - resolvedCount());
+    document.querySelectorAll('[data-approvals-pending-label]').forEach(function (el) { el.textContent = pending + ' Pending'; });
+    document.querySelectorAll('[data-approvals-total]').forEach(function (el) { el.textContent = pending; });
+    var urgent = Math.max(0, baseCounts.urgent - resolvedUrgent());
+    var urgentEl = document.querySelector('[data-approvals-urgent]');
+    if (urgentEl) urgentEl.textContent = urgent + ' Pengajuan Mendesak';
+    var danaResolved = cards.reduce(function (sum, card) {
+      if (card.dataset.category === 'dana' && state.decisions[card.dataset.approvalId]) sum += parseInt(card.dataset.amount || '0', 10);
+      return sum;
+    }, 0);
+    var danaEl = document.querySelector('[data-approvals-dana]');
+    if (danaEl) danaEl.textContent = formatMillion(14850000 - danaResolved);
+    var counts = {
+      all: pending,
+      dana: Math.max(0, baseCounts.dana - resolvedByCategory('dana')),
+      alat: Math.max(0, baseCounts.alat - resolvedByCategory('alat')),
+      izin: Math.max(0, baseCounts.izin - resolvedByCategory('izin')),
+      approved: cards.filter(function (card) { return state.decisions[card.dataset.approvalId] === 'approve'; }).length
+    };
+    Object.keys(counts).forEach(function (key) {
+      var el = document.querySelector('[data-filter-count="' + key + '"]');
+      if (!el) return;
+      el.textContent = key === 'approved' ? '(' + counts[key] + ')' : (key === 'all' ? counts[key] : '(' + counts[key] + ')');
+    });
+    return pending;
+  }
+  function paintFilter() {
+    filterButtons.forEach(function (btn) {
+      var active = btn.dataset.approvalFilter === currentFilter;
+      btn.classList.toggle('bg-neon-lime', active);
+      btn.classList.toggle('text-surface-base', active);
+      btn.classList.toggle('font-bold', active);
+      btn.classList.toggle('neon-glow-lime', active);
+      btn.classList.toggle('bg-surface-card', !active);
+      btn.classList.toggle('border', !active);
+      btn.classList.toggle('border-surface-border', !active);
+      btn.classList.toggle('text-text-secondary', !active);
+      btn.classList.toggle('hover:bg-surface-card-hover', !active);
+      btn.classList.toggle('hover:text-text-primary', !active);
+      var count = btn.querySelector('[data-filter-count]');
+      if (count) {
+        count.classList.toggle('bg-surface-base', active);
+        count.classList.toggle('text-neon-lime', active);
+        count.classList.toggle('text-text-muted', !active);
+      }
+    });
+  }
+  function ensureStatus(card) {
+    var decision = state.decisions[card.dataset.approvalId];
+    if (!decision) return;
+    var tone = decision === 'approve' ? '#dfff00' : decision === 'reject' ? '#ff5722' : '#f59e0b';
+    var status = card.querySelector('[data-approval-status]');
+    if (!status) {
+      status = document.createElement('div');
+      status.setAttribute('data-approval-status', '');
+      status.className = 'mt-4 pt-3 border-t border-surface-border text-center font-label-sm text-xs font-bold';
+      status.style.color = tone;
+      card.appendChild(status);
+    }
+    status.textContent = decisionLabel(decision);
+    card.querySelectorAll('[data-decision]').forEach(function (btn) { btn.style.display = 'none'; });
+  }
+  function ensureEmpty() {
+    var first = cards[0];
+    if (!first) return null;
+    var parent = first.parentElement;
+    var empty = document.getElementById('approvals-empty');
+    if (!empty) {
+      empty = document.createElement('div');
+      empty.id = 'approvals-empty';
+      empty.className = 'rounded-2xl bg-surface-card border border-surface-border p-6 text-center';
+      empty.innerHTML = '<span class="material-symbols-outlined text-3xl text-neon-lime">task_alt</span><p class="font-label-sm text-xs text-text-secondary mt-2">Tidak ada pengajuan pada filter ini.</p>';
+      parent.appendChild(empty);
+    }
+    return empty;
+  }
+  function applyFilters() {
+    var visible = 0;
+    cards.forEach(function (card) {
+      var decision = state.decisions[card.dataset.approvalId];
+      var show;
+      if (currentFilter === 'approved') show = decision === 'approve';
+      else show = !decision && (currentFilter === 'all' || card.dataset.category === currentFilter);
+      card.style.display = show ? '' : 'none';
+      if (show) visible += 1;
+    });
+    var empty = ensureEmpty();
+    if (empty) empty.style.display = visible ? 'none' : '';
+    updateSummary();
+    paintFilter();
+  }
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentFilter = btn.dataset.approvalFilter;
+      applyFilters();
+    });
+  });
+  function applyDecision(card, decision) {
+    var id = card.dataset.approvalId;
+    var title = card.dataset.title || 'Pengajuan';
+    state.decisions[id] = decision;
+    state.log.unshift({ id: id, title: title, decision: decision, at: Date.now() });
+    if (state.log.length > 50) state.log.length = 50;
+    save();
+    ensureStatus(card);
+    applyFilters();
+    toast(decisionLabel(decision) + ': ' + title, decision === 'reject' ? 'error' : 'success');
+  }
+  cards.forEach(function (card) {
+    card.querySelectorAll('[data-decision]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var decision = btn.dataset.decision;
+        if (decision === 'approve') {
+          applyDecision(card, 'approve');
+          return;
+        }
+        sheet(decision === 'reject' ? 'Tolak pengajuan?' : 'Minta revisi?', '<p style="margin:0">Pengajuan <strong>' + esc(card.dataset.title) + '</strong> akan ditandai <strong>' + decisionLabel(decision).toLowerCase() + '</strong>.</p>', [
+          { label: 'Batal' },
+          { label: 'Ya, lanjutkan', tone: decision === 'reject' ? 'error' : 'primary', onClick: function () { applyDecision(card, decision); } }
+        ]);
+      });
+    });
+  });
+  cards.forEach(ensureStatus);
+  var historyBtn = document.getElementById('approval-history-btn');
+  if (historyBtn) {
+    historyBtn.addEventListener('click', function () {
+      var body = state.log.length ? '<div style="display:grid;gap:8px">' + state.log.map(function (entry) {
+        var color = entry.decision === 'approve' ? '#dfff00' : entry.decision === 'reject' ? '#ffb4a2' : '#fcd34d';
+        return '<div style="padding:10px;border:1px solid #34343c;border-radius:12px;background:#19191e"><div style="display:flex;justify-content:space-between;gap:10px"><strong style="color:#f5f5f5;font-size:12px">' + esc(entry.title) + '</strong><span style="color:' + color + ';font-size:11px;font-weight:700;white-space:nowrap">' + decisionLabel(entry.decision) + '</span></div><div style="margin-top:4px;color:#8f8f99;font-size:11px">' + esc(entry.id) + ' • ' + new Date(entry.at).toLocaleString('id-ID') + '</div></div>';
+      }).join('') + '</div>' : '<p style="margin:0">Belum ada riwayat keputusan pada event ini.</p>';
+      sheet('History Log', body, [{ label: 'Tutup' }]);
+    });
+  }
+  document.querySelectorAll('[data-attachment]').forEach(function (link) {
+    link.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      var filename = link.dataset.attachment;
+      sheet('Lampiran Pengajuan', '<div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #34343c;border-radius:14px;background:#19191e"><span class="material-symbols-outlined" style="font-size:30px;color:#dfff00">description</span><div><strong style="display:block;color:#f5f5f5">' + esc(filename) + '</strong><span style="font-size:11px;color:#8f8f99">Dokumen pendukung pengajuan • siap ditinjau</span></div></div><p style="margin:12px 0 0;font-size:12px;color:#8f8f99">File demo. Unduhan akan dibuat sebagai salinan teks agar tautan tetap berfungsi tanpa backend.</p>', [
+        { label: 'Tutup' },
+        { label: 'Unduh salinan', tone: 'primary', onClick: function () {
+          var content = 'Lampiran demo Payent\nNama file: ' + filename + '\nEvent: ' + (active && active.name ? active.name : '-') + '\n';
+          var blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = filename.replace(/\.[^.]+$/, '') + '-salinan.txt';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+          toast('Salinan lampiran diunduh.');
+        } }
+      ]);
+    });
+  });
+  applyFilters();
+});
+</script>
 </body></html>
